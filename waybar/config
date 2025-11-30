@@ -23,7 +23,6 @@
 			"backlight",
 			"pulseaudio",
 			"custom/network",
-			"custom/battery",
 			"custom/power"
 		],
 		"keyboard-state": {

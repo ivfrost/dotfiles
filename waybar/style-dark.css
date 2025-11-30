@@ -67,20 +67,18 @@ tooltip label {
 	margin: 0;
 	background: @fill-neutral;
 	border-radius: 10px;
-	padding: 1px 2px;
-	color: @fg-main;
 }
 
 #workspaces button {
-	margin: 1px;
+	margin: 2px;
 	border: none;
 	padding: 1px;
 	border-radius: 10px;
 	min-width: 20px;
 	min-height: 20px;
 	border: 2px solid transparent;
-	font-weight: 500;
 	background: @fill-neutral;
+	color: @fg-main;
 }
 
 #workspaces button:not(:last-child) {
@@ -134,13 +132,13 @@ tooltip label {
 #custom-theme,
 #custom-power,
 #custom-gammastep {
-	min-width: 14px;
-	padding: 3px 9px;
+	min-width: 12px;
+	padding: 0px 8px;
+  margin: 0;
 	background: @fill-neutral;
 	border-radius: 10px;
 	font-weight: 600;
 	color: @fg-main;
-	transition: background 0.3s ease;
 }
 
 #custom-network {
