@@ -1,0 +1,169 @@
+/* Waybar — Sequoia Atom Light Theme with Lucide icons */
+
+/* COLOR VARIABLES */
+@define-color bg-main rgba(245, 245, 247, 0.54);
+@define-color bg-dark #ffffff;
+@define-color bg-neutral #e5e5ea;
+
+@define-color fg-main #1c1c1e;
+@define-color fg-dim #565656;
+@define-color fg-hover #636366;
+@define-color fg-active #626262;
+@define-color fg-black #000000;
+
+@define-color accent-blue #0a84ff;
+@define-color accent-green #30d158;
+@define-color accent-red #ff453a;
+@define-color accent-orange #ff9f0a;
+@define-color accent-yellow #ffd60a;
+@define-color accent-purple #bf5af2;
+@define-color accent-cyan #64d2ff;
+
+@define-color fill-light rgba(28, 28, 30, 0.06);
+@define-color fill-medium rgba(28, 28, 30, 0.18);
+@define-color fill-strong rgba(28, 28, 30, 0.26);
+@define-color fill-neutral rgba(28, 28, 30, 0.08);
+@define-color fill-focused rgba(245, 245, 247, 0.7);
+@define-color border-light rgba(0, 0, 0, 0.08);
+
+/* GLOBAL */
+* {
+	font-family: 'Lucide', 'SF Pro Text', sans-serif;
+	font-weight: 500;
+	font-size: 10pt;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	text-shadow: none;
+}
+
+window#waybar {
+	color: @fg-main;
+	background: @bg-main;
+	border-radius: 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+}
+
+window#waybar > box {
+	margin: 1px 16px;
+	padding: 0;
+}
+
+/* TOOLTIP */
+tooltip {
+	background: @bg-main;
+	border-radius: 10px;
+	padding: 5px 9px;
+	border: 1px solid @border-light;
+}
+
+tooltip label {
+	color: @fg-main;
+}
+
+/* WORKSPACES */
+#workspaces {
+	margin: 0;
+	background: @fill-neutral;
+	border-radius: 10px;
+	padding: 1px 2px;
+	color: @fg-main;
+}
+
+#workspaces button {
+	margin: 1px;
+	border: none;
+	padding: 1px;
+	border-radius: 10px;
+	min-width: 20px;
+	min-height: 20px;
+	border: 2px solid transparent;
+	font-weight: 500;
+	background: @fill-neutral;
+}
+
+#workspaces button:not(:last-child) {
+	margin-right: 5px;
+}
+
+#workspaces button.focused {
+	background: @fill-focused;
+	border: 2px solid @accent-blue;
+}
+
+#workspaces button.active {
+	background: @accent-blue;
+}
+
+#workspaces button.urgent {
+	border: 2px solid @accent-yellow;
+}
+
+#workspaces button:hover {
+	background: @fill-strong;
+}
+
+#workspaces button label {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+#workspaces button.focused label {
+	font-weight: bold;
+	color: @fg-main;
+}
+
+/* MODULES */
+#clock,
+#custom-battery,
+#backlight,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#custom-network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd,
+#custom-theme,
+#custom-power,
+#custom-gammastep {
+	min-width: 14px;
+	padding: 3px 9px;
+	background: @fill-neutral;
+	border-radius: 10px;
+	font-weight: 600;
+	color: @fg-main;
+	transition: background 0.3s ease;
+}
+
+#custom-network {
+	padding-top: 0px;
+	padding-bottom: 5px;
+}
+
+menu {
+	background: @bg-main;
+	border-radius: 12px;
+	padding: 6px;
+	border: 1px solid @border-light;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+	opacity: 1;
+}
+
+menuitem {
+	color: @fg-main;
+	padding: 8px 14px;
+	border-radius: 8px;
+}
+
+menuitem:hover {
+	background: @fill-strong;
+	color: @fg-hover;
+}

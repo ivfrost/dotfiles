@@ -1,0 +1,191 @@
+[
+	{
+		"layer": "top",
+		"position": "top",
+		"exclusive": true,
+		"spacing": 10,
+		"margin": 0,
+		"modules-left": [
+			"sway/workspaces",
+			"sway/mode",
+			"sway/window"
+		],
+		"modules-center": [
+			"clock",
+			"custom/theme"
+		],
+		"modules-right": [
+			"tray",
+			"keyboard-state",
+			"mpd",
+			"cpu",
+			"memory",
+			"backlight",
+			"pulseaudio",
+			"custom/network",
+			"custom/battery",
+			"custom/power"
+		],
+		"keyboard-state": {
+			"numlock": false,
+			"capslock": true,
+			"format": "{icon}",
+			"format-icons": {
+				"locked": "",
+				"unlocked": ""
+			},
+			"empty-format": ""
+		},
+		"sway/workspaces": {
+			"format": "<span size='12pt'>{icon}</span>",
+			"all-outputs": true,
+			"format-icons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"4": "",
+				"5": "",
+				"6": "",
+				"7": "",
+				"8": "",
+				"9": "",
+				"10": ""
+			}
+		},
+		"sway/mode": {
+			"format": "<span style=\"italic\">{}</span>"
+		},
+		"sway/scratchpad": {
+			"format": "{icon} {count}",
+			"show-empty": false,
+			"format-icons": [
+				"",
+				""
+			],
+			"tooltip": true,
+			"tooltip-format": "{app}: {title}"
+		},
+		"mpd": {
+			"format": "  {title} - {artist} {stateIcon} [{elapsedTime:%M:%S}/{totalTime:%M:%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]",
+			"format-disconnected": " Disconnected",
+			"format-stopped": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+			"unknown-tag": "N/A",
+			"interval": 2,
+			"consume-icons": {
+				"on": " "
+			},
+			"random-icons": {
+				"on": " "
+			},
+			"repeat-icons": {
+				"on": " "
+			},
+			"single-icons": {
+				"on": "1 "
+			},
+			"state-icons": {
+				"paused": "",
+				"playing": ""
+			},
+			"tooltip-format": "MPD (connected)",
+			"tooltip-format-disconnected": "MPD (disconnected)",
+			"on-click": "mpc toggle",
+			"on-click-right": "foot -a ncmpcpp ncmpcpp",
+			"on-scroll-up": "mpc volume +2",
+			"on-scroll-down": "mpc volume -2"
+		},
+		"idle_inhibitor": {
+			"format": "{icon}",
+			"format-icons": {
+				"activated": "",
+				"deactivated": ""
+			}
+		},
+		"tray": {
+			"spacing": 10
+		},
+		"clock": {
+			"format": "{:%a %d %b %H:%M}",
+			"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+		},
+		"cpu": {
+			"format": "<span rise='-3pt' size='12pt'>{icon}</span> <span>{usage}%</span>",
+			"format-icons": [
+				""
+			]
+		},
+		"memory": {
+			"format": "<span rise='-3pt' size='12pt'></span> {}%"
+		},
+		"temperature": {
+			"thermal-zone": 2,
+			"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+			"critical-threshold": 80,
+			"format-critical": "{icon} {temperatureC}°C",
+			"format": "{icon} {temperatureC}°C",
+			"format-icons": [
+				"",
+				"",
+				""
+			]
+		},
+		"backlight": {
+			"format": "<span rise='-3pt' size='12pt'>{icon}</span> {percent}%",
+			"format-icons": [
+				""
+			],
+			"tooltip": false
+		},
+		"custom/network": {
+			"exec": "~/.config/waybar/scripts/network.sh",
+			"interval": 5,
+			"return-type": "json",
+			"tooltip": true,
+			"on-click": "nm-connection-editor"
+		},
+		"pulseaudio": {
+			"scroll-step": 5,
+			"format": "<span rise='-3pt' size='12pt'>{icon}</span>{volume}%    {format_source}",
+			"format-bluetooth": " {icon} {volume}% {format_source}",
+			"format-bluetooth-muted": "  {icon} {format_source}",
+			"format-muted": "<span rise='-3pt' size='12pt'></span>    {format_source}",
+			"format-source": "<span rise='-3pt' size='12pt'> </span>{volume}%",
+			"format-source-muted": "<span rise='-3pt' size='12pt'></span>",
+			"format-icons": {
+				"default": [
+					"",
+					" "
+				]
+			},
+			"on-click": "pavucontrol",
+			"on-click-right": "foot -a pw-top pw-top"
+		},
+		"custom/power": {
+			"format": "<span size='12pt'></span>",
+			"tooltip": false,
+			"menu": "on-click",
+			"menu-file": "~/.config/waybar/power_menu.xml",
+			"menu-actions": {
+				"shutdown": "systemctl poweroff",
+				"reboot": "systemctl reboot",
+				"suspend": "systemctl suspend",
+				"lock": "swaylock",
+				"logout": "swaymsg exit"
+			}
+		},
+		"custom/theme": {
+			"format": "<span size='12pt'></span>",
+			"format-icons": {
+				"default": ""
+			},
+			"tooltip": "Toggle theme",
+			"on-click": "~/.config/waybar/scripts/toggle-theme.sh"
+		},
+		"custom/battery": {
+			"exec": "~/.config/waybar/scripts/battery.sh",
+			"interval": 5,
+			"return-type": "json",
+			"tooltip": true
+		}
+	}
+]

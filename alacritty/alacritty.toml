@@ -1,0 +1,5 @@
+general.import = ["~/.config/alacritty/themes/one_dark.toml"]
+
+[window]
+padding = { x = 10, y = 10 }
+
