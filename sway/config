@@ -13,11 +13,14 @@ set $menu wofi --show drun
 # Basics
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+c kill
+bindsym $mod+Shift+d exec pcmanfm 
 bindsym Ctrl+Shift+d exec $menu
 bindsym Ctrl+Shift+s reload
+bindsym Ctrl+Shift+e exec $HOME/.config/waybar/scripts/toggle-theme.sh
 bindsym Ctrl+Shift+b exec pkill -x waybar && waybar
 bindsym Ctrl+Shift+w exec $HOME/.config/sway/scripts/rand_wallpaper.sh
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+bindsym Ctrl+Shift+h exec $HOME/.config/sway/scripts/clipman-wofi.sh
+bindsym Ctrl+Shift+n exec swaync-client -t -sw
 floating_modifier $mod normal
 
 # Moving focus
@@ -101,8 +104,8 @@ bindsym Print exec grim
 # Quick launch
 bindsym $mod+Shift+x exec firefox -P default-release
 bindsym $mod+Shift+w exec firefox -P wa 
+bindsym $mod+Shift+e exec firefox -P md
 bindsym $mod+Shift+b exec torbrowser-launcher
-bindsym $mod+Shift+d exec thunar
 bindsym $mod+Shift+p exec keepassxc
 bindsym $mod+Shift+v exec code
 
@@ -113,34 +116,47 @@ default_floating_border pixel 3
 gaps inner 6
 corner_radius 10
 shadows enable
-shadows_on_csd enable
+shadows_on_csd false
 shadow_color #00000022
 shadow_offset 4 4
-shadow_blur_radius 8
+shadow_blur_radius 10
 output wayland-1 scale 1.0
 
 focus_follows_mouse no
-input * { xkb_options caps:escape }
+input * {
+    xkb_layout "us,es"
+    xkb_options "grp:ctrl_space_toggle,caps:escape"
+}
 smart_borders on
 smart_gaps on
 
 ### Startup
-exec --no-startup-id waybar
+exec waybar
+exec swaync
 exec ~/.config/sway/scripts/rand_wallpaper.sh
+exec wl-paste =t text --watch clipman store --no-persist --tool wofi 
 
 ### Blur effects
-blur_radius 10
+blur enable
+blur_radius 6
 blur_passes 4
-blur_brightness 1.1
-blur_contrast 1.2
-blur_saturation 1.2
+blur_xray disable
 
 layer_effects "waybar" {
     blur enable;
-    blur_xray disable;
+    blur_xray enable;
     blur_ignore_transparent enable;
-    shadows disable;
-    corner_radius 0;
+    shadows false;
+}
+
+layer_effects "swaync-control-center" {
+    shadows enable;
+    shadow_color #000000dd;
+}
+
+layer_effects "swaync-notification-window" {
+    shadows enable;
+    shadow_color #000000dd;
 }
 
 ### Input
@@ -185,7 +201,7 @@ assign [app_id="firefox" title=".*Whatsapp.*"] → 4
 # Reading / Writing
 assign [app_id="onlyoffice"] → 5
 assign [app_id="libreoffice"] → 5
-assign [app_id="okular"] → 65
+assign [app_id="okular"] → 5
 
 # Media
 assign [app_id="mpv"] → 6

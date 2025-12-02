@@ -19,7 +19,8 @@ set_theme() {
   local gtk_theme="Adwaita-$theme"
   local color_scheme="prefer-$theme"
   local code_theme="Atom One $(echo "$theme" | sed 's/\b./\u&/g')"
-  local waybar_css="$HOME/.config/waybar/style-$theme.css"
+  # always use dark waybar theme
+  local waybar_css="$HOME/.config/waybar/style-dark.css"
   local alacritty_file="$HOME/.config/alacritty/$theme.yml"
   local sway_colors="$HOME/.config/sway/colors-$theme"
 
@@ -40,4 +41,3 @@ toggle_theme() {
 }
 
 toggle_theme
-

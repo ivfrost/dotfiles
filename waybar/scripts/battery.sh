@@ -60,4 +60,4 @@ fi
 TOOLTIP="Capacity: ${CAPACITY}%\nHealth: ${HEALTH}%\nTime: ${TIME_STR}\nStatus: ${STATUS}"
 
 # Output JSON
-echo "{\"text\":\"<span rise='-5650' size='14pt'>${ICON}</span> ${CAPACITY}%\",\"tooltip\":\"${TOOLTIP}\"}"
+echo "{\"text\":\"<span>${CAPACITY}%</span> <span rise='-6pt' size='16pt'>${ICON}</span>\",\"tooltip\":\"${TOOLTIP}\"}"
