@@ -152,6 +152,7 @@ tooltip {
 #custom-power,
 #custom-network,
 #custom-microphone,
+#custom-backlight,
 #custom-pulseaudio {
 	font-family: 'Phosphor-Bold';
 }

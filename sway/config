@@ -183,23 +183,19 @@ exec swayidle -w \
 
 ### Workspace assignments
 # IDEs / Terminals
-assign [app_id="alacritty"] → 1
-assign [app_id="kitty"] → 1
-assign [app_id="gnome-terminal"] → 1
-assign [app_id="xfce4-terminal"] → 1
-assign [app_id="konsole"] → 1
-assign [app_id="terminator"] → 1
-assign [app_id="tilix"] → 1
-assign [app_id="xterm"] → 1
-assign [app_id="code"] → 1              
-assign [app_id="idea"] → 1            
+assign [app_id="alacritty"] → 2
+assign [app_id="kitty"] → 2
+assign [app_id="gnome-terminal"] → 2
+assign [app_id="xfce4-terminal"] → 2
+assign [app_id="code"] → 2              
+assign [app_id="idea"] → 2            
 assign [app_id="jetbrains-idea"] → 1   
 assign [app_id="android-studio"] → 1
 
 # Browsing
-assign [app_id="firefox" title=".*Mozilla Firefox.*"] → 2
+assign [app_id="firefox" title=".*Mozilla Firefox.*"] → 1
 # Professional
-assign [app_id="firefox" title=".*GitHub.*"] → 3
+assign [app_id="firefox" title=".*GitHub.*"] → 1
 # Messaging
 assign [app_id="firefox" title=".*Whatsapp.*"] → 4
 

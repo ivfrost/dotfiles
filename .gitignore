@@ -1,3 +1,4 @@
 .bashrc.local
 zsh/.zsh_history
 zsh/*zcompdump*
+unison.log

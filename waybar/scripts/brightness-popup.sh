@@ -9,7 +9,7 @@ max=$(brightnessctl max)
 percent=$((brightness * 100 / max))
 
 # Write to a temp file that Waybar reads
-echo "{\"text\": \"<span size='16pt' weight='500' rise='-4pt'></span> <span size='12pt'>$percent%</span>\"}" > /tmp/waybar-brightness.json
+echo "{\"text\": \"<span size='12pt' weight='400' rise='-2pt'></span> <span size='11pt'>$percent%</span>\"}" > /tmp/waybar-brightness.json
 
 # Kill any previous timeout process
 if [ -f "$TIMEOUT_PID_FILE" ]; then
