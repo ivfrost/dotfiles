@@ -1,0 +1,8 @@
+root = /home/ivfrost/.mozilla/firefox/
+root = ssh://ivfrost@desktop//home/ivfrost/.mozilla/firefox
+
+auto = true
+batch = true
+prefer = newer
+repeat = watch
+
