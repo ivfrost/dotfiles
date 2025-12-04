@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Wallpaper directory
-WP_FOLDER=~/pictures/wallpapers/
+WP_FOLDER=~/Pictures/Wallpapers/
 
 # Pick one random file
 FILE=$(find "$WP_FOLDER" -type f \( -name '*.png' -o -name '*.jpg' \) | shuf -n1)

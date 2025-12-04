@@ -7,7 +7,7 @@ ETHERNET=$(nmcli -t -f DEVICE,TYPE,STATE dev | grep "ethernet:connected" | cut -
 
 if [ -n "$ETHERNET" ]; then
   ICON=""
-  echo "{\"text\":\"<span size='22pt' weight='400' rise='-28pt'>$ICON</span>\",\"tooltip\":\"Ethernet: $ETHERNET (connected)\"}"
+  echo "{\"text\":\"<span size='15pt' weight='400' rise='-18pt'>$ICON</span>\",\"tooltip\":\"Ethernet: $ETHERNET (connected)\"}"
 elif [ -n "$SSID" ]; then
   if [ "$SIGNAL" -ge 40 ]; then
     ICON=""
@@ -16,7 +16,7 @@ elif [ -n "$SSID" ]; then
   else
     ICON=""
   fi
-  echo "{\"text\":\"<span size='22pt' weight='400'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
+  echo "{\"text\":\"<span size='1em' weight='400'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
 else
   echo "{\"text\":\"<span size='22pt' weight='400'></span>\",\"tooltip\":\"No network\"}"
 fi

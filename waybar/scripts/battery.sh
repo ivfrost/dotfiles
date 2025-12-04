@@ -3,7 +3,7 @@
 BAT_PATH="/sys/class/power_supply/BAT0"
 
 if [ ! -d "$BAT_PATH" ]; then
-  echo '{"text": "No battery", "tooltip": "Battery not found"}'
+  echo '{"text": "", "tooltip": ""}'
   exit 0
 fi
 

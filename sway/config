@@ -110,7 +110,8 @@ bindsym $mod+Shift+p exec keepassxc
 bindsym $mod+Shift+v exec code
 
 ### Appearance
-output eDP-1 scale 1
+output HDMI-A-3 scale 1 adaptive_sync on
+output eDP-1 scale 1.1
 default_border pixel 2
 default_floating_border pixel 2
 gaps inner 4
@@ -120,7 +121,6 @@ shadows_on_csd false
 shadow_color #00000022
 shadow_offset 4 4
 shadow_blur_radius 10
-output wayland-1 scale 1.0
 
 focus_follows_mouse no
 input * {

@@ -2,7 +2,7 @@
 
 /* COLOR VARIABLES */
 @define-color bg-main rgba(28, 28, 30, 0.64);
-@define-color bg-dark #000000;
+@define-color bg-workspace-active rgba(28, 28, 30, 0.36);
 @define-color bg-neutral #1c1c1e;
 
 @define-color fg-main #f5f5f7;
@@ -30,8 +30,8 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'SF Pro Text', 'Phosphor', sans-serif;
-	font-size: 12pt;
+	font-family: 'SF Pro Text', 'Phosphor-Bold', 'Phosphor', sans-serif;
+	font-size: 11pt;
 	font-weight: 500;
 	border-radius: 0;
 	text-shadow: none;
@@ -73,9 +73,10 @@ tooltip {
 }
 
 #workspaces button {
-	min-width: 27px;
-	min-height: 27px;
-	padding: 2px;
+	min-width: 0.5em;
+	min-height: 0.5em;
+	margin: 0;
+	padding: 0.4em;
 	border: 2px solid transparent;
 	border-radius: 10px;
 	color: @fg-main;
@@ -93,7 +94,7 @@ tooltip {
 
 #workspaces button.focused {
 	border: 2px solid @accent-blue;
-	background: @fill-focused;
+	background: @bg-workspace-active;
 }
 
 #workspaces button.urgent {
@@ -108,14 +109,10 @@ tooltip {
 #workspaces button label {
 	margin: 0;
 	padding: 0;
-	font-family: 'Phosphor', sans-serif;
-	font-size: 14pt;
+	font-family: 'Phosphor-Bold', sans-serif;
+	font-size: 1em;
 	font-weight: 600;
-}
-
-#workspaces button.focused label {
 	color: @fg-main;
-	font-weight: 800;
 }
 
 /* MODULES */
@@ -140,13 +137,18 @@ tooltip {
 #custom-backlight,
 #custom-keyboard {
 	margin: 0;
-	padding: 4px 8px;
-	min-width: 20px;
+	padding: 0em 0.6em;
+	min-height: 1em;
+	min-width: 1em;
 	border-radius: 10px;
 	color: @fg-main;
-	font-size: 12pt;
-	font-family: 'SF Pro Text', 'Phosphor', sans-serif;
+	font-family: 'SF Pro Text', 'Phosphor-Fill';
+	font-size: 1em;
 	background: transparent;
+}
+
+#custom-power {
+	font-family: 'Phosphor-Bold';
 }
 
 #backlight:hover,
@@ -170,47 +172,4 @@ tooltip {
 #custom-backlight:hover,
 #custom-keyboard:hover {
 	background: @fill-medium;
-}
-
-#custom-battery,
-#custom-keyboard,
-#custom-backlight,
-#pulseaudio {
-	padding: 4px 12px 4px 9px;
-}
-
-#backlight {
-	padding: 4px 9px 4px 8px;
-}
-
-#custom-network {
-	margin-top: -1px;
-	padding: 0px 5px 6px 4px;
-}
-
-#custom-notification {
-}
-
-#custom-power {
-	font-weight: 700;
-}
-
-/* MENU */
-menu {
-	padding: 6px;
-	border: 1px solid @border-light;
-	border-radius: 16px;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-	background: @bg-main;
-}
-
-menuitem {
-	padding: 8px 14px;
-	border-radius: 8px;
-	color: @fg-main;
-}
-
-menuitem:hover {
-	color: @fg-hover;
-	background: @fill-strong;
 }

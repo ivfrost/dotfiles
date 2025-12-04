@@ -15,7 +15,7 @@ else
 fi
 
 # Write to a temp file that Waybar reads
-echo "{\"text\": \"<span size='15pt' rise='-5pt'></span>  $short\"}" > /tmp/keyboard-popup.json
+echo "{\"text\": \"<span size='14pt' rise='-3pt'></span> $short\"}" > /tmp/keyboard-popup.json
 
 # Kill any previous timeout process
 if [ -f "$TIMEOUT_PID_FILE" ]; then
