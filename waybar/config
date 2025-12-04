@@ -158,9 +158,9 @@
 			"interval": 1,
 			"format": "{text}",
 			"tooltip": false,
+			"on-click-middle": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
 			"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-			"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-			"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+			"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%"
 		},
 		"custom/network": {
 			"exec": "~/.config/waybar/scripts/network.sh",
@@ -173,7 +173,10 @@
 			"exec": "~/.config/waybar/scripts/pulseaudio.sh",
 			"return-type": "json",
 			"on-click": "pavucontrol",
-			"on-click-right": "foot -a pw-top pw-top"
+			"on-click-right": "foot -a pw-top pw-top",
+			"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+			"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+			"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 		},
 		"custom/pulseaudio-headphones": {
 			"exec": "~/.config/waybar/scripts/pulseaudio-headphones.sh",
@@ -182,7 +185,7 @@
 			"on-click-right": "foot -a pw-top pw-top"
 		},
 		"custom/power": {
-			"format": "<span size='15pt'weight='600' rise='-18pt'></span>",
+			"format": "<span size='15pt'weight='600' rise='-19pt'></span>",
 			"tooltip": "Power Menu",
 			"on-click": "~/.config/waybar/scripts/power-menu.sh"
 		},

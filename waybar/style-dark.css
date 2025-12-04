@@ -30,7 +30,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'SF Pro Text', 'Phosphor-Bold', 'Phosphor', sans-serif;
+	font-family: 'SF Pro Text', 'Phosphor-Bold', sans-serif;
 	font-size: 11pt;
 	font-weight: 500;
 	border-radius: 0;
@@ -73,10 +73,9 @@ tooltip {
 }
 
 #workspaces button {
-	min-width: 0.5em;
-	min-height: 0.5em;
+	min-width: 1.74em;
+	min-height: 1.74em;
 	margin: 0;
-	padding: 0.45em;
 	border: 2px solid transparent;
 	border-radius: 10px;
 	color: @fg-main;
@@ -109,8 +108,7 @@ tooltip {
 #workspaces button label {
 	margin: 0;
 	padding: 0;
-	font-family: 'Phosphor-Bold', sans-serif;
-	font-size: 1em;
+	font-size: 11pt;
 	font-weight: 600;
 	color: @fg-main;
 }
@@ -140,12 +138,12 @@ tooltip {
 #custom-keyboard {
 	margin: 0;
 	padding: 0em 0.6em;
-	min-height: 1em;
-	min-width: 1em;
+	min-height: 1.74em;
+	min-width: 1.74em;
 	border-radius: 10px;
 	color: @fg-main;
 	font-family: 'SF Pro Text', 'Phosphor-Fill';
-	font-size: 1em;
+	font-size: 11pt;
 	background: transparent;
 }
 

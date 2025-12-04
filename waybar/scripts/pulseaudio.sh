@@ -13,7 +13,7 @@ output_status() {
   # Only show if it's NOT headphones
   if ! echo "$ACTIVE_PORT" | grep -qiE "headphone|earpiece"; then
     if [ "$MUTE" = "yes" ]; then
-      echo "{\"text\":\"<span size='14pt' weight='600' rise='-4pt'></span>\"}"
+      echo "{\"text\":\"<span size='14pt' weight='600' rise='-3pt'></span>\"}"
     else
       # Select icon based on volume level
       if [ "$VOLUME" -le 33 ]; then

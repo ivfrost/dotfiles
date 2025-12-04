@@ -54,6 +54,7 @@ export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa'
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export XDG_CURRENT_DESKTOP=sway
 export GDK_DPI_SCALE=1.1
+export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 # Update PATH
 export PATH=$PATH:$HOME/.local/scr

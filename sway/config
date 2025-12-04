@@ -20,6 +20,7 @@ bindsym Ctrl+Shift+e exec $HOME/.config/waybar/scripts/toggle-theme.sh
 bindsym Ctrl+Shift+b exec pkill -x waybar && waybar
 bindsym Ctrl+Shift+w exec $HOME/.config/sway/scripts/rand-wallpaper.sh
 bindsym Ctrl+Shift+h exec $HOME/.config/sway/scripts/clipman-wofi.sh
+bindsym Ctrl+Shift+q exec $HOME/.config/dotfiles/waybar/scripts/power-menu.sh
 bindsym Ctrl+Shift+n exec swaync-client -t -sw
 floating_modifier $mod normal
 
@@ -138,6 +139,7 @@ smart_gaps on
 ### Startup
 exec waybar
 exec swaync
+exec lxpolkit
 exec ~/.config/sway/scripts/rand-wallpaper.sh
 exec wl-paste =t text --watch clipman store --no-persist --tool wofi 
 
