@@ -15,21 +15,16 @@
 			"custom/notification"
 		],
 		"modules-right": [
-			"sway/language",
 			"tray",
 			"keyboard-state",
 			"mpd",
-			"backlight",
+			"custom/backlight",
+			"custom/keyboard",
 			"pulseaudio",
 			"custom/network",
 			"custom/battery",
 			"custom/power"
 		],
-		"sway/language": {
-			"format": "{short}",
-			"tooltip-format": "{long}",
-			"on-click": "swaymsg input type:keyboard xkb_switch_layout next"
-		},
 		"keyboard-state": {
 			"numlock": false,
 			"capslock": true,
@@ -41,17 +36,17 @@
 			"empty-format": ""
 		},
 		"sway/workspaces": {
-			"format": "<span size='12pt' rise='-19pt'>{icon}</span>",
+			"format": "{icon}",
 			"all-outputs": true,
 			"format-icons": {
-				"1": "",
-				"2": "",
-				"3": "",
-				"4": "",
-				"5": "",
-				"6": "",
-				"7": "",
-				"8": "",
+				"1": "",
+				"2": "",
+				"3": "",
+				"4": "",
+				"5": "",
+				"6": "",
+				"7": "",
+				"8": "",
 				"9": "",
 				"10": ""
 			}
@@ -113,13 +108,13 @@
 			"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 		},
 		"cpu": {
-			"format": "<span rise='-2pt' size='11pt'>{icon}</span> <span>{usage}%</span>",
+			"format": "",
 			"format-icons": [
 				""
 			]
 		},
 		"memory": {
-			"format": "<span rise='-2pt' size='11pt'></span> {}%"
+			"format": " {}%"
 		},
 		"temperature": {
 			"thermal-zone": 2,
@@ -134,10 +129,24 @@
 			]
 		},
 		"backlight": {
-			"format": "<span rise='-4pt' size='13pt'>{icon}</span> {percent}%",
+			"format": " {percent}%",
 			"format-icons": [
-				""
+				""
 			],
+			"tooltip": false
+		},
+		"custom/backlight": {
+			"exec": "cat /tmp/waybar-brightness.json 2>/dev/null || echo '{}'",
+			"return-type": "json",
+			"interval": 1,
+			"format": " {text}",
+			"tooltip": false
+		},
+		"custom/keyboard": {
+			"exec": "cat /tmp/keyboard-popup.json 2>/dev/null || echo '{}'",
+			"return-type": "json",
+			"interval": 1,
+			"format": "{text}",
 			"tooltip": false
 		},
 		"custom/network": {
@@ -149,23 +158,28 @@
 		},
 		"pulseaudio": {
 			"scroll-step": 5,
-			"format": "<span rise='-3.5pt' size='12pt'>{icon}</span>{volume}%     {format_source}",
-			"format-bluetooth": " {icon} {volume}% {format_source}",
-			"format-bluetooth-muted": "  {icon} {format_source}",
-			"format-muted": "<span rise='-3.5pt' size='12pt'></span>     {format_source}",
-			"format-source": "<span rise='-3.5pt' size='12pt'> </span>{volume}%",
-			"format-source-muted": "<span rise='-3.5pt' size='12pt'></span>",
+			"format": "<span size='16pt' weight='600' rise='-4pt'></span>  {volume}%",
+			"format-bluetooth": " {icon} {volume}% {format_source}",
+			"format-bluetooth-muted": " {icon} {format_source}",
+			"format-muted": "<span size='16pt' weight='600' rise='-4pt'></span>     {format_source}",
+			"format-source": "<span size='16pt' weight='600' rise='-4pt'></span> {volume}%",
+			"format-source-muted": "<span size='16pt' weight='600' rise='-4pt'></span>",
 			"format-icons": {
 				"default": [
-					"",
-					" "
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
 				]
 			},
 			"on-click": "pavucontrol",
 			"on-click-right": "foot -a pw-top pw-top"
 		},
 		"custom/power": {
-			"format": "<span size='12pt'></span>",
+			"format": "<span size='17pt' rise='-4pt' weight='600'></span>",
 			"tooltip": "Power Menu",
 			"on-click": "~/.config/waybar/scripts/power-menu.sh"
 		},

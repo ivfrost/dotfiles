@@ -6,17 +6,17 @@ SIGNAL=$(nmcli -t -f IN-USE,SIGNAL dev wifi | grep "^\*:" | cut -d: -f2)
 ETHERNET=$(nmcli -t -f DEVICE,TYPE,STATE dev | grep "ethernet:connected" | cut -d: -f1)
 
 if [ -n "$ETHERNET" ]; then
-  ICON=""
-  echo "{\"text\":\"<span size='19pt'>$ICON</span>\",\"tooltip\":\"Ethernet: $ETHERNET (connected)\"}"
+  ICON=""
+  echo "{\"text\":\"<span size='22pt' weight='400' rise='-28pt'>$ICON</span>\",\"tooltip\":\"Ethernet: $ETHERNET (connected)\"}"
 elif [ -n "$SSID" ]; then
-  if [ "$SIGNAL" -ge 60 ]; then
-    ICON=""
+  if [ "$SIGNAL" -ge 40 ]; then
+    ICON=""
   elif [ "$SIGNAL" -ge 30 ]; then
-    ICON=""
+    ICON=""
   else
-    ICON=""
+    ICON=""
   fi
-  echo "{\"text\":\"<span size='19pt'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
+  echo "{\"text\":\"<span size='22pt' weight='400'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
 else
-  echo "{\"text\":\"<span rise='-24pt' size='12pt'></span>\",\"tooltip\":\"No network\"}"
+  echo "{\"text\":\"<span size='22pt' weight='400'></span>\",\"tooltip\":\"No network\"}"
 fi

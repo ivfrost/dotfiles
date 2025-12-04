@@ -73,9 +73,9 @@ tooltip {
 }
 
 #workspaces button {
-	min-width: 27px;
-	min-height: 27px;
-	padding: 2px;
+	min-width: 24px;
+	min-height: 24px;
+	padding: 4px 3.7px 4px 4.7px;
 	border: 2px solid transparent;
 	border-radius: 10px;
 	color: @fg-main;
@@ -110,12 +110,13 @@ tooltip {
 	padding: 0;
 	font-family: 'Phosphor', sans-serif;
 	font-size: 14pt;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 #workspaces button.focused label {
 	color: @fg-main;
-	font-weight: 800;
+	font-family: 'Phosphor-Bold', sans-serif;
+	font-weight: 400;
 }
 
 /* MODULES */
@@ -137,8 +138,7 @@ tooltip {
 #scratchpad,
 #temperature,
 #tray,
-#custom-backlight,
-#custom-keyboard {
+#language {
 	margin: 0;
 	padding: 4px 8px;
 	min-width: 20px;
@@ -167,16 +167,13 @@ tooltip {
 #scratchpad:hover,
 #temperature:hover,
 #tray:hover,
-#custom-backlight:hover,
-#custom-keyboard:hover {
+#language:hover {
 	background: @fill-medium;
 }
 
 #custom-battery,
-#custom-keyboard,
-#custom-backlight,
 #pulseaudio {
-	padding: 4px 12px 4px 9px;
+	padding: 4px 11px 4px 9px;
 }
 
 #backlight {
@@ -185,7 +182,7 @@ tooltip {
 
 #custom-network {
 	margin-top: -1px;
-	padding: 0px 5px 6px 4px;
+	padding: 0 4px 6px;
 }
 
 #custom-notification {
