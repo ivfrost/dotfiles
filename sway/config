@@ -96,7 +96,9 @@ bindsym $mod+r mode "resize"
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && ~/.config/waybar/scripts/microphone-popup.sh
+bindsym --locked shift+XF86AudioRaiseVolume exec pactl set-source-volume @DEFAULT_SOURCE@ +5% && ~/.config/waybar/scripts/microphone-popup.sh
+bindsym --locked shift+XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -5% && ~/.config/waybar/scripts/microphone-popup.sh
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% && ~/.config/waybar/scripts/brightness-popup.sh
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && ~/.config/waybar/scripts/brightness-popup.sh
 bindsym Print exec grim
@@ -111,7 +113,7 @@ bindsym $mod+Shift+v exec code
 
 ### Appearance
 output HDMI-A-3 scale 1 adaptive_sync on
-output eDP-1 scale 1.1
+output eDP-1 scale 1 adaptive_sync on
 default_border pixel 2
 default_floating_border pixel 2
 gaps inner 4

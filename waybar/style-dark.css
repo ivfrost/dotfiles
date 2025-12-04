@@ -130,11 +130,13 @@ tooltip {
 #memory,
 #mode,
 #mpd,
-#pulseaudio,
+#custom-pulseaudio,
+#custom-pulseaudio-headphones,
 #scratchpad,
 #temperature,
 #tray,
 #custom-backlight,
+#custom-microphone,
 #custom-keyboard {
 	margin: 0;
 	padding: 0em 0.6em;
@@ -147,7 +149,10 @@ tooltip {
 	background: transparent;
 }
 
-#custom-power {
+#custom-power,
+#custom-network,
+#custom-microphone,
+#custom-pulseaudio {
 	font-family: 'Phosphor-Bold';
 }
 
@@ -165,7 +170,8 @@ tooltip {
 #memory:hover,
 #mode:hover,
 #mpd:hover,
-#pulseaudio:hover,
+#custom-pulseaudio:hover,
+#custom-pulseaudio-headphones:hover,
 #scratchpad:hover,
 #temperature:hover,
 #tray:hover,

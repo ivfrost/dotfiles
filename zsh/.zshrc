@@ -25,7 +25,7 @@ alias vid='cd ~/videos'
 alias mus='cd ~/music'
 alias hdd='cd /mnt/hdd'
 alias opt='cd /opt'
-alias dot='cd ~/dotfiles/'
+alias dot='cd ~/.config/dotfiles/'
 alias srv='cd /srv'
 
 # Aliases: Commands

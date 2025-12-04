@@ -20,8 +20,11 @@
 			"mpd",
 			"custom/backlight",
 			"custom/keyboard",
-			"pulseaudio",
+			"custom/microphone",
+			"custom/pulseaudio",
+			"custom/pulseaudio-headphones",
 			"custom/network",
+			"custom/network-eth",
 			"custom/battery",
 			"custom/power"
 		],
@@ -149,6 +152,16 @@
 			"format": "{text}",
 			"tooltip": false
 		},
+		"custom/microphone": {
+			"exec": "cat /tmp/waybar-microphone.json 2>/dev/null || echo '{}'",
+			"return-type": "json",
+			"interval": 1,
+			"format": "{text}",
+			"tooltip": false,
+			"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+			"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+			"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+		},
 		"custom/network": {
 			"exec": "~/.config/waybar/scripts/network.sh",
 			"interval": 5,
@@ -156,25 +169,15 @@
 			"tooltip": true,
 			"on-click": "nm-connection-editor"
 		},
-		"pulseaudio": {
-			"scroll-step": 5,
-			"format": "<span size='14pt' rise='-3pt' weight='600'></span>  {volume}%",
-			"format-bluetooth": " {icon} {volume}% {format_source}",
-			"format-bluetooth-muted": " {icon} {format_source}",
-			"format-muted": "<span size='16pt' weight='600' rise='-4pt'></span>     {format_source}",
-			"format-source": "<span size='16pt' weight='600' rise='-4pt'></span> {volume}%",
-			"format-source-muted": "<span size='16pt' weight='600' rise='-4pt'></span>",
-			"format-icons": {
-				"default": [
-					"",
-					"",
-					"",
-					"",
-					"",
-					"",
-					""
-				]
-			},
+		"custom/pulseaudio": {
+			"exec": "~/.config/waybar/scripts/pulseaudio.sh",
+			"return-type": "json",
+			"on-click": "pavucontrol",
+			"on-click-right": "foot -a pw-top pw-top"
+		},
+		"custom/pulseaudio-headphones": {
+			"exec": "~/.config/waybar/scripts/pulseaudio-headphones.sh",
+			"return-type": "json",
 			"on-click": "pavucontrol",
 			"on-click-right": "foot -a pw-top pw-top"
 		},
