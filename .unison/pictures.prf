@@ -1,0 +1,7 @@
+root = /home/ivfrost/Pictures
+root = ssh://ivfrost@desktop//home/ivfrost/Pictures
+
+auto = true
+batch = true
+prefer = newer
+

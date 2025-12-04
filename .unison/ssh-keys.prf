@@ -1,0 +1,7 @@
+root = /home/ivfrost/.ssh
+root = ssh://ivfrost@desktop//home/ivfrost/.ssh
+
+auto = true
+batch = true
+prefer = newer
+

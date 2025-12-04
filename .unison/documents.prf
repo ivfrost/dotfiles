@@ -1,0 +1,7 @@
+root = /home/ivfrost/Documents
+root = ssh://ivfrost@desktop//home/ivfrost/Documents
+
+auto = true
+batch = true
+prefer = newer
+repeat = watch

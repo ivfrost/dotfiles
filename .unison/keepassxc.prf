@@ -1,0 +1,9 @@
+root = /home/ivfrost/.local/share/keepassxc
+root = ssh://ivfrost@desktop//home/ivfrost/.local/share/keepassxc
+
+auto = true
+batch = true
+prefer = newer
+repeat = watch
+
+
