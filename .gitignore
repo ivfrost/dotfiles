@@ -3,3 +3,4 @@ zsh/.zsh_history
 zsh/*zcompdump*
 unison.log
 waybar/current-theme
+.unison/arc*

@@ -19,7 +19,7 @@ bindsym Ctrl+Shift+s reload
 bindsym Ctrl+Shift+e exec $HOME/.config/waybar/scripts/toggle-theme.sh
 bindsym Ctrl+Shift+b exec pkill -x waybar && waybar
 bindsym Ctrl+Shift+w exec $HOME/.config/sway/scripts/rand-wallpaper.sh
-bindsym Ctrl+Shift+h exec $HOME/.config/sway/scripts/clipman-wofi.sh
+bindsym Ctrl+Shift+h exec cliphist list | wofi --dmenu --width 760 --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy 
 bindsym Ctrl+Shift+q exec $HOME/.config/dotfiles/waybar/scripts/power-menu.sh
 bindsym Ctrl+Shift+n exec swaync-client -t -sw
 floating_modifier $mod normal
@@ -111,6 +111,7 @@ bindsym $mod+Shift+e exec firefox -P md
 bindsym $mod+Shift+b exec torbrowser-launcher
 bindsym $mod+Shift+p exec keepassxc
 bindsym $mod+Shift+v exec code
+bindsym $mod+Shift+o exec flatpak run org.onlyoffice.desktopeditors
 
 ### Appearance
 output HDMI-A-3 scale 1 adaptive_sync on
@@ -137,11 +138,11 @@ smart_borders on
 smart_gaps on
 
 ### Startup
+exec lxpolkit
 exec waybar
 exec swaync
-exec lxpolkit
+exec wl-paste --watch cliphist store
 exec ~/.config/sway/scripts/rand-wallpaper.sh
-exec wl-paste =t text --watch clipman store --no-persist --tool wofi 
 
 ### Blur effects
 blur enable

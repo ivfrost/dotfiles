@@ -15,8 +15,8 @@ else
     else
       ICON=""
     fi
-    echo "{\"text\":\"<span size='17pt' rise='6pt' weight='400'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
+    echo "{\"text\":\"<span size='20pt' rise='0pt' weight='400'>$ICON</span>\",\"tooltip\":\"SSID: $SSID\nSignal: $SIGNAL%\"}"
   else
-    echo "{\"text\":\"<span size='17pt' weight='400'></span>\",\"tooltip\":\"No network\"}"
+    echo "{\"text\":\"<span size='18pt' weight='400'></span>\",\"tooltip\":\"No network\"}"
   fi
 fi

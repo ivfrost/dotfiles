@@ -42,7 +42,7 @@
 			"format": "{icon}",
 			"all-outputs": true,
 			"format-icons": {
-				"1": "",
+				"1": "",
 				"2": "",
 				"3": "",
 				"4": "",
@@ -205,12 +205,12 @@
 		},
 		"custom/notification": {
 			"tooltip": true,
-			"format": "{icon}",
+			"format": "<span size='14pt'>{icon}</span>",
 			"format-icons": {
-				"notification": "",
+				"notification": "",
 				"none": "",
-				"dnd-notification": "󰂠",
-				"dnd-none": "󰪓",
+				"dnd-notification": "",
+				"dnd-none": "",
 				"inhibited-notification": "",
 				"inhibited-none": "",
 				"dnd-inhibited-notification": "",
