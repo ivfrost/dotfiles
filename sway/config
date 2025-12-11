@@ -13,7 +13,7 @@ set $menu wofi --show drun
 # Basics
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+c kill
-bindsym $mod+Shift+d exec pcmanfm 
+bindsym $mod+Shift+d exec nemo 
 bindsym Ctrl+Shift+d exec $menu
 bindsym Ctrl+Shift+s reload
 bindsym Ctrl+Shift+e exec $HOME/.config/waybar/scripts/toggle-theme.sh
@@ -73,6 +73,13 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
+bindsym $mod+m exec ~/.config/sway/scripts/monocle.sh
+
+# Screen orientation
+bindsym $mod+Ctrl+Shift+Right exec swaymsg output $(swaymsg -t get_outputs | jq -r '.[].name') transform 90
+bindsym $mod+Ctrl+Shift+Left exec swaymsg output $(swaymsg -t get_outputs | jq -r '.[].name') transform 270
+bindsym $mod+Ctrl+Shift+Up exec swaymsg output $(swaymsg -t get_outputs | jq -r '.[].name') transform normal
+bindsym $mod+Ctrl+Shift+Down exec swaymsg output $(swaymsg -t get_outputs | jq -r '.[].name') transform 180
 
 # Scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -102,16 +109,20 @@ bindsym --locked shift+XF86AudioRaiseVolume exec pactl set-source-volume @DEFAUL
 bindsym --locked shift+XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -5% && ~/.config/waybar/scripts/microphone-popup.sh
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% && ~/.config/waybar/scripts/brightness-popup.sh
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && ~/.config/waybar/scripts/brightness-popup.sh
-bindsym Print exec grim
+bindsym Ctrl+space exec swaymsg input type:keyboard xkb_switch_layout next && $HOME/.config/waybar/scripts/keyboard-popup.sh
+bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+bindsym Shift+Print exec ~/.config/sway/scripts/screenshot.sh selection
 
 # Quick launch
 bindsym $mod+Shift+x exec firefox -P default-release
-bindsym $mod+Shift+w exec firefox -P wa 
+bindsym $mod+Shift+m exec firefox -P wa 
 bindsym $mod+Shift+e exec firefox -P md
 bindsym $mod+Shift+b exec torbrowser-launcher
 bindsym $mod+Shift+p exec keepassxc
 bindsym $mod+Shift+v exec code
+bindsym $mod+Shift+i exec ~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh
 bindsym $mod+Shift+o exec flatpak run org.onlyoffice.desktopeditors
+
 
 ### Appearance
 output HDMI-A-3 scale 1 adaptive_sync on
@@ -125,15 +136,15 @@ shadows_on_csd false
 shadow_color #00000022
 shadow_offset 4 4
 shadow_blur_radius 10
+font pango:Noto Sans 12
 
 focus_follows_mouse no
 input * {
     xkb_layout "us,es"
     xkb_options "caps:escape"
+    xkb_options "escape:caps"
 }
 
-# Keyboard layout switch with popup
-bindsym Ctrl+space exec swaymsg input type:keyboard xkb_switch_layout next && $HOME/.config/waybar/scripts/keyboard-popup.sh
 smart_borders on
 smart_gaps on
 
@@ -141,14 +152,18 @@ smart_gaps on
 exec lxpolkit
 exec waybar
 exec swaync
-exec wl-paste --watch cliphist store
+exec wmname LG3D
+set $term /usr/bin/alacritty
+set $term_cwd $term --working-directory "$(swaycwd 2>/dev/null || echo $HOME)"
 exec ~/.config/sway/scripts/rand-wallpaper.sh
+exec ~/.config/waybar/scripts/pulseaudio-monitor.sh
+exec wl-paste --watch cliphist store &
 
 ### Blur effects
-blur enable
+blur disable 
+blur_xray disable
 blur_radius 6
 blur_passes 4
-blur_xray disable
 
 layer_effects "waybar" {
     blur enable;
@@ -187,20 +202,14 @@ exec swayidle -w \
 ### Workspace assignments
 # IDEs / Terminals
 assign [app_id="alacritty"] → 2
-assign [app_id="kitty"] → 2
-assign [app_id="gnome-terminal"] → 2
-assign [app_id="xfce4-terminal"] → 2
 assign [app_id="code"] → 2              
-assign [app_id="idea"] → 2            
-assign [app_id="jetbrains-idea"] → 1   
-assign [app_id="android-studio"] → 1
+assign [class="jetbrains-idea"] → 2  
+assign [class="android-studio"] → 2
 
 # Browsing
 assign [app_id="firefox" title=".*Mozilla Firefox.*"] → 1
 # Professional
-assign [app_id="firefox" title=".*GitHub.*"] → 1
 # Messaging
-assign [app_id="firefox" title=".*Whatsapp.*"] → 4
 
 # Reading / Writing
 assign [app_id="onlyoffice"] → 5
@@ -214,10 +223,15 @@ assign [app_id="vlc"] → 6
 assign [app_id="transmission-gtk"] → 6 
 
 # Tor
-assign [app_id="firefox" title=".*Tor Browser.*"] → 7
 
 ### Window rules
 for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="firefox" title="^Page Info.*"] floating enable
+for_window [app_id="keepassxc"] floating enable
+for_window [app_id="firefox" title="^Open File"] floating enable
+for_window [app_id="firefox" title="^Save As"] floating enable
+for_window [app_id="code" title="^Open Folder"] floating enable
+
 
 ### Includes
 include ~/.config/sway/colors

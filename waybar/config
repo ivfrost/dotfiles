@@ -51,7 +51,8 @@
 				"7": "",
 				"8": "",
 				"9": "",
-				"10": ""
+				"10": "",
+				"99": ""
 			}
 		},
 		"sway/mode": {
@@ -170,19 +171,24 @@
 			"on-click": "nm-connection-editor"
 		},
 		"custom/pulseaudio": {
-			"exec": "~/.config/waybar/scripts/pulseaudio.sh",
+			"exec": "cat /tmp/waybar-speakers.json 2>/dev/null || echo '{\"text\":\"\"}'",
 			"return-type": "json",
+			"interval": 0.1,
 			"on-click": "pavucontrol",
 			"on-click-right": "foot -a pw-top pw-top",
 			"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-			"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
-			"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+			"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+			"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
 		},
 		"custom/pulseaudio-headphones": {
-			"exec": "~/.config/waybar/scripts/pulseaudio-headphones.sh",
+			"exec": "cat /tmp/waybar-headphones.json 2>/dev/null || echo '{\"text\":\"\"}'",
 			"return-type": "json",
+			"interval": 0.1,
 			"on-click": "pavucontrol",
-			"on-click-right": "foot -a pw-top pw-top"
+			"on-click-right": "foot -a pw-top pw-top",
+			"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+			"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+			"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
 		},
 		"custom/power": {
 			"format": "<span size='15pt'weight='600' rise='-19pt'></span>",

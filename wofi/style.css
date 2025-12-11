@@ -1,8 +1,14 @@
+* {
+  font-family: 'SF Pro Text', 'Phosphor-Bold';
+  font-weight: 400;
+}
+
 window {
 	margin: 0px;
 	border: 1px solid rgba(61, 67, 81, 0.64);
 	background-color: rgba(40, 44, 52, 0.95);
 	border-radius: 10px;
+  font-family: 'SF Pro Text', 'Phosphor Bold';
 }
 
 #input {
@@ -73,7 +79,7 @@ window {
 }
 
 #entry:selected #text {
-	font-weight: bold;
+	font-weight: 500;
 	color: #abb2bf;
 }
 

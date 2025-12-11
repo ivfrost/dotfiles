@@ -11,13 +11,13 @@
 @define-color fg-active #e5e5ea;
 @define-color fg-black #ffffff;
 
-@define-color accent-blue #0a84ff;
-@define-color accent-green #30d158;
-@define-color accent-red #ff453a;
-@define-color accent-orange #ff9f0a;
-@define-color accent-yellow #ffd60a;
-@define-color accent-purple #bf5af2;
-@define-color accent-cyan #64d2ff;
+@define-color accent-blue #61afef;
+@define-color accent-green #98c379;
+@define-color accent-red #e06c75;
+@define-color accent-orange #d19a66;
+@define-color accent-yellow #e5c07b;
+@define-color accent-purple #c678dd;
+@define-color accent-cyan #56b6c2;
 
 @define-color fill-light rgba(245, 245, 247, 0.06);
 @define-color fill-medium rgba(245, 245, 247, 0.18);
@@ -30,8 +30,8 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'SF Pro Text', 'Phosphor-Bold', sans-serif;
-	font-size: 11pt;
+	font-family: 'Noto Sans', 'Phosphor-Bold', sans-serif;
+	font-size: 12pt;
 	font-weight: 500;
 	border-radius: 0;
 	text-shadow: none;
@@ -108,7 +108,7 @@ tooltip {
 #workspaces button label {
 	margin: 0;
 	padding: 0;
-	font-size: 11pt;
+	font-size: 12pt;
 	font-weight: 600;
 	color: @fg-main;
 }
@@ -142,8 +142,8 @@ tooltip {
 	min-width: 1.74em;
 	border-radius: 10px;
 	color: @fg-main;
-	font-family: 'SF Pro Text', 'Phosphor-Fill';
-	font-size: 11pt;
+	font-family: 'Noto Sans', 'Phosphor-Fill';
+	font-size: 12pt;
 	background: transparent;
 }
 
@@ -154,15 +154,12 @@ tooltip {
 #custom-notification,
 #custom-keyboard,
 #custom-pulseaudio {
-	font-family: 'SF Pro Text', ' Phosphor-Bold';
+	font-family: 'Noto Sans', ' Phosphor-Bold';
 }
 
 #custom-network {
-	font-family: 'Phosphor';
-	padding: 0em 0.4em;
-	margin: -7px 0 0 0;
-	min-height: 1em;
-	min-width: 1em;
+	font-family: 'Noto Sans', 'Phosphor';
+	margin: -5pt 0 0;
 }
 
 #backlight:hover,
