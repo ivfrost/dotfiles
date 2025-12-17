@@ -1,0 +1,6 @@
+# name                  border          background   text        indicator        child_border
+client.focused          #61afef         #1c1c1e      #f5f5f7     #61afef          #61afef
+client.focused_inactive #8e8e93         #1c1c1e      #f5f5f7     #8e8e93          #8e8e93
+client.unfocused        #3a3a3c         #1c1c1e      #f5f5f7     #3a3a3c          #3a3a3c
+client.urgent           #e06c75         #1c1c1e      #ffffff     #e06c75          #e06c75
+client.placeholder      #1c1c1e         #1c1c1e      #f5f5f7     #1c1c1e          #1c1c1e

@@ -1,0 +1,89 @@
+* {
+  font-family: 'SF Pro Text', 'Phosphor-Bold';
+  font-weight: 400;
+}
+
+window {
+	margin: 0px;
+	border: 1px solid rgba(61, 67, 81, 0.64);
+	background-color: rgba(40, 44, 52, 0.95);
+	border-radius: 10px;
+  font-family: 'SF Pro Text', 'Phosphor Bold';
+}
+
+#input {
+	margin: 5px;
+	border: none;
+	color: #abb2bf;
+	background-color: rgba(62, 68, 81, 0.64);
+	border-radius: 8px;
+	height: 40px;
+	font-size: 1.1em;
+}
+
+#inner-box {
+	margin: 5px;
+	border: none;
+	background-color: rgba(40, 44, 52, 0.95);
+	border-radius: 10px;
+}
+
+#outer-box {
+	margin: 5px;
+	border: none;
+	background-color: rgba(40, 44, 52, 0.95);
+	border-radius: 10px;
+}
+
+#scroll {
+	margin: 0px;
+	border: none;
+}
+
+#text {
+	margin: 5px;
+	border: none;
+	color: #abb2bf;
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#entry.activatable #text {
+	color: #282c34;
+}
+
+#entry > * {
+	color: #abb2bf;
+}
+
+#entry {
+	background-color: rgba(40, 44, 52, 0.64);
+	border-radius: 8px;
+	margin: 4px;
+	border: 2px solid transparent;
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+	word-break: break-word;
+	overflow-wrap: break-word;
+	overflow: hidden;
+}
+
+#entry:selected {
+	background-color: rgba(62, 68, 81, 0.95);
+	color: #abb2bf;
+	border-radius: 8px;
+	border: 2px solid #61afef;
+}
+
+#entry:selected #text {
+	font-weight: 500;
+	color: #abb2bf;
+}
+
+#icon {
+	margin-top: 10px;
+	vertical-align: bottom;
+}

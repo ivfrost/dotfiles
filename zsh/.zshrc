@@ -1,0 +1,86 @@
+# .zshrc
+
+# Zsh Settings
+bindkey -v
+HISTFILE=$ZDOTDIR/.zsh_history
+HISTSIZE=10000
+SAVEHIST=20000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt AUTO_CD
+
+# Aliases: Directory Navigation
+alias ..='cd ..'
+alias ~='cd ~'
+alias dsk='cd ~/Desktop'
+alias dwn='cd ~/Downloads'
+alias doc='cd ~/Documents'
+alias pjt='cd ~/Documents/Projects/'
+alias vid='cd ~/Videos'
+alias mus='cd ~/Music'
+alias hdd='cd /mnt/hdd'
+alias opt='cd /opt'
+alias dot='cd ~/.config/dotfiles/'
+alias srv='cd /srv'
+
+# Aliases: Commands
+alias sudo='sudo '
+alias doas='sudo '
+alias dnfi='dnf install -y '
+alias v='nvim '
+alias szs="source $ZDOTDIR/.zshrc"
+alias vzs="nvim $ZDOTDIR/.zshrc"
+alias vsw="nvim $XDG_CONFIG_HOME/sway/config"
+alias vwb="nvim $XDG_CONFIG_HOME/waybar/config"
+alias lsa='ls -a'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias dcpud='docker-compose up -d'
+alias dcpu='docker-compose up'
+alias dcpufr='docker-compose up --force-recreate'
+alias dcpd='docker-compose down'
+alias dcpdro='docker-compose down --remove-orphans'
+alias swallow='$HOME/.config/sway/scripts/swallow.sh'
+
+# User specific configs
+[ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
+
+# Exports
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+#export XDG_CURRENT_DESKTOP=sway
+export GDK_DPI_SCALE=0.9
+#export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+
+# Update PATH
+export PATH=$PATH:$HOME/.local/scr
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$JAVA_HOME/bin
+
+# sdkman - JVM SDKs
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# nvm - Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+# Zsh Completion
+autoload -Uz compinit
+compinit
+bindkey "\e[3;5~" kill-word
+bindkey '^H' backward-kill-word
+bindkey '^?' backward-kill-word
+
+# ohmyzsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="refined"
+plugins=(git vscode node python docker)
+source $ZSH/oh-my-zsh.sh

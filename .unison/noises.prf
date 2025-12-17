@@ -1,0 +1,6 @@
+root = /home/ivfrost/Videos/Noises
+root = ssh://ivfrost@desktop//home/ivfrost/Videos/Noises
+
+auto = true
+batch = true
+prefer = newer

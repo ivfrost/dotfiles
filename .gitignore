@@ -1,0 +1,9 @@
+.bashrc.local
+zsh/.zsh_history
+zsh/*zcompdump*
+unison.log
+waybar/current-theme
+.unison/ar*
+.unison/fp*
+.unison/lk*
+waybar/style.css

@@ -1,0 +1,7 @@
+root = /home/ivfrost/Documents/Projects
+root = ssh://ivfrost@mirror//home/ivfrost/Documents/Projects
+
+auto = true
+batch = true
+prefer = newer
+
