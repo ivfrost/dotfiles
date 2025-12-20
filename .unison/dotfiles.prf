@@ -2,8 +2,9 @@ root = /home/ivfrost/.config/dotfiles
 root = ssh://ivfrost@desktop//home/ivfrost/.config/dotfiles
 
 ignore = Name *.log
-ignore = Name ar9b5ee21789040f75035ea81c868eff2d  
 
 auto = true
 batch = true
 prefer = newer
+log = true
+logfile = /home/ivfrost/.var/log/unison.log

@@ -4,4 +4,6 @@ root = ssh://ivfrost@mirror//home/ivfrost/Documents/Projects
 auto = true
 batch = true
 prefer = newer
+log = true
+logfile = /home/ivfrost/.var/log/unison.log
 

@@ -1,7 +1,0 @@
-root = /home/ivfrost/.config/dconf
-root = ssh://ivfrost@desktop//home/ivfrost/.config/dconf
-
-path = user
-auto = true
-batch = true
-prefer = newer 

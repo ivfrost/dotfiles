@@ -4,3 +4,5 @@ root = ssh://ivfrost@desktop//home/ivfrost/.local/share/torbrowser/tbb/x86_64/to
 auto = true
 batch = true
 prefer = newer
+log = true
+logfile = /home/ivfrost/.var/log/unison.log
