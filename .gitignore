@@ -1,9 +1,26 @@
-.bashrc.local
-zsh/.zsh_history
-zsh/*zcompdump*
-unison.log
-waybar/current-theme
-.unison/ar*
-.unison/fp*
-.unison/lk*
-waybar/style.css
+# zsh history
+**/.zsh_history
+**/.zsh_sessions
+**/.zcompdump*
+
+# unison: keep only .prf files
+**/.unison/*
+!**/.unison/*.prf
+
+# neovim: generated files
+**/packer_compiled.lua
+*.swp
+*.swo
+*~
+.*~
+
+# vim: runtime files
+Session.vim
+.netrwhist
+tags
+TAGS
+
+# generic junk
+.DS_Store
+*.log
+

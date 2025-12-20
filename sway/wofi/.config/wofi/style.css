@@ -1,5 +1,5 @@
 * {
-  font-family: 'SF Pro Text', 'Phosphor-Bold';
+  font-family: 'Noto Sans', 'Phosphor-Bold';
   font-weight: 400;
 }
 
@@ -8,7 +8,7 @@ window {
 	border: 1px solid rgba(61, 67, 81, 0.64);
 	background-color: rgba(40, 44, 52, 0.95);
 	border-radius: 10px;
-  font-family: 'SF Pro Text', 'Phosphor Bold';
+  font-family: 'Noto Sans', 'Phosphor Bold';
 }
 
 #input {
