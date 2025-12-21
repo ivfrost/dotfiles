@@ -1,0 +1,12 @@
+[General]
+ttsVoice=English (America)+Benjamin
+
+[PageView]
+MouseMode=TextSelect
+
+[Reviews]
+QuickAnnotationTools=<tool id="1" name="Blue Highlight" type="highlight"><engine color="#ff61afef" type="TextSelector"><annotation color="#ff61afef" opacity="0.7" type="Highlight"/></engine><shortcut>1</shortcut></tool>,<tool id="2" name="Violet Highlight" type="highlight"><engine color="#ffc678dd" type="TextSelector"><annotation color="#ffc678dd" opacity="0.7" type="Highlight"/></engine><shortcut>2</shortcut></tool>,<tool id="3" name="Green Highlight" type="highlight"><engine color="#ff98c379" type="TextSelector"><annotation color="#ff98c379" opacity="0.7" type="Highlight"/></engine><shortcut>3</shortcut></tool>,<tool id="4" name="Yellow Highlight" type="highlight"><engine color="#ffe5c07b" type="TextSelector"><annotation color="#ffe5c07b" opacity="0.7" type="Highlight"/></engine><shortcut>4</shortcut></tool>,<tool id="5" name="Brown Underline" type="highlight"><engine color="#ffd19a66" type="TextSelector"><annotation color="#ffd19a66" opacity="0.7" type="Highlight"/></engine><shortcut>5</shortcut></tool>
+
+[Zoom]
+CustomZoomFactor=90
+ZoomMode=4

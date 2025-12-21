@@ -3,7 +3,8 @@ This repository is organized for use with **GNU Stow**, a symlink farm manager t
 
 ## Example usage
 ```bash
+git clone https://github.com/ivfrost/dotfiles ~/.config/dotfiles
 cd ~/.config/dotfiles
-git clone https://github.com/ivfrost/dotfiles
 stow common -t ~
+stow gnome -t ~
 ```
