@@ -1,6 +1,9 @@
 [General]
 ttsVoice=English (America)+Benjamin
 
+[Main View]
+ShowLeftPanel=false
+
 [PageView]
 MouseMode=TextSelect
 

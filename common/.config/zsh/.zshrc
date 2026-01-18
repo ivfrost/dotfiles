@@ -22,6 +22,7 @@ alias dwn='cd ~/Downloads'
 alias doc='cd ~/Documents'
 alias pjt='cd ~/Documents/Projects/'
 alias vid='cd ~/Videos'
+alias noi='cd ~/Videos/Noises'
 alias mus='cd ~/Music'
 alias hdd='cd /mnt/hdd'
 alias opt='cd /opt'
@@ -32,6 +33,7 @@ alias srv='cd /srv'
 alias sudo='sudo '
 alias doas='sudo '
 alias dnfi='dnf install -y '
+alias dnfr='dnf remove -y '
 alias v='nvim '
 alias szs="source $ZDOTDIR/.zshrc"
 alias vzs="nvim $ZDOTDIR/.zshrc"
@@ -62,6 +64,8 @@ export PATH=$PATH:$HOME/.local/scr
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin
+
 
 # sdkman - JVM SDKs
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -84,3 +88,11 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="refined"
 plugins=(git vscode node python docker)
 source $ZSH/oh-my-zsh.sh
+
+# pnpm
+export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
