@@ -1,4 +1,5 @@
-# zsh history
+# zsh 
+**/.zshrc.local
 **/.zsh_history
 **/.zsh_sessions
 **/.zcompdump*
