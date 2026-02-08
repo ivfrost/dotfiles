@@ -4,6 +4,8 @@
 bindkey -v
 bindkey '^?' backward-delete-char 
 bindkey '^H' backward-kill-word
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5C' forward-word
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=10000

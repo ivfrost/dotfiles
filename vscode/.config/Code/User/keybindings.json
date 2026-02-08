@@ -1,0 +1,68 @@
+// Place your key bindings in this file to override the defaults
+[
+	{
+		"key": "alt+c",
+		"command": "workbench.panel.chat",
+		"when": "workbench.panel.chat.view.copilot.active"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-editor.action.smartSelect.grow",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-workbench.action.closeGroup",
+		"when": "activeEditorGroupEmpty && multipleEditorGroups"
+	},
+	{
+		"key": "alt+z",
+		"command": "workbench.view.explorer",
+		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus"
+	},
+	{
+		"key": "alt+1",
+		"command": "-workbench.view.explorer",
+		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus"
+	},
+	{
+		"key": "alt+z",
+		"command": "workbench.action.toggleSidebarVisibility",
+		"when": "explorerViewletFocus"
+	},
+	{
+		"key": "alt+1",
+		"command": "-workbench.action.toggleSidebarVisibility",
+		"when": "explorerViewletFocus"
+	},
+	{
+		"key": "alt+x",
+		"command": "workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "-workbench.action.terminal.toggleTerminal",
+		"when": "terminal.active"
+	},
+	{
+		"key": "shift+alt+down",
+		"command": "editor.action.insertCursorBelow",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+down",
+		"command": "-editor.action.insertCursorBelow",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "shift+alt+up",
+		"command": "editor.action.insertCursorAbove",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+up",
+		"command": "-editor.action.insertCursorAbove",
+		"when": "editorTextFocus"
+	}
+]
