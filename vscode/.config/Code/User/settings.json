@@ -6,7 +6,7 @@
 	"window.menuBarVisibility": "toggle",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
 	},
 	"editor.formatOnSave": true,
 	"prettier.bracketSameLine": true,
@@ -27,10 +27,10 @@
 	"liveServer.settings.NoBrowser": true,
 	"liveServer.settings.donotShowInfoMsg": true,
 	"github.copilot.enable": {
-		"*": true,
+		"*": false,
 		"plaintext": false,
 		"markdown": false,
-		"scminput": false
+		"scminput": false,
 	},
 	"C_Cpp.clang_format_style": "file",
 	"C_Cpp.clang_format_fallbackStyle": "Google",
@@ -86,8 +86,8 @@
 			"chat.avatarForeground": "#80CBC4",
 			"activityBarBadge.foreground": "#000000",
 			"button.foreground": "#000000",
-			"statusBarItem.remoteHoverForeground": "#000000"
-		}
+			"statusBarItem.remoteHoverForeground": "#000000",
+		},
 	},
 	"workbench.productIconTheme": "adwaita",
 	"prettier.tabWidth": 4,
@@ -103,19 +103,20 @@
 	"workbench.iconTheme": "material-icon-theme",
 	"extensions.ignoreRecommendations": true,
 	"explorer.confirmDragAndDrop": false,
-	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.multiCursorModifier": "alt",
 	"workbench.colorTheme": "Atom One Dark",
 	"extensions.experimental.affinity": {
-		"asvetliakov.vscode-neovim": 1
+		"asvetliakov.vscode-neovim": 1,
 	},
-	"chat.fontFamily": "SF Pro Text",
+	"chat.fontFamily": "Adwaita Sans",
 	"notebook.markup.fontFamily": "Adwaita Sans",
-	"markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+	"markdown.preview.fontFamily": "'Adwaita Sans',  system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
 	"window.controlsStyle": "custom",
 	"typescript.suggest.completeFunctionCalls": true,
 	"javascript.suggest.completeFunctionCalls": true,
 	"editor.parameterHints.enabled": false,
 	"workbench.editor.empty.hint": "hidden",
 	"editor.tabSize": 2,
-	"chat.viewSessions.orientation": "stacked"
+	"chat.viewSessions.orientation": "stacked",
+	"keyboard.dispatch": "keyCode",
 }
