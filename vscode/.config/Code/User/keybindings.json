@@ -31,11 +31,6 @@
 		"when": "explorerViewletFocus"
 	},
 	{
-		"key": "alt+1",
-		"command": "-workbench.action.toggleSidebarVisibility",
-		"when": "explorerViewletFocus"
-	},
-	{
 		"key": "alt+x",
 		"command": "workbench.action.terminal.toggleTerminal",
 		"when": "terminal.active"
@@ -63,6 +58,83 @@
 	{
 		"key": "ctrl+shift+up",
 		"command": "-editor.action.insertCursorAbove",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+u",
+		"command": "-cursorUndo",
+		"when": "textInputFocus"
+	},
+	{
+		"key": "ctrl+k ctrl+d",
+		"command": "-editor.action.moveSelectionToNextFindMatch",
+		"when": "editorFocus"
+	},
+	{
+		"key": "ctrl+d",
+		"command": "-editor.action.addSelectionToNextFindMatch",
+		"when": "editorFocus"
+	},
+	{
+		"key": "ctrl+d",
+		"command": "-editor.action.copyLinesDownAction",
+		"when": "editorTextFocus && !editorHasSelection && !editorReadonly"
+	},
+	{
+		"key": "ctrl+d",
+		"command": "-editor.action.duplicateSelection",
+		"when": "editorHasSelection && editorTextFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+k d",
+		"command": "-workbench.files.action.compareWithSaved"
+	},
+	{
+		"key": "ctrl+d",
+		"command": "-workbench.files.action.compareFileWith",
+		"when": "activeEditor && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus && !listMultiSelection"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-editor.action.goToDeclaration",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+w",
+		"command": "-workbench.action.closeWindow"
+	},
+	{
+		"key": "ctrl+w -",
+		"command": "-workbench.action.decreaseViewHeight",
+		"when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-vscode-neovim.send-cmdline",
+		"when": "neovim.init && neovim.mode == 'cmdline'"
+	},
+	{
+		"key": "ctrl+r ctrl+w",
+		"command": "-vscode-neovim.send-cmdline",
+		"when": "neovim.init && neovim.mode == 'cmdline'"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-vscode-neovim.send",
+		"when": "editorTextFocus && neovim.ctrlKeysNormal.w && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-vscode-neovim.send",
+		"when": "editorTextFocus && neovim.ctrlKeysInsert.w && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+	},
+	{
+		"key": "ctrl+shift+w",
+		"command": "-editor.action.smartSelect.shrink",
 		"when": "editorTextFocus"
 	}
 ]

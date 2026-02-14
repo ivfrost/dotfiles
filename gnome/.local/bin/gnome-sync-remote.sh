@@ -2,7 +2,7 @@
 ## Unidirectional sync from local to remote machine
 
 if [ $# -ne 1 ]; then
-  echo "Usage: $0 user@host"
+  echo "Usage: $0 user@host (remote host to sync to)"
   exit 1
 fi
 
@@ -16,7 +16,7 @@ if [[ $1 =~ ^[^@]+@[^@]+$ ]]; then
     exit 1
   fi
 
-  echo "Syncing GNOME keybindings with $1..."
+  echo "Syncing GNOME keybindings to $1..."
   
   # Local temporary directory for GNOME configuration dumps
   LOCAL_TEMP_DIR=$(mktemp -d)
@@ -49,7 +49,7 @@ EOF
   ssh $1 "rm -rf ~/.local/share/gnome-shell/extensions/"
   scp -r ~/.local/share/gnome-shell/extensions/ $1:~/.local/share/gnome-shell/
 
-  echo "Configuration synchronization completed on $1."
+  echo "Configuration synchronization completed from $(whoami)@$(hostname) to $1"
 
   # Clean up local temporary directory
   rm -rf "$LOCAL_TEMP_DIR"
