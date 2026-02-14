@@ -17,7 +17,7 @@
 	"github.copilot.chat.localeOverride": "en",
 	"github.copilot.chat.agent.thinkingTool": true,
 	"github.copilot.nextEditSuggestions.enabled": false,
-	"editor.fontFamily": "'Hack Nerd Font', 'monospace', monospace ",
+	"editor.fontFamily": "'Hasklug Nerd Font', 'monospace', monospace ",
 	"explorer.compactFolders": false,
 	"editor.minimap.enabled": false,
 	"github.copilot.nextEditSuggestions.fixes": false,
@@ -119,4 +119,7 @@
 	"editor.tabSize": 2,
 	"chat.viewSessions.orientation": "stacked",
 	"keyboard.dispatch": "keyCode",
+	"terminal.integrated.fontLigatures.enabled": true,
+	"editor.fontSize": 15,
+	"editor.fontLigatures": true,
 }
