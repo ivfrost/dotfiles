@@ -15,7 +15,7 @@
 	"prettier.vueIndentScriptAndStyle": true,
 	"github.copilot.chat.localeOverride": "en",
 	"github.copilot.nextEditSuggestions.enabled": false,
-	"editor.fontFamily": "BlexMono Nerd Font",
+	"editor.fontFamily": "Hack Nerd Font",
 	"explorer.compactFolders": false,
 	"editor.minimap.enabled": false,
 	"github.copilot.nextEditSuggestions.fixes": false,
@@ -74,10 +74,8 @@
 	"editor.fontSize": 15,
 	"editor.fontWeight": "400",
 	"editor.lineHeight": 1.4,
-	"workbench.colorTheme": "Solarized Dark",
+	"workbench.colorTheme": "One Dark Pro",
 	"github.copilot.chat.copilotMemory.enabled": true,
-	"workbench.preferredDarkColorTheme": "Solarized Dark",
-	"workbench.preferredLightColorTheme": "Solarized Light",
 	"editor.allowVariableFonts": false,
 	"editor.tokenColorCustomizations": {
 		"textMateRules": [
