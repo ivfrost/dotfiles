@@ -22,7 +22,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'nvim-tree/nvim-web-devicons'
-  use "navarasu/onedark.nvim"
+  use 'ishan9299/nvim-solarized-lua'
   if packer_bootstrap then
     require('packer').sync()
   end
