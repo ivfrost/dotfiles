@@ -1,6 +1,7 @@
 # .zshrc
 
 # Zsh Settings
+setopt noglob
 bindkey -v
 bindkey '^?' backward-delete-char 
 bindkey '^H' backward-kill-word

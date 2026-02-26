@@ -16,13 +16,13 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'tribela/vim-transparent'
   use 'preservim/nerdtree'
-  use "navarasu/onedark.nvim"
+  
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'nvim-tree/nvim-web-devicons'
-     
+  use "navarasu/onedark.nvim"
   if packer_bootstrap then
     require('packer').sync()
   end

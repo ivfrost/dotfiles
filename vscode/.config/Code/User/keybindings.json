@@ -3,138 +3,158 @@
 	{
 		"key": "alt+c",
 		"command": "workbench.panel.chat",
-		"when": "workbench.panel.chat.view.copilot.active"
+		"when": "workbench.panel.chat.view.copilot.active",
 	},
 	{
 		"key": "ctrl+w",
 		"command": "-editor.action.smartSelect.grow",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "ctrl+w",
 		"command": "-workbench.action.closeGroup",
-		"when": "activeEditorGroupEmpty && multipleEditorGroups"
+		"when": "activeEditorGroupEmpty && multipleEditorGroups",
 	},
 	{
 		"key": "alt+z",
 		"command": "workbench.view.explorer",
-		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus"
+		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus",
 	},
 	{
 		"key": "alt+1",
 		"command": "-workbench.view.explorer",
-		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus"
+		"when": "viewContainer.workbench.view.explorer.enabled && !explorerViewletFocus",
 	},
 	{
 		"key": "alt+z",
 		"command": "workbench.action.toggleSidebarVisibility",
-		"when": "explorerViewletFocus"
+		"when": "explorerViewletFocus",
 	},
 	{
 		"key": "alt+x",
 		"command": "workbench.action.terminal.toggleTerminal",
-		"when": "terminal.active"
+		"when": "terminal.active",
 	},
 	{
 		"key": "ctrl+`",
 		"command": "-workbench.action.terminal.toggleTerminal",
-		"when": "terminal.active"
+		"when": "terminal.active",
 	},
 	{
 		"key": "shift+alt+down",
 		"command": "editor.action.insertCursorBelow",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "ctrl+shift+down",
 		"command": "-editor.action.insertCursorBelow",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "shift+alt+up",
 		"command": "editor.action.insertCursorAbove",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "ctrl+shift+up",
 		"command": "-editor.action.insertCursorAbove",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "ctrl+u",
 		"command": "-cursorUndo",
-		"when": "textInputFocus"
+		"when": "textInputFocus",
 	},
 	{
 		"key": "ctrl+k ctrl+d",
 		"command": "-editor.action.moveSelectionToNextFindMatch",
-		"when": "editorFocus"
+		"when": "editorFocus",
 	},
 	{
 		"key": "ctrl+d",
 		"command": "-editor.action.addSelectionToNextFindMatch",
-		"when": "editorFocus"
+		"when": "editorFocus",
 	},
 	{
 		"key": "ctrl+d",
 		"command": "-editor.action.copyLinesDownAction",
-		"when": "editorTextFocus && !editorHasSelection && !editorReadonly"
+		"when": "editorTextFocus && !editorHasSelection && !editorReadonly",
 	},
 	{
 		"key": "ctrl+d",
 		"command": "-editor.action.duplicateSelection",
-		"when": "editorHasSelection && editorTextFocus && !editorReadonly"
+		"when": "editorHasSelection && editorTextFocus && !editorReadonly",
 	},
 	{
 		"key": "ctrl+k d",
-		"command": "-workbench.files.action.compareWithSaved"
+		"command": "-workbench.files.action.compareWithSaved",
 	},
 	{
 		"key": "ctrl+d",
 		"command": "-workbench.files.action.compareFileWith",
-		"when": "activeEditor && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus && !listMultiSelection"
+		"when": "activeEditor && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus && !listMultiSelection",
 	},
 	{
 		"key": "ctrl+b",
-		"command": "-workbench.action.toggleSidebarVisibility"
+		"command": "-workbench.action.toggleSidebarVisibility",
 	},
 	{
 		"key": "ctrl+b",
 		"command": "-editor.action.goToDeclaration",
-		"when": "editorTextFocus"
+		"when": "editorTextFocus",
 	},
 	{
 		"key": "ctrl+shift+w",
-		"command": "-workbench.action.closeWindow"
+		"command": "-workbench.action.closeWindow",
 	},
 	{
 		"key": "ctrl+w -",
 		"command": "-workbench.action.decreaseViewHeight",
-		"when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+		"when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'",
 	},
 	{
 		"key": "ctrl+w",
 		"command": "-vscode-neovim.send-cmdline",
-		"when": "neovim.init && neovim.mode == 'cmdline'"
+		"when": "neovim.init && neovim.mode == 'cmdline'",
 	},
 	{
 		"key": "ctrl+r ctrl+w",
 		"command": "-vscode-neovim.send-cmdline",
-		"when": "neovim.init && neovim.mode == 'cmdline'"
+		"when": "neovim.init && neovim.mode == 'cmdline'",
 	},
 	{
 		"key": "ctrl+w",
 		"command": "-vscode-neovim.send",
-		"when": "editorTextFocus && neovim.ctrlKeysNormal.w && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+		"when": "editorTextFocus && neovim.ctrlKeysNormal.w && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'",
 	},
 	{
 		"key": "ctrl+w",
 		"command": "-vscode-neovim.send",
-		"when": "editorTextFocus && neovim.ctrlKeysInsert.w && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+		"when": "editorTextFocus && neovim.ctrlKeysInsert.w && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'",
 	},
 	{
 		"key": "ctrl+shift+w",
 		"command": "-editor.action.smartSelect.shrink",
-		"when": "editorTextFocus"
-	}
+		"when": "editorTextFocus",
+	},
+	{
+		"key": "ctrl+alt+f",
+		"command": "github.copilot.chat.attachFile",
+	},
+	{
+		"key": "ctrl+d",
+		"command": "editor.action.duplicateSelection",
+	},
+	{
+		"key": "ctrl+l",
+		"command": "-continue.focusContinueInput",
+	},
+	{
+		"key": "alt+c",
+		"command": "workbench.action.toggleAuxiliaryBar",
+	},
+	{
+		"key": "ctrl+alt+b",
+		"command": "-workbench.action.toggleAuxiliaryBar",
+	},
 ]
