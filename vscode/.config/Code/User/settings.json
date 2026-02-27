@@ -19,7 +19,6 @@
 	"explorer.compactFolders": false,
 	"editor.minimap.enabled": false,
 	"github.copilot.nextEditSuggestions.fixes": false,
-	"editor.stickyScroll.enabled": false,
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"liveServer.settings.NoBrowser": true,
 	"liveServer.settings.donotShowInfoMsg": true,
@@ -34,7 +33,7 @@
 	"window.restoreWindows": "all",
 	"window.title": "${rootName} — ${appName}",
 
-	"prettier.tabWidth": 4,
+	"prettier.tabWidth": 2,
 	"python.analysis.autoImportCompletions": true,
 	"python.analysis.autoFormatStrings": true,
 	"python.analysis.completeFunctionParens": true,
@@ -74,7 +73,6 @@
 	"editor.fontSize": 14,
 	"editor.fontWeight": "400",
 	"editor.lineHeight": 1.4,
-	"workbench.colorTheme": "One Dark Pro Darker",
 	"github.copilot.chat.copilotMemory.enabled": true,
 	"editor.allowVariableFonts": false,
 	"editor.tokenColorCustomizations": {
@@ -88,4 +86,16 @@
 		],
 	},
 	"chat.fontSize": 14,
+	"workbench.editor.closeOnFileDelete": true,
+	"workbench.editor.labelFormat": "medium",
+	"workbench.preferredLightColorTheme": "Atom One Light",
+	"workbench.preferredDarkColorTheme": "One Dark Pro",
+	"window.autoDetectColorScheme": true,
+	"editor.stickyScroll.enabled": true,
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/dist": true,
+		"**/build": true,
+		"**/.git": true,
+	},
 }
