@@ -7,13 +7,15 @@ local colors = {
   red    = '#ff5189',
   violet = '#d183e8',
   grey   = '#303030',
+
+  mid_bg = '#1c1c1c',
 }
 
 local bubbles_theme = {
   normal = {
     a = { fg = colors.black, bg = colors.blue },
     b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.white },
+    c = { fg = colors.white, bg = colors.mid_bg },
   },
 
   insert = { a = { fg = colors.black, bg = colors.blue } },
@@ -21,29 +23,25 @@ local bubbles_theme = {
   replace = { a = { fg = colors.black, bg = colors.red } },
 
   inactive = {
-    a = { fg = colors.white, bg = colors.black },
-    b = { fg = colors.white, bg = colors.black },
-    c = { fg = colors.white },
+    a = { fg = colors.white, bg = colors.mid_bg },
+    b = { fg = colors.white, bg = colors.mid_bg },
+    c = { fg = colors.white, bg = colors.mid_bg },
   },
 }
 
 require('lualine').setup {
   options = {
     theme = bubbles_theme,
-   component_separators = '',
+    component_separators = '',
     section_separators = { left = '', right = '' },
   },
   sections = {
     lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
     lualine_b = { 'filename', 'branch' },
-    lualine_c = {
-      '%=', --[[ add your center components here in place of this comment ]]
-    },
+    lualine_c = { '%=' },
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
-    lualine_z = {
-      { 'location', separator = { right = '' }, left_padding = 2 },
-    },
+    lualine_z = { { 'location', separator = { right = '' }, left_padding = 2 } },
   },
   inactive_sections = {
     lualine_a = { 'filename' },
@@ -56,4 +54,11 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1c1c1c", fg = "#c6c6c6" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#1c1c1c", fg = "#c6c6c6" })
+  end,
+})
 
