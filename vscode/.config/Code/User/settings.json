@@ -71,10 +71,9 @@
 	"window.enableMenuBarMnemonics": false,
 	"workbench.editor.enablePreview": false,
 	"liveServer.settings.CustomBrowser": "firefox:PrivateMode",
-	"editor.fontSize": 15,
 	"editor.fontWeight": "400",
 	"editor.lineHeight": 1.4,
-	"workbench.colorTheme": "One Dark Pro",
+	"workbench.colorTheme": "GitHub Dark Dimmed",
 	"github.copilot.chat.copilotMemory.enabled": true,
 	"editor.allowVariableFonts": false,
 	"editor.tokenColorCustomizations": {
@@ -87,4 +86,6 @@
 			},
 		],
 	},
+	"workbench.editor.decorations.colors": false,
+	"explorer.decorations.colors": false,
 }

@@ -1,0 +1,11 @@
+general.import = ["~/.config/alacritty/themes/github_dark_default.toml"]
+
+[window]
+padding = { x = 8, y = 8 }
+
+[font]
+normal.family = "BlexMono Nerd Font"
+bold.family = "BlexMono Nerd Font"
+italic.family = "BlexMono Nerd Font"
+bold_italic.family = "BlexMono Nerd Font"
+size = 11.0

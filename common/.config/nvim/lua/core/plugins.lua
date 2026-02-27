@@ -22,7 +22,15 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'nvim-tree/nvim-web-devicons'
-  use "navarasu/onedark.nvim"
+  use({
+    'projekt0n/github-nvim-theme',
+    config = function()
+      require('github-theme').setup({
+      })
+  
+      vim.cmd('colorscheme github_dark')
+    end
+  })
   if packer_bootstrap then
     require('packer').sync()
   end
