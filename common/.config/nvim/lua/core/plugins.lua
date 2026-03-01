@@ -22,7 +22,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'nvim-tree/nvim-web-devicons'
-  use "navarasu/onedark.nvim"
+  use 'Mofiqul/vscode.nvim'
   if packer_bootstrap then
     require('packer').sync()
   end

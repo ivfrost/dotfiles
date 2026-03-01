@@ -1,14 +1,14 @@
--- One dark bubbles lualine theme
+-- VS Code Dark+ bubbles lualine theme
 local colors = {
-  blue   = '#80a0ff',
-  cyan   = '#79dac8',
-  black  = '#080808',
-  white  = '#c6c6c6',
-  red    = '#ff5189',
-  violet = '#d183e8',
-  grey   = '#303030',
+  blue   = '#569CD6',
+  cyan   = '#4EC9B0',
+  black  = '#1E1E1E',
+  white  = '#D4D4D4',
+  red    = '#F44747',
+  violet = '#C586C0',
+  grey   = '#2D2D2D',
 
-  mid_bg = '#1c1c1c',
+  mid_bg = '#1E1E1E',
 }
 
 local bubbles_theme = {
@@ -18,8 +18,8 @@ local bubbles_theme = {
     c = { fg = colors.white, bg = colors.mid_bg },
   },
 
-  insert = { a = { fg = colors.black, bg = colors.blue } },
-  visual = { a = { fg = colors.black, bg = colors.cyan } },
+  insert  = { a = { fg = colors.black, bg = colors.cyan } },
+  visual  = { a = { fg = colors.black, bg = colors.violet } },
   replace = { a = { fg = colors.black, bg = colors.red } },
 
   inactive = {
@@ -57,8 +57,8 @@ require('lualine').setup {
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
-    vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1c1c1c", fg = "#c6c6c6" })
-    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#1c1c1c", fg = "#c6c6c6" })
+    vim.api.nvim_set_hl(0, "StatusLine",   { bg = colors.mid_bg, fg = colors.white })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = colors.mid_bg, fg = colors.white })
   end,
 })
 
