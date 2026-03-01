@@ -57,6 +57,7 @@ alias dcpu='docker-compose up'
 alias dcpufr='docker-compose up --force-recreate'
 alias dcpd='docker-compose down'
 alias dcpdro='docker-compose down --remove-orphans'
+alias files='nautilus .'
 
 # User specific configs
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"

@@ -20,13 +20,13 @@
 	"editor.minimap.enabled": false,
 	"github.copilot.nextEditSuggestions.fixes": false,
 	"typescript.updateImportsOnFileMove.enabled": "always",
-	"liveServer.settings.NoBrowser": true,
 	"liveServer.settings.donotShowInfoMsg": true,
 	"github.copilot.enable": {
 		"*": false,
 		"plaintext": false,
 		"markdown": true,
 		"scminput": false,
+		"typescriptreact": false,
 	},
 	"C_Cpp.clang_format_style": "file",
 	"C_Cpp.clang_format_fallbackStyle": "Google",
@@ -69,27 +69,16 @@
 	"window.customTitleBarVisibility": "windowed",
 	"window.enableMenuBarMnemonics": false,
 	"workbench.editor.enablePreview": false,
-	"liveServer.settings.CustomBrowser": "firefox:PrivateMode",
+	"liveServer.settings.CustomBrowser": "firefox",
 	"editor.fontSize": 14,
 	"editor.fontWeight": "400",
 	"editor.lineHeight": 1.4,
 	"github.copilot.chat.copilotMemory.enabled": true,
 	"editor.allowVariableFonts": false,
-	"editor.tokenColorCustomizations": {
-		"textMateRules": [
-			{
-				"scope": ["comment", "keyword"],
-				"settings": {
-					"fontStyle": "",
-				},
-			},
-		],
-	},
 	"chat.fontSize": 14,
 	"workbench.editor.closeOnFileDelete": true,
 	"workbench.editor.labelFormat": "medium",
 	"workbench.preferredLightColorTheme": "Atom One Light",
-	"workbench.preferredDarkColorTheme": "One Dark Pro",
 	"window.autoDetectColorScheme": true,
 	"editor.stickyScroll.enabled": true,
 	"search.exclude": {
@@ -98,4 +87,17 @@
 		"**/build": true,
 		"**/.git": true,
 	},
+	"json.schemaDownload.trustedDomains": {
+		"https://schemastore.azurewebsites.net/": true,
+		"https://raw.githubusercontent.com/": true,
+		"https://www.schemastore.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://json-schema.org/": true,
+		"https://biomejs.dev": true,
+	},
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit",
+	},
+	"workbench.preferredDarkColorTheme": "One Dark Pro",
 }
