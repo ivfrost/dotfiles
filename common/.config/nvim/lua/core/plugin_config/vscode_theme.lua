@@ -27,11 +27,6 @@ require('vscode').setup({
     -- Apply theme colors to terminal
     terminal_colors = true,
 
-    -- Override colors (see ./lua/vscode/colors.lua)
-    color_overrides = {
-        vscLineNumber = '#FFFFFF',
-    },
-
     -- Override highlight groups (see ./lua/vscode/theme.lua)
     group_overrides = {
         -- this supports the same val table as vim.api.nvim_set_hl
