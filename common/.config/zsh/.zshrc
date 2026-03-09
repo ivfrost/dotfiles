@@ -38,9 +38,10 @@ alias srv='cd /srv'
 # Aliases: Commands
 alias sudo='sudo '
 alias doas='sudo '
-alias dnfi='dnf install -y '
-alias dnfr='dnf remove -y '
-alias dnfu='dnf upgrade -y '
+alias dnfi='sudo dnf install -y '
+alias dnfr='sudo dnf remove -y '
+alias dnfu='sudo dnf upgrade -y '
+alias dnfs='sudo dnf search '
 alias v='nvim '
 alias szs="source $ZDOTDIR/.zshrc"
 alias vzs="nvim $ZDOTDIR/.zshrc"
