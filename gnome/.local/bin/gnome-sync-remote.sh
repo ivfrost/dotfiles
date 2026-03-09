@@ -46,7 +46,7 @@ if [[ $1 =~ ^[^@]+@[^@]+$ ]]; then
 EOF
 
   echo "Syncing GNOME extensions with $1..."
-  ssh $1 "rm -rf ~/.local/share/gnome-shell/extensions/"
+  ssh $1 "cd ~/.local/share/gnome-shell/extensions/ && find . -type f -not -name 'gsconnect@andyholmes.github.io' -delete."
   scp -r ~/.local/share/gnome-shell/extensions/ $1:~/.local/share/gnome-shell/
 
   echo "Configuration synchronization completed from $(whoami)@$(hostname) to $1"
