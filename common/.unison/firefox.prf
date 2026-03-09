@@ -1,7 +1,7 @@
 root = /home/ivfrost/.mozilla/firefox/
 root = ssh://ivfrost@desktop//home/ivfrost/.mozilla/firefox
 
-ignore = Name 50lqp20n.wa
+ignore = Name yuwhgvzg.wa
 links = false
 
 auto = true
