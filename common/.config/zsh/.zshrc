@@ -91,11 +91,26 @@ export NVM_DIR="$HOME/.config/nvm"
 autoload -Uz compinit
 compinit
 
-# starship
+# --- Zsh AI suggestions ---
+export ZSH_OLLAMA_MODEL="qwen2.5-coder:1.5b"
+export ZSH_OLLAMA_URL="http://127.0.0.1:11434"
+export ZSH_OLLAMA_COMMANDS_HOTKEY="^g"
+
+source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
+
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_AUTOSUGGEST_STRATEGY=(history)
+fi
+
+# --- Starship ---
+if [[ -z "$STARSHIP_INITIALIZED" ]]; then
+    export STARSHIP_INITIALIZED=1
+    eval "$(starship init zsh)"
+fi
 setopt PROMPT_CR
 setopt PROMPT_SP
 
-eval "$(starship init zsh)"
 
 # pnpm
 export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
