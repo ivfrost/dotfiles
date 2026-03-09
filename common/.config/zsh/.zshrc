@@ -1,4 +1,4 @@
-# .zshrc
+source "$ZDOTDIR/zsh-defer/zsh-defer.plugin.zsh"
 
 # Zsh Settings
 setopt noglob
@@ -81,37 +81,38 @@ export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin
 
 # sdkman - JVM SDKs
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && zsh-defer source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # nvm - Node Version Manager
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+[ -s "$NVM_DIR/nvm.sh" ] && zsh-defer source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && zsh-defer source "$NVM_DIR/bash_completion"
 
 # Zsh Completion
 autoload -Uz compinit
-compinit
+zsh-defer compinit
 
-# --- Zsh AI suggestions ---
+# Zsh AI suggestions 
 export ZSH_OLLAMA_MODEL="qwen2.5-coder:1.5b"
 export ZSH_OLLAMA_URL="http://127.0.0.1:11434"
 export ZSH_OLLAMA_COMMANDS_HOTKEY="^g"
 
-source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
+if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
+    zsh-defer source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
+fi
 
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    zsh-defer source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_AUTOSUGGEST_STRATEGY=(history)
 fi
 
-# --- Starship ---
+# Starship 
 if [[ -z "$STARSHIP_INITIALIZED" ]]; then
     export STARSHIP_INITIALIZED=1
     eval "$(starship init zsh)"
 fi
 setopt PROMPT_CR
 setopt PROMPT_SP
-
 
 # pnpm
 export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
@@ -120,3 +121,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
