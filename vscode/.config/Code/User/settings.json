@@ -78,7 +78,7 @@
 	"chat.fontSize": 14,
 	"workbench.editor.closeOnFileDelete": true,
 	"workbench.editor.labelFormat": "medium",
-	"workbench.preferredLightColorTheme": "Atom One Light",
+	"workbench.preferredLightColorTheme": "Default Light+",
 	"window.autoDetectColorScheme": true,
 	"editor.stickyScroll.enabled": true,
 	"search.exclude": {
@@ -99,5 +99,8 @@
 		"source.organizeImports.biome": "explicit",
 		"source.fixAll.biome": "explicit",
 	},
-	"workbench.preferredDarkColorTheme": "One Dark Pro",
+	"workbench.preferredDarkColorTheme": "Default Dark+",
+	"workbench.colorCustomizations": {
+		"tab.activeBorder": "#d4d4d4",
+	},
 }
