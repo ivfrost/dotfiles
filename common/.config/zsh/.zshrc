@@ -54,6 +54,7 @@ alias lsa='ls -a'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias cine='/var/lib/flatpak/app/io.github.diegopvlk.Cine/x86_64/stable/active/export/bin/io.github.diegopvlk.Cine'
 
 # Aliases: Docker
 alias dcpud='docker-compose up -d'

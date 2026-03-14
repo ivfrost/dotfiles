@@ -22,7 +22,7 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"liveServer.settings.donotShowInfoMsg": true,
 	"github.copilot.enable": {
-		"*": false,
+		"*": true,
 		"plaintext": false,
 		"markdown": true,
 		"scminput": false,
