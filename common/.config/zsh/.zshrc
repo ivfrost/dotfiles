@@ -49,16 +49,25 @@ alias vsw="nvim $XDG_CONFIG_HOME/sway/config"
 alias vwb="nvim $XDG_CONFIG_HOME/waybar/config"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
+alias files='nautilus .'
 alias lsa='ls -a'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+# Aliases: Docker
 alias dcpud='docker-compose up -d'
 alias dcpu='docker-compose up'
 alias dcpufr='docker-compose up --force-recreate'
 alias dcpd='docker-compose down'
 alias dcpdro='docker-compose down --remove-orphans'
-alias files='nautilus .'
+
+# Aliases: Flutter 
+alias fr='flutter run'
+alias fdr='flutter doctor'
+alias fpub='flutter pub get'
+alias fclean='flutter clean && flutter pub get'
+alias fls='flutter devices'
 
 # User specific configs
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
@@ -73,11 +82,17 @@ export GDK_DPI_SCALE=0.9
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Update PATH
+export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
+export PATH="/opt/android-sdk/platform-tools:$PATH"
+export PATH="/opt/flutter/bin:$PATH"
 export PATH=$PATH:$HOME/.local/scr
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$JAVA_HOME/bin
 export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin
+
+export ANDROID_HOME=/opt/android-sdk
+export CHROME_EXECUTABLE="/var/lib/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium"
 
 # sdkman - JVM SDKs
 export SDKMAN_DIR="$HOME/.sdkman"

@@ -15,7 +15,7 @@
 	"prettier.vueIndentScriptAndStyle": true,
 	"github.copilot.chat.localeOverride": "en",
 	"github.copilot.nextEditSuggestions.enabled": false,
-	"editor.fontFamily": "Hack Nerd Font",
+	"editor.fontFamily": "BlexMono Nerd Font",
 	"explorer.compactFolders": false,
 	"editor.minimap.enabled": false,
 	"github.copilot.nextEditSuggestions.fixes": false,
@@ -26,7 +26,7 @@
 		"plaintext": false,
 		"markdown": true,
 		"scminput": false,
-		"typescriptreact": false,
+		"typescriptreact": true,
 	},
 	"C_Cpp.clang_format_style": "file",
 	"C_Cpp.clang_format_fallbackStyle": "Google",
@@ -103,4 +103,6 @@
 	"workbench.colorCustomizations": {
 		"tab.activeBorder": "#d4d4d4",
 	},
+	"chat.tools.global.autoApprove": false,
+	"dart.flutterSdkPath": "/opt/flutter/",
 }
