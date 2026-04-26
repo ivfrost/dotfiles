@@ -2,7 +2,7 @@ ollama-command-suggestions() {
   local query=$BUFFER
   if [[ -z "$query" ]]; then return; fi
 
-  zle -R "✦ Thinking... (qwen2.5-coder:1.5b)"
+  zle -R "✦ Thinking... $ZSH_OLLAMA_MODEL"
 
   # Use jq to safely construct the JSON payload. This prevents JSON syntax 
   # errors if the user's query contains double quotes (").
@@ -15,7 +15,9 @@ RULES:
 3. NO markdown formatting, NO code blocks, NO backticks.
 4. NO numbered lists or bullet points (do not start lines with 1., 2., etc.).
 5. Prioritize standard Unix utilities (e.g., find, grep, awk, sed, xargs, tar).
-6. Default to the current directory (.) if no path is given." \
+6. NEVER give me back my full prompt as a grep command.
+7. You're running in the ghostty terminal, in fedora gnome which uses dnf as package manager
+8. Default to the current directory (.) if no path is given." \
     --arg prompt "Task: $query\n\nRaw commands (one per line):" \
     '{
       model: $model,

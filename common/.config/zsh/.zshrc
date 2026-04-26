@@ -42,6 +42,7 @@ alias dnfi='sudo dnf install -y '
 alias dnfr='sudo dnf remove -y '
 alias dnfu='sudo dnf upgrade -y '
 alias dnfs='sudo dnf search '
+alias dnfl='sudo dnf list '
 alias v='nvim '
 alias szs="source $ZDOTDIR/.zshrc"
 alias vzs="nvim $ZDOTDIR/.zshrc"
@@ -54,7 +55,10 @@ alias lsa='ls -a'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias cine='/var/lib/flatpak/app/io.github.diegopvlk.Cine/x86_64/stable/active/export/bin/io.github.diegopvlk.Cine'
+alias gitsummary='$HOME/.local/bin/gitsummary'
+alias cine='/var/lib/flatpak/app/io.github.diegopvlk.Cine/x86_64/stable/active/export/bin/io.github.diegopvlk.Cine --new-window'
+alias android_studio='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh '
+
 
 # Aliases: Docker
 alias dcpud='docker-compose up -d'
@@ -66,8 +70,10 @@ alias dcpdro='docker-compose down --remove-orphans'
 # Aliases: Flutter 
 alias fr='flutter run'
 alias fdr='flutter doctor'
-alias fpub='flutter pub get'
-alias fclean='flutter clean && flutter pub get'
+alias fpg='flutter pub get'
+alias fpr='flutter pub remove '
+alias fpa='flutter pub add '
+alias fcl='flutter clean && flutter pub get'
 alias fls='flutter devices'
 
 # User specific configs
@@ -92,8 +98,10 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$JAVA_HOME/bin
 export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin
 
+# Flutter
 export ANDROID_HOME=/opt/android-sdk
 export CHROME_EXECUTABLE="/var/lib/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # sdkman - JVM SDKs
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -109,7 +117,7 @@ autoload -Uz compinit
 zsh-defer compinit
 
 # Zsh AI suggestions 
-export ZSH_OLLAMA_MODEL="qwen2.5-coder:1.5b"
+export ZSH_OLLAMA_MODEL="qwen2.5-coder:7b"
 export ZSH_OLLAMA_URL="http://127.0.0.1:11434"
 export ZSH_OLLAMA_COMMANDS_HOTKEY="^g"
 
@@ -117,9 +125,13 @@ if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
     zsh-defer source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
 fi
 
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+if [ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     zsh-defer source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_AUTOSUGGEST_STRATEGY=(history)
+fi
+
+if [ -f ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    zsh-defer source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # Starship 
@@ -130,6 +142,7 @@ fi
 setopt PROMPT_CR
 setopt PROMPT_SP
 
+
 # pnpm
 export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
 case ":$PATH:" in
@@ -138,3 +151,5 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Atuin
+eval "$(atuin init zsh --disable-up-arrow)"

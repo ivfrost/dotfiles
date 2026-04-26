@@ -215,4 +215,12 @@
 		"command": "-workbench.action.toggleSidebarVisibility",
 		"when": "explorerViewletFocus",
 	},
+	{
+		"key": "alt+c",
+		"command": "workbench.action.toggleAuxiliaryBar",
+	},
+	{
+		"key": "ctrl+alt+b",
+		"command": "-workbench.action.toggleAuxiliaryBar",
+	},
 ]

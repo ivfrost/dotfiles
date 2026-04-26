@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# 1. Check if inside a Git repository
+REPODIR=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ -z "$REPODIR" ]; then
+    echo -e "\033[1;31mError: Not inside a Git repository.\033[0m"
+    exit 1
+fi
+
+# 2. Parse argument (now defaults to 5 days)
+DAYS_ARG=${1:-5}
+DAYS_TO_SHOW=${DAYS_ARG#-}
+
+# 3. Get user info
+CONF_NAME=$(git config user.name)
+CONF_EMAIL=$(git config user.email)
+
+echo -e "\033[1;34mScanning $(basename "$REPODIR") (Last $DAYS_TO_SHOW days)...\033[0m"
+
+# 4. Loop through the range
+for (( i=0; i<DAYS_TO_SHOW; i++ )); do
+    DAY_START=$(date -d "$i days ago 00:00:00" +"%Y-%m-%d %H:%M:%S")
+    DAY_END=$(date -d "$i days ago 23:59:59" +"%Y-%m-%d %H:%M:%S")
+    DISPLAY_DATE=$(date -d "$i days ago" +"%A, %d %b")
+
+    # Green header for the day
+    echo -e "\n\033[1;32m--- $DISPLAY_DATE ---\033[0m"
+    
+    # 5. Git Log with forced color, Yellow Hash, and Magenta Time
+    LOG_OUTPUT=$(git -C "$REPODIR" log -E --author="$CONF_NAME|$CONF_EMAIL" \
+            --since="$DAY_START" \
+            --until="$DAY_END" \
+            --color=always \
+            --pretty=format:"%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset) %s" \
+            --date=format:"%H:%M")
+            
+    if [ -z "$LOG_OUTPUT" ]; then
+        echo -e "\033[0;90m(No activity)\033[0m"
+    else
+        # Use echo -e to ensure the captured colors are rendered
+        echo -e "$LOG_OUTPUT"
+    fi
+done
+echo -e "\n"
