@@ -153,3 +153,7 @@ esac
 
 # Atuin
 eval "$(atuin init zsh --disable-up-arrow)"
+bindkey '^f' atuin-search
+
+# zoxide
+eval "$(zoxide init zsh)"
