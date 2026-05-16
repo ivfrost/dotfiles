@@ -126,12 +126,12 @@ if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
 fi
 
 if [ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    zsh-defer source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    zsh-defer source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_AUTOSUGGEST_STRATEGY=(history)
 fi
 
 if [ -f ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    zsh-defer source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    zsh-defer source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # Starship 
