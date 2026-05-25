@@ -2,37 +2,48 @@
 ## GNOME Sync: Default is PULL (Remote -> Local), Optional --push
 
 # 1. Parse Arguments
-if [ "$1" == "--push" ]; then
-    MODE="push"
-    REMOTE_HOST="$2"
-else
-    MODE="pull"
-    REMOTE_HOST="$1"
-fi
+SSH_EXTRA_OPTS=""
+SSH_PASS=""
 
-LOCAL_EXT_DIR="$HOME/.local/share/gnome-shell/extensions/"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --push) MODE="push"; shift ;;
+        --password) SSH_PASS="$2"; shift 2 ;;
+        --) shift; SSH_EXTRA_OPTS="$@"; break ;;
+        *) REMOTE_HOST="$1"; shift ;;
+    esac
+done
 
-# Usage check
+MODE="${MODE:-pull}"
+
 if [ -z "$REMOTE_HOST" ]; then
-    echo "Usage: $0 [--push] user@host"
+    echo "Usage: $0 [--push] [--password PASS] user@host"
     exit 1
 fi
 
+# Setup sshpass if password provided
+if [ -n "$SSH_PASS" ]; then
+    SSH_CMD="sshpass -p $SSH_PASS ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+    RSYNC_CMD="sshpass -p $SSH_PASS rsync -az -e 'ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'"
+else
+    SSH_CMD="ssh $SSH_EXTRA_OPTS"
+    RSYNC_CMD="rsync -az"
+fi
+
+LOCAL_EXT_DIR="$HOME/.local/share/gnome-shell/extensions/"
+REMOTE_EXT_DIR="~/.local/share/gnome-shell/extensions"
+
 # 2. Check connection
-if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$REMOTE_HOST" exit > /dev/null 2>&1; then
+if ! $SSH_CMD -o ConnectTimeout=5 "$REMOTE_HOST" exit > /dev/null 2>&1; then
     echo "Error: Unable to connect to $REMOTE_HOST."
     exit 1
 fi
 
 LOCAL_TEMP_DIR=$(mktemp -d)
 
-# ==========================================
-# --- PULL MODE (Remote -> Local) ---
-# ==========================================
 if [ "$MODE" == "pull" ]; then
     echo ">>> Pulling configuration from $REMOTE_HOST to Local..."
-
-    ssh -T "$REMOTE_HOST" << 'EOF'
+    $SSH_CMD -T "$REMOTE_HOST" << 'EOF'
 mkdir -p /tmp/gnome_dump
 dconf dump /org/gnome/settings-daemon/plugins/media-keys/ > /tmp/gnome_dump/dump_1
 dconf dump /org/gnome/desktop/wm/keybindings/ > /tmp/gnome_dump/dump_2
@@ -40,69 +51,53 @@ dconf dump /org/gnome/shell/keybindings/ > /tmp/gnome_dump/dump_3
 dconf dump /org/gnome/mutter/keybindings/ > /tmp/gnome_dump/dump_4
 dconf dump /org/gnome/mutter/wayland/keybindings/ > /tmp/gnome_dump/dump_5
 EOF
-
-    rsync -az "$REMOTE_HOST:/tmp/gnome_dump/" "$LOCAL_TEMP_DIR/"
-
+    eval $RSYNC_CMD "$REMOTE_HOST:/tmp/gnome_dump/" "$LOCAL_TEMP_DIR/"
     dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "${LOCAL_TEMP_DIR}/dump_1"
     dconf load /org/gnome/desktop/wm/keybindings/ < "${LOCAL_TEMP_DIR}/dump_2"
     dconf load /org/gnome/shell/keybindings/ < "${LOCAL_TEMP_DIR}/dump_3"
     dconf load /org/gnome/mutter/keybindings/ < "${LOCAL_TEMP_DIR}/dump_4"
     dconf load /org/gnome/mutter/wayland/keybindings/ < "${LOCAL_TEMP_DIR}/dump_5"
-
     echo "Syncing GNOME extensions..."
-    rsync -az --delete \
+    eval $RSYNC_CMD --delete \
         --exclude 'gsconnect@andyholmes.github.io' \
         --exclude 'gschemas.compiled' \
         --exclude '.git' \
         --exclude '*.mo' \
-        "${REMOTE_HOST}:${LOCAL_EXT_DIR}" "${LOCAL_EXT_DIR%/}"
-
+        "${REMOTE_HOST}:${REMOTE_EXT_DIR}/" "${LOCAL_EXT_DIR%/}"
     MSG="Local system updated from $REMOTE_HOST"
-
-# ==========================================
-# --- PUSH MODE (Local -> Remote) ---
-# ==========================================
 else
     echo ">>> Pushing configuration from Local to $REMOTE_HOST..."
-
     dconf dump /org/gnome/settings-daemon/plugins/media-keys/ > "${LOCAL_TEMP_DIR}/dump_1"
     dconf dump /org/gnome/desktop/wm/keybindings/ > "${LOCAL_TEMP_DIR}/dump_2"
     dconf dump /org/gnome/shell/keybindings/ > "${LOCAL_TEMP_DIR}/dump_3"
     dconf dump /org/gnome/mutter/keybindings/ > "${LOCAL_TEMP_DIR}/dump_4"
     dconf dump /org/gnome/mutter/wayland/keybindings/ > "${LOCAL_TEMP_DIR}/dump_5"
-
-    ssh -T "$REMOTE_HOST" "mkdir -p /tmp/gnome_dump"
-    rsync -az "$LOCAL_TEMP_DIR/" "$REMOTE_HOST:/tmp/gnome_dump/"
-
-    ssh -T "$REMOTE_HOST" << 'EOF'
+    $SSH_CMD -T "$REMOTE_HOST" "mkdir -p /tmp/gnome_dump && mkdir -p ~/.local/share/gnome-shell/extensions"
+    eval $RSYNC_CMD "$LOCAL_TEMP_DIR/" "$REMOTE_HOST:/tmp/gnome_dump/"
+    $SSH_CMD -T "$REMOTE_HOST" << 'EOF'
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < /tmp/gnome_dump/dump_1
 dconf load /org/gnome/desktop/wm/keybindings/ < /tmp/gnome_dump/dump_2
 dconf load /org/gnome/shell/keybindings/ < /tmp/gnome_dump/dump_3
 dconf load /org/gnome/mutter/keybindings/ < /tmp/gnome_dump/dump_4
 dconf load /org/gnome/mutter/wayland/keybindings/ < /tmp/gnome_dump/dump_5
 EOF
-
     echo "Syncing GNOME extensions..."
-    rsync -az --delete \
+    eval $RSYNC_CMD --delete \
         --exclude 'gsconnect@andyholmes.github.io' \
         --exclude 'gschemas.compiled' \
         --exclude '.git' \
         --exclude '*.mo' \
-        "${LOCAL_EXT_DIR}" "${REMOTE_HOST}:${LOCAL_EXT_DIR%/}"
-
+        "${LOCAL_EXT_DIR}" "${REMOTE_HOST}:${REMOTE_EXT_DIR}"
     MSG="Remote host $REMOTE_HOST updated from Local"
 fi
 
-# 5. Cleanup
-ssh -T "$REMOTE_HOST" "rm -rf /tmp/gnome_dump"
+$SSH_CMD -T "$REMOTE_HOST" "rm -rf /tmp/gnome_dump"
 rm -rf "$LOCAL_TEMP_DIR"
 
-# 6. Desktop Notification
 if command -v notify-send > /dev/null; then
     notify-send -a "GnomeSync" \
                 -i "system-software-update" \
                 "GNOME Sync Complete" \
                 "$MSG"
 fi
-
 echo "Success: $MSG"

@@ -157,3 +157,8 @@ bindkey '^f' atuin-search
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# bun
+[ -s "/home/ivfrost/.bun/_bun" ] && zsh-defer source "/home/ivfrost/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun" 
+export PATH="$BUN_INSTALL/bin:$PATH"
