@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Verify Wayland and GNOME environment
 if [[ "$XDG_SESSION_TYPE" != "wayland" ]] || ! ps -e | grep -q "gnome-shell"; then

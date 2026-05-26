@@ -1,0 +1,10 @@
+#!/bin/bash
+pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 2>/dev/null || true
+xhost +si:localuser:toruser
+exec sudo -u toruser env \
+  DISPLAY=$DISPLAY \
+  XAUTHORITY=$XAUTHORITY \
+  GTK_CSD=1 \
+  GTK_THEME=Adwaita-dark \
+  PULSE_SERVER=tcp:127.0.0.1 \
+  /usr/bin/torbrowser-launcher
