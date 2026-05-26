@@ -1,0 +1,11 @@
+[General]
+ttsVoice=English (Caribbean)
+
+[Main View]
+ShowLeftPanel=false
+
+[PageView]
+MouseMode=TextSelect
+
+[Reviews]
+QuickAnnotationTools=<tool id="1" name="Blue Highlighter" type="highlight"><engine color="#ff99c1f1" type="TextSelector"><annotation color="#ff99c1f1" opacity="0.4" type="Highlight"/></engine><shortcut>1</shortcut></tool>,<tool id="2" name="Purple Highlighter" type="highlight"><engine color="#ffdc8add" type="TextSelector"><annotation color="#ffdc8add" opacity="0.4" type="Highlight"/></engine><shortcut>2</shortcut></tool>,<tool id="3" name="Green Highlighter" type="highlight"><engine color="#ff8ff0a4" type="TextSelector"><annotation color="#ff8ff0a4" opacity="0.4" type="Highlight"/></engine><shortcut>3</shortcut></tool>,<tool id="4" name="Yellow Highlighter" type="highlight"><engine color="#fff9f06b" type="TextSelector"><annotation color="#fff9f06b" opacity="0.4" type="Highlight"/></engine><shortcut>4</shortcut></tool>,<tool id="5" name="Brown Highlighter" type="highlight"><engine color="#ffcdab8f" type="TextSelector"><annotation color="#ffcdab8f" opacity="0.4" type="Highlight"/></engine><shortcut>5</shortcut></tool>
