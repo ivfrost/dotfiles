@@ -47,14 +47,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-
-# Missing aliases restored:
-alias vsw="nvim $XDG_CONFIG_HOME/sway/config"
-alias vwb="nvim $XDG_CONFIG_HOME/waybar/config"
 alias gitsummary='$HOME/.local/bin/gitsummary'
-alias cine='/var/lib/flatpak/app/io.github.diegopvlk.Cine/x86_64/stable/active/export/bin/io.github.diegopvlk.Cine --new-window'
-alias android_studio='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh '
-
 
 # Docker
 alias dcpud="docker-compose up -d"
@@ -71,6 +64,10 @@ alias fpr="flutter pub remove "
 alias fpa="flutter pub add "
 alias fcl="flutter clean && flutter pub get"
 alias fls="flutter devices"
+
+# Sway + Waybar
+alias vsw="nvim $XDG_CONFIG_HOME/sway/config"
+alias vwb="nvim $XDG_CONFIG_HOME/waybar/config"
 
 # Fedora
 alias dnfi='sudo dnf install -y '
