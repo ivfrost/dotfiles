@@ -105,6 +105,32 @@ clone_if_missing "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting" \
 clone_if_missing "$ZSH_PLUGIN_DIR/zsh-autosuggestions" \
   https://github.com/zsh-users/zsh-autosuggestions
 
+# =============================
+# Plugins
+# =============================
+
+# zsh-defer
+source "$ZSH_PLUGIN_DIR/zsh-defer/zsh-defer.plugin.zsh"
+
+# compinit
+autoload -Uz compinit
+zsh-defer compinit
+
+# syntax highlighting
+zsh-defer source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# autosuggestions
+zsh-defer source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+
+# ollama suggestions 
+export ZSH_OLLAMA_MODEL="qwen2.5-coder:7b"
+export ZSH_OLLAMA_URL="http://127.0.0.1:11434"
+export ZSH_OLLAMA_COMMANDS_HOTKEY="^g"
+
+if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
+    zsh-defer source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
+fi
 
 # =============================
 # Language/toolchain managers
@@ -119,35 +145,6 @@ clone_if_missing "$ZSH_PLUGIN_DIR/zsh-autosuggestions" \
 
 # bun
 [[ -s "$BUN_INSTALL/_bun" ]] && zsh-defer source "$BUN_INSTALL/_bun"
-
-
-# =============================
-# Plugins
-# =============================
-
-# zsh-defer
-source "$ZSH_PLUGIN_DIR/zsh-defer/zsh-defer.plugin.zsh"
-
-# compinit MUST run immediately
-autoload -Uz compinit
-zsh-defer compinit
-
-# syntax highlighting AFTER compinit
-zsh-defer source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# autosuggestions AFTER compinit
-zsh-defer source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-ZSH_AUTOSUGGEST_STRATEGY=(history)
-
-# AI plugin (restored)
-export ZSH_OLLAMA_MODEL="qwen2.5-coder:7b"
-export ZSH_OLLAMA_URL="http://127.0.0.1:11434"
-export ZSH_OLLAMA_COMMANDS_HOTKEY="^g"
-
-if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
-    zsh-defer source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
-fi
-
 
 # =============================
 # Prompt + shell enhancements
