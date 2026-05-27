@@ -10,6 +10,15 @@ in
   home.username = "ivfrost";
   home.homeDirectory = "/home/ivfrost";
   home.stateVersion = "26.05";
+  home.sessionVariables = {
+    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+  };
+
+  programs.neovim.enable = false;
+
+# Create nvim folder symlink
+  xdg.configFile."nvim".source =
+  "${dotfiles}/common/.config/nvim";
 
   programs.zsh = {
     enable = false;
@@ -21,7 +30,7 @@ in
     syntaxHighlighting.enable = false;
   };
 
-# Create .zshrc symlink so HM can load it
+# Create .zshrc symlink
   xdg.configFile."zsh/.zshrc".source =
     "${dotfiles}/common/.config/zsh/.zshrc";
 
