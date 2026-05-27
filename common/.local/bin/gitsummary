@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Check we're inside a Git repository
 REPODIR=$(git rev-parse --show-toplevel 2>/dev/null)
