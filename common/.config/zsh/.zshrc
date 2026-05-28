@@ -39,7 +39,7 @@ alias doas="sudo "
 alias v="nvim "
 alias vv="sudo -E nvim"
 alias szs="source $ZDOTDIR/.zshrc"
-alias vzs="nvim $ZDOTDIR/.zshrc"
+alias vzs="nvim $XDG_CONFIG_HOME/dotfiles/common/zsh/.zshrc"
 alias files="nautilus ."
 alias lsa="ls -a"
 alias rm="rm -i"
@@ -78,7 +78,8 @@ alias dnfl='sudo dnf list '
 
 # NixOS
 alias nrs="sudo nixos-rebuild switch"
-
+alias nvc="sudo -E nvim /etc/nixos/configuration.nix"
+alias nvhm="sudo -E nvim /etc/nixos/home.nix"
 
 # =============================
 # Plugin auto‑clone
