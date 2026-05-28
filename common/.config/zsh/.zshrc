@@ -48,6 +48,7 @@ alias mv="mv -i"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias gitsummary='$HOME/.local/bin/gitsummary'
+alias yt-dlp='noglob yt-dlp '
 
 # Docker
 alias dcpud="docker-compose up -d"
