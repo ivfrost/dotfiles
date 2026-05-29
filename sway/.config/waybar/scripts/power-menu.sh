@@ -1,6 +1,6 @@
 
-#!/bin/bash
-options=" Shutdown\n Reboot\n Suspend\n Hibernate\n Reload desktop\n Lock\n Log out"
+#!/usr/bin/env zsh
+options=" Shutdown\n Reboot\n Suspend\n Hibernate\n Reload desktop\n Lock\n Log out"
 selected=$(echo -e "$options" | wofi --dmenu --width 250 --lines 8 --prompt 'Power Menu')
 
 case "$selected" in

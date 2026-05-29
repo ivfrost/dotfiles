@@ -39,25 +39,24 @@ else
 fi
 
 # Determine icon based on capacity
-if [ "$CAPACITY" -ge 75 ]; then
-  ICON=""
+if [ "$STATUS" = "Charging" ]; then
+  ICON=$'\ue0ba'   # battery-charging
+elif [ "$STATUS" = "Full" ]; then
+  ICON=$'\ue0c0'   # battery-full
+elif [ "$CAPACITY" -ge 75 ]; then
+  ICON=$'\ue0c2'   # battery-high
 elif [ "$CAPACITY" -ge 45 ]; then
-  ICON=""
+  ICON=$'\ue0c6'   # battery-medium
 elif [ "$CAPACITY" -ge 15 ]; then
-  ICON=""
+  ICON=$'\ue0c4'   # battery-low
 else
-  ICON=""
+  ICON=$'\ue0be'   # battery-empty
 fi
 
 # Add charging indicator
-if [ "$STATUS" = "Charging" ]; then
-  ICON=""
-elif [ "$STATUS" = "Full" ]; then
-  ICON=""
-fi
 
 # Create tooltip
 TOOLTIP="Capacity: ${CAPACITY}%\nHealth: ${HEALTH}%\nTime: ${TIME_STR}\nStatus: ${STATUS}"
 
 # Output JSON
-echo "{\"text\":\"<span size='11pt'>${CAPACITY}%</span>  <span size='17pt' weight='400' rise='-4pt'>${ICON}</span>\",\"tooltip\":\"${TOOLTIP}\"}"
+echo "{\"text\":\"<span size='11pt' rise='-4pt'></span>&#8194;<span font='Phosphor' size='17pt' rise='-8pt' weight='500'>${ICON}</span>\",\"tooltip\":\"${TOOLTIP}\"}"

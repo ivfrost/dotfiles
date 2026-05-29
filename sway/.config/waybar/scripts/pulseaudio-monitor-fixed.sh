@@ -18,9 +18,9 @@ output_all() {
   # Generate speakers output
   if ! echo "$SINK_NAME" | grep -qiE "headphone|earpiece"; then
     if [ "$MUTE" = "yes" ]; then
-      SPEAKERS_OUTPUT="{\"text\":\"Muted\"}"
+      SPEAKERS_OUTPUT="{\"text\":\"Muted \"}"
     else
-      SPEAKERS_OUTPUT="{\"text\":\"${VOLUME}%\"}"
+      SPEAKERS_OUTPUT="{\"text\":\"${VOLUME}% \"}"
     fi
   else
     SPEAKERS_OUTPUT="{\"text\":\"\"}"
@@ -29,9 +29,9 @@ output_all() {
   # Generate headphones output
   if echo "$SINK_NAME" | grep -qiE "headphone|earpiece"; then
     if [ "$MUTE" = "no" ]; then
-      HEADPHONES_OUTPUT="{\"text\":\"Headphones ${VOLUME}%\"}"
+      HEADPHONES_OUTPUT="{\"text\":\"Headphones ${VOLUME}% \"}"
     else
-      HEADPHONES_OUTPUT="{\"text\":\"Headphones Muted\"}"
+      HEADPHONES_OUTPUT="{\"text\":\"Headphones Muted \"}"
     fi
   else
     HEADPHONES_OUTPUT="{\"text\":\"\"}"

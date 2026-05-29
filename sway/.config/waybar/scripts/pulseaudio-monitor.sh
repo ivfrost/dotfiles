@@ -1,68 +1,64 @@
 #!/bin/bash
 
-# Central monitor that writes to temp files for both modules
 SPEAKERS_FILE="/tmp/waybar-speakers.json"
 HEADPHONES_FILE="/tmp/waybar-headphones.json"
 
+SPEAKER_HIGH=$'\ue44a'
+SPEAKER_LOW=$'\ue44c'
+SPEAKER_NONE=$'\ue44e'
+SPEAKER_MUTE=$'\ue45a'
+HEADPHONES=$'\ue2a6'
+
 output_all() {
-  # Get volume and mute status with error handling
   VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null | awk '{print $5}' | tr -d '%')
+[ "$VOLUME" -gt 100 ] 2>/dev/null && VOLUME=100
   MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null | awk '{print $2}')
   SINK_NAME=$(pactl get-default-sink 2>/dev/null)
-  
-  # Skip if pactl failed
+
   if [ -z "$VOLUME" ] || [ -z "$MUTE" ] || [ -z "$SINK_NAME" ]; then
     return
   fi
 
-  # Generate speakers output
   if ! echo "$SINK_NAME" | grep -qiE "headphone|earpiece"; then
     if [ "$MUTE" = "yes" ]; then
-      SPEAKERS_OUTPUT="{\"text\":\"<span size='12pt' weight='600' rise='-2.5pt'></span>\"}"
+      # speaker-slash is narrow — thin space is enough
+      SPEAKERS_OUTPUT="{\"text\":\"<span font='Phosphor-Fill' size='13pt' rise='-2pt' weight='400'>$SPEAKER_MUTE</span>&#8201;<span size='11pt'>${VOLUME}%</span>\"}"
     else
-      if [ "$VOLUME" -le 33 ]; then
-        ICON=""
-      elif [ "$VOLUME" -le 66 ]; then
-        ICON=""
+      if [ "$VOLUME" -le 0 ]; then
+        ICON="$SPEAKER_NONE"
+        SP="&#8201;"   # narrow — thin space
+      elif [ "$VOLUME" -le 50 ]; then
+        ICON="$SPEAKER_LOW"
+        SP="&#8194;"   # medium — en space
       else
-        ICON=""
+        ICON="$SPEAKER_HIGH"
+        SP="&#8194;"   # wide — en space
       fi
-      SPEAKERS_OUTPUT="{\"text\":\"<span size='12pt' rise='-' weight='400'>$ICON</span> <span size='11pt'>${VOLUME}%</span>\"}"
+      SPEAKERS_OUTPUT="{\"text\":\"<span font='Phosphor-Fill' size='13pt' rise='-2pt' weight='400'>$ICON</span>${SP}<span size='11pt'>${VOLUME}%</span>\"}"
     fi
   else
     SPEAKERS_OUTPUT="{\"text\":\"\"}"
   fi
 
-  # Generate headphones output
   if echo "$SINK_NAME" | grep -qiE "headphone|earpiece"; then
-    if [ "$MUTE" = "no" ]; then
-      HEADPHONES_OUTPUT="{\"text\":\"<span size='14pt' rise='-2pt' weight='600'></span>  ${VOLUME}%\"}"
+    if [ "$MUTE" = "yes" ]; then
+      HEADPHONES_OUTPUT="{\"text\":\"<span font='Phosphor-Fill' size='14pt' rise='-2pt' weight='400'>$SPEAKER_MUTE</span>&#8201;<span size='11pt'>${VOLUME}%</span>\"}"
     else
-      HEADPHONES_OUTPUT="{\"text\":\"<span size='14pt' weight='600' rise='-3pt'></span>\"}"
+      HEADPHONES_OUTPUT="{\"text\":\"<span font='Phosphor-Fill' size='14pt' rise='-2pt' weight='400'>$HEADPHONES</span>&#8194;<span size='11pt'>${VOLUME}%</span>\"}"
     fi
   else
     HEADPHONES_OUTPUT="{\"text\":\"\"}"
   fi
 
-  # Write atomically to avoid partial reads
-  if [ -n "$SPEAKERS_OUTPUT" ]; then
-    echo "$SPEAKERS_OUTPUT" > "$SPEAKERS_FILE.tmp" 2>/dev/null && mv "$SPEAKERS_FILE.tmp" "$SPEAKERS_FILE" 2>/dev/null
-  fi
-  if [ -n "$HEADPHONES_OUTPUT" ]; then
-    echo "$HEADPHONES_OUTPUT" > "$HEADPHONES_FILE.tmp" 2>/dev/null && mv "$HEADPHONES_FILE.tmp" "$HEADPHONES_FILE" 2>/dev/null
-  fi
+  echo "$SPEAKERS_OUTPUT" > "$SPEAKERS_FILE.tmp" && mv "$SPEAKERS_FILE.tmp" "$SPEAKERS_FILE"
+  echo "$HEADPHONES_OUTPUT" > "$HEADPHONES_FILE.tmp" && mv "$HEADPHONES_FILE.tmp" "$HEADPHONES_FILE"
 }
 
-# Output initial status
 output_all
 
-# Listen for pulseaudio events with reconnection handling
 while true; do
   pactl subscribe 2>/dev/null | while IFS= read -r line; do
-    if [[ "$line" == *"sink"* ]]; then
-      output_all
-    fi
+    output_all
   done
-  # Reconnect if pactl subscribe fails
   sleep 1
 done
