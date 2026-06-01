@@ -1,14 +1,14 @@
 {
     "display-type": {
         "type": "combobox",
-        "default": "buttons",
+        "default": "visual",
         "description": "Type of display",
         "tooltip": "Note that the visual representation will only work if your panel is large enough to display it properly, otherwise the simple style will be used.",
         "options": {
-            "Overview": "visual",
-            "Name": "buttons"
+            "A visual representation of the workspaces": "visual",
+            "Simple buttons": "buttons"
         },
-        "value": "visual"
+        "value": "buttons"
     },
     "scroll-behavior": {
         "type": "combobox",
@@ -22,5 +22,5 @@
         },
         "value": "normal"
     },
-    "__md5__": "04d11f8753e659c6f49c04685f25c06c"
+    "__md5__": "bde96d24c6efac81dcfe38017f39456d"
 }

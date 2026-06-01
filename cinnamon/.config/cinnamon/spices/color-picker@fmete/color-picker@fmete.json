@@ -35,13 +35,13 @@
         "default": "",
         "description": "The icon to use in the panel",
         "tooltip": "Select an icon file, or you can type an icon name into the entry box",
-        "value": "dropboxstatus-blank"
+        "value": "screensaver-blank"
     },
     "keybinding-test": {
         "type": "keybinding",
         "description": "Keybinding, which activates the color picker",
         "default": "<Primary><Alt>p",
-        "value": "<Primary><Alt>p"
+        "value": "<Primary><Shift>Print"
     },
     "__md5__": "45992efe29f2a20420a72c97f6364e01"
 }

@@ -40,7 +40,9 @@
         "value": [
             "banshee",
             "vlc",
-            "rhythmbox"
+            "rhythmbox",
+            "Tor Browser",
+            "firefox"
         ]
     },
     "section2": {
