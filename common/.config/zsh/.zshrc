@@ -205,3 +205,5 @@ esac
 # =============================
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
 
+# Keychain
+eval $(keychain --eval --quiet)
