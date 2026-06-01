@@ -1,0 +1,1 @@
+dconf dump /org/cinnamon/desktop/keybindings/ > ~/.config/dotfiles/cinnamon/.config/cinnamon/keybindings.dconf

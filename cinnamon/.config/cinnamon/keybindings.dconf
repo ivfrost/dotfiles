@@ -1,0 +1,106 @@
+[/]
+custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15', 'custom0', 'custom16']
+
+[custom-keybindings/custom0]
+binding=['<Shift><Alt>m']
+command='firefox -P wa'
+name='Whatsapp'
+
+[custom-keybindings/custom1]
+binding=['<Shift><Alt>x']
+command='firefox -P default'
+name='Firefox'
+
+[custom-keybindings/custom10]
+binding='<Shift><Alt>bracketright'
+command='flatpak run com.usebruno.Bruno'
+name='Bruno'
+
+[custom-keybindings/custom11]
+binding=['<Shift><Alt>d']
+command='nemo'
+name='Files'
+
+[custom-keybindings/custom12]
+binding='<Shift><Alt>Return'
+command='ghostty'
+name='Ghostty'
+
+[custom-keybindings/custom13]
+binding='<Shift><Alt>i'
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea'
+name='IDEA'
+
+[custom-keybindings/custom14]
+binding='<Shift><Alt>p'
+command='flatpak run com.bitwarden.desktop'
+name='Bitwarden'
+
+[custom-keybindings/custom16]
+binding=['<Shift><Alt>Delete']
+command='cinnamon-settings'
+name='Cinnamon Settings'
+
+[custom-keybindings/custom3]
+binding=['<Shift><Alt>v']
+command='code'
+name='VSCode'
+
+[custom-keybindings/custom4]
+binding='<Shift><Alt>a'
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
+name='Android Studio'
+
+[custom-keybindings/custom5]
+binding='<Shift><Alt>q'
+command='onlyoffice --force-scale=1'
+name='Onlyoffice'
+
+[custom-keybindings/custom6]
+binding=['<Shift><Alt>w']
+command='webcord'
+name='Webcord'
+
+[custom-keybindings/custom7]
+binding=['<Shift><Alt>o']
+command='flatpak run md.obsidian.Obsidian'
+name='Obsidian'
+
+[media-keys]
+area-screenshot-clip=@as []
+play=['<Shift><Control>k']
+screenshot=@as []
+screenshot-clip=@as []
+terminal=['<Shift><Alt>Return']
+volume-down=['<Shift><Control>comma']
+volume-mute=['<Shift><Control>m']
+volume-up=['<Shift><Control>i']
+
+[wm]
+activate-window-menu=@as []
+close=['<Shift><Alt>c']
+move-to-workspace-1=['<Alt><Shift>1']
+move-to-workspace-2=['<Alt><Shift>2']
+move-to-workspace-3=['<Alt><Shift>3']
+move-to-workspace-4=['<Alt><Shift>4']
+move-to-workspace-5=['<Alt><Shift>5']
+move-to-workspace-6=['<Alt><Shift>6']
+move-to-workspace-7=['<Alt><Shift>7']
+move-to-workspace-8=['<Alt><Shift>8']
+move-to-workspace-9=['<Alt><Shift>9']
+show-desktop=['<Shift><Alt>0']
+switch-input-source=['<Super>space', 'XF86Keyboard']
+switch-to-workspace-1=['<Alt>1']
+switch-to-workspace-2=['<Alt>2']
+switch-to-workspace-3=['<Alt>3']
+switch-to-workspace-4=['<Alt>4']
+switch-to-workspace-5=['<Alt>5']
+switch-to-workspace-6=['<Alt>6']
+switch-to-workspace-7=['<Alt>7']
+switch-to-workspace-8=['<Alt>8']
+switch-to-workspace-9=['<Alt>9']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+toggle-fullscreen=['<Shift><Alt>f']
+toggle-maximized=['<Alt>space']
