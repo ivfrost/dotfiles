@@ -1,6 +1,6 @@
 [/]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15', 'custom0', 'custom16']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15', 'custom0', 'custom16', '__dummy__']
 
 [custom-keybindings/custom0]
 binding=['<Shift><Alt>m']
@@ -32,11 +32,6 @@ binding='<Shift><Alt>i'
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea'
 name='IDEA'
 
-[custom-keybindings/custom14]
-binding='<Shift><Alt>p'
-command='flatpak run com.bitwarden.desktop'
-name='Bitwarden'
-
 [custom-keybindings/custom16]
 binding=['<Shift><Alt>Delete']
 command='cinnamon-settings'
@@ -64,7 +59,7 @@ name='Webcord'
 
 [custom-keybindings/custom7]
 binding=['<Shift><Alt>o']
-command='flatpak run md.obsidian.Obsidian'
+command='obsidian'
 name='Obsidian'
 
 [media-keys]

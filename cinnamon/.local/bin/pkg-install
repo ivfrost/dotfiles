@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -e
+
+IN="$HOME/.config/dotfiles/cinnamon/.config/pkglist.age"
+TMP="$(mktemp)"
+
+if [[ ! -f "$IN" ]]; then
+    echo "Encrypted package list not found: $IN"
+    exit 1
+fi
+
+echo -n "Enter your age private key: "
+read -r AGEKEY
+
+echo "Decrypting package list (plaintext only in RAM)"
+echo "$AGEKEY" | age -d -i /dev/stdin -o "$TMP" "$IN"
+
+if [[ "$1" == "--dry" ]]; then
+    echo "Dry run: showing packages that WOULD be installed"
+    cat "$TMP"
+    shred -u "$TMP"
+    exit 0
+fi
+
+echo "Installing packages"
+sudo pacman -S --needed - < "$TMP"
+
+shred -u "$TMP"
+
+echo "Done."

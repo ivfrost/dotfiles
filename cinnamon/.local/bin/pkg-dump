@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+OUT="$HOME/.config/dotfiles/cinnamon/.config/pkglist.age"
+TMP="$(mktemp)"
+TMP2="$(mktemp)"
+PUBKEY="age1qq26sl9lraw893wfjkg3g2cumudjyzy3trlejd9wdqyzcdzzzv6sg3c7ks"
+SKIPFILE="$HOME/.config/pkg-skip"
+
+mkdir -p "$(dirname "$OUT")"
+
+echo "Dumping explicitly installed packages (plaintext only in RAM)"
+pacman -Qqe > "$TMP"
+
+if [[ -f "$SKIPFILE" ]]; then
+    echo "Applying skip list from $SKIPFILE"
+    grep -v -F -f "$SKIPFILE" "$TMP" > "$TMP2"
+    mv "$TMP2" "$TMP"
+fi
+
+echo "Encrypting → $OUT"
+age -r "$PUBKEY" -o "$OUT" "$TMP"
+
+shred -u "$TMP"
+
+echo "Done."
