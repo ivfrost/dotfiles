@@ -87,7 +87,6 @@ class WorkspaceButton {
     }
 
     activate(active) {
-        if (active) { this.actor.add_style_pseudo_class('outlined'); } else { this.actor.remove_style_pseudo_class('outlined'); }
         // Defined in subclass
     }
 
@@ -105,10 +104,11 @@ class SimpleButton extends WorkspaceButton {
 
         this.actor = new St.Button({ name: 'workspaceButton',
                                      style_class: 'workspace-button',
-                                     reactive: applet._draggable.inhibit, y_fill: false, y_align: Clutter.ActorAlign.CENTER });
+                                     reactive: applet._draggable.inhibit });
 
         if (applet.orientation == St.Side.TOP || applet.orientation == St.Side.BOTTOM) {
-            this.actor.y_align = Clutter.ActorAlign.CENTER;
+            let sm = Math.floor((applet._panelHeight - 8) / 2);
+        this.actor.set_style('margin-top:' + sm + 'px; margin-bottom:' + sm + 'px;');
         } else {
             this.actor.set_width(applet._panelHeight);
             this.actor.add_style_class_name('vertical');
@@ -121,12 +121,15 @@ class SimpleButton extends WorkspaceButton {
     }
 
     activate(active) {
-        if (active) { this.actor.add_style_pseudo_class('outlined'); } else { this.actor.remove_style_pseudo_class('outlined'); }
         if (active) {
             this.actor.add_style_pseudo_class('outlined');
+            let am = Math.floor((this.applet._panelHeight - 10) / 2);
+            this.actor.set_style('margin-top:' + am + 'px; margin-bottom:' + am + 'px;');
         }
         else {
             this.actor.remove_style_pseudo_class('outlined');
+            let im = Math.floor((this.applet._panelHeight - 8) / 2);
+            this.actor.set_style('margin-top:' + im + 'px; margin-bottom:' + im + 'px;');
         }
         this.update();
     }
@@ -143,7 +146,6 @@ class SimpleButton extends WorkspaceButton {
     update() {
         let windows = this.workspace.list_windows();
         let used = windows.some(Main.isInteresting);
-        if (this.actor.has_style_pseudo_class('outlined')) return;
         this.shade(used);
     }
 }
@@ -469,7 +471,6 @@ class WorkspaceGraph extends WorkspaceButton {
     }
 
     activate(active) {
-        if (active) { this.actor.add_style_pseudo_class('outlined'); } else { this.actor.remove_style_pseudo_class('outlined'); }
         if (active)
             this.actor.add_style_pseudo_class('active');
         else
@@ -634,11 +635,7 @@ class CinnamonWorkspaceSwitcher extends Applet.Applet {
             else
                 this.buttons[i] = new SimpleButton(i, this);
 
-            this.actor.add(this.buttons[i].actor, { y_fill: false, y_align: St.Align.MIDDLE });
-            this.buttons[i].actor.set_y_align(Clutter.ActorAlign.CENTER);
-            this.buttons[i].actor.set_y_expand(false);
-            this.buttons[i].actor.y_expand = false;
-            this.actor.child_set(this.buttons[i].actor, { y_fill: false, y_align: Clutter.ActorAlign.CENTER });
+            this.actor.add_actor(this.buttons[i].actor);
             this.buttons[i].show();
         }
 
