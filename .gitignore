@@ -21,7 +21,11 @@ Session.vim
 tags
 TAGS
 
+# vscode
+**/Code
+!**/Code/User/keybindings.json
+!**/Code/User/settings.json
+
 # generic junk
 .DS_Store
 *.log
-**/waybar-themes/
