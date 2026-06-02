@@ -207,3 +207,6 @@ esac
 
 # Keychain
 eval $(keychain --eval --quiet)
+
+# Qt
+export QT_QPA_PLATFORMTHEME=qt5ct

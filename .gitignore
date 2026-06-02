@@ -24,4 +24,4 @@ TAGS
 # generic junk
 .DS_Store
 *.log
-
+**/waybar-themes/
