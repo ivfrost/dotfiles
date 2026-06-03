@@ -25,7 +25,7 @@ alias ~="cd ~"
 alias dsk="cd ~/Desktop"
 alias dwn="cd ~/Downloads"
 alias doc="cd ~/Documents"
-alias pjt="cd ~/Documents/Projects/"
+alias pjt="cd ~/Projects/"
 alias vid="cd ~/Videos"
 alias noi="cd ~/Videos/Noises"
 alias mus="cd ~/Music"
@@ -204,9 +204,6 @@ esac
 # User-specific configs
 # =============================
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
-
-# Keychain
-eval $(keychain --eval --quiet)
 
 # Qt
 export QT_QPA_PLATFORMTHEME=qt5ct

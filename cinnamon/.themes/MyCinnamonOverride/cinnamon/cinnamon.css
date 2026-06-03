@@ -1,4 +1,4 @@
-stage {
+tage {
   color: white; }
 
 #menu-search-entry, #appmenu-search-entry, .expo-workspaces-name-entry, .prompt-dialog-password-entry, .run-dialog-entry {
@@ -189,6 +189,7 @@ stage {
   border: 1px solid #333333;
   border-radius: 16px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  color: white;
   padding: 18px; }
   .switcher-list-item-container {
     spacing: 12px; }
@@ -825,7 +826,7 @@ StScrollBar StButton#hhandle {
 
 .window-border {
   border: 3px solid #3584e4;
-  border-radius: 8px; }
+  border-radius: 80px; }
 
 .window-caption {
   min-height: 22px;
