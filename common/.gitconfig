@@ -1,0 +1,13 @@
+[includeIf "gitdir:~/Projects/ivfrost/"]
+    path = ~/.config/git/ivfrost
+
+[includeIf "gitdir:~/Projects/pva0011/"]
+    path = ~/.config/git/pva0011
+
+[core]
+    editor = nvim
+
+[user]
+    name = ivfrost 
+    email = 120138606+ivfrost@users.noreply.github.com
+
