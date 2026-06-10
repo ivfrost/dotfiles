@@ -123,7 +123,7 @@ zsh-defer source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlightin
 
 # autosuggestions
 zsh-defer source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-ZSH_AUTOSUGGEST_STRATEGY=(history)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # ollama suggestions 
 export ZSH_OLLAMA_MODEL="qwen2.5-coder:7b"
@@ -167,7 +167,7 @@ eval "$(zoxide init zsh)"
 # =============================
 # Exports
 # =============================
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
 export GDK_DPI_SCALE=0.9
 export QT_QPA_PLATFORMTHEME=qt5ct
 
@@ -207,3 +207,8 @@ esac
 
 # Qt
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Golang
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+

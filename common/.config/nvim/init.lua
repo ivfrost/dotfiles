@@ -1,6 +1,7 @@
 require("core.keymaps")
 require("core.clipboard")
 require("core.plugins")
+require("core.options")
 
 vim.schedule(function()
     local plugin_dir = vim.fn.stdpath('config') .. '/lua/core/plugin_config/'

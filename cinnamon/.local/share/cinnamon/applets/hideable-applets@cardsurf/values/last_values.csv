@@ -1,9 +1,11 @@
 Applet UUID,Is visible
+bing-wallpaper@starcross.dev,true
 menu@cinnamon.org,true
 weather@mockturtl,false
 color-picker@fmete,false
 xapp-status@cinnamon.org,true
 systray@cinnamon.org,true
+betterlock,true
 keyboard@cinnamon.org,true
 qredshift@quintao,true
 kdecapplet@joejoetv,true
