@@ -42,7 +42,9 @@
             "vlc",
             "rhythmbox",
             "Tor Browser",
-            "firefox"
+            "firefox",
+            "org.kde.kdeconnect.app",
+            "io.github.diegopvlk.Cine"
         ]
     },
     "section2": {

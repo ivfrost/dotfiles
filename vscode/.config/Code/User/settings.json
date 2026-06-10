@@ -21,7 +21,7 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"liveServer.settings.donotShowInfoMsg": true,
 	"github.copilot.enable": {
-		"*": true,
+		"*": false,
 		"plaintext": false,
 		"markdown": true,
 		"scminput": false,
@@ -113,4 +113,5 @@
 		"*.css": "tailwindcss",
 		"*.scss": "tailwindcss",
 	},
+	"js/ts.suggest.autoImports": true,
 }
