@@ -1,31 +1,32 @@
-# zsh 
-**/.zshrc.local
-**/.zsh_history
-**/.zsh_sessions
-**/.zcompdump*
+# zsh
+.zshrc.local
+.zsh_history
+.zsh_sessions/
+.zcompdump*
 
-# unison: keep only .prf files
-**/.unison/*
-!**/.unison/*.prf
+# unison
+.unison/*
+!.unison/*.prf
 
-# neovim: generated files
-**/packer_compiled.lua
+# neovim / vim
+packer_compiled.lua
 *.swp
 *.swo
 *~
 .*~
-
-# vim: runtime files
 Session.vim
 .netrwhist
 tags
 TAGS
 
 # vscode
-**/Code
-!**/Code/User/keybindings.json
-!**/Code/User/settings.json
+Code/
+!Code/User/keybindings.json
+!Code/User/settings.json
 
-# generic junk
+# copyq
+cinnamon/.config/copyq/copyq.pub
+
+# system & logs
 .DS_Store
 *.log
