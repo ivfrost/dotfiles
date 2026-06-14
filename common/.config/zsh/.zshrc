@@ -49,6 +49,7 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias gitsummary='$HOME/.local/bin/gitsummary'
 alias yt-dlp='noglob yt-dlp '
+alias idea="$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea "
 
 # Docker
 alias dcpud="docker-compose up -d"
@@ -212,3 +213,4 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+export EDITOR=nvim

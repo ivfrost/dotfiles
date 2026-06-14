@@ -250,6 +250,11 @@
         "value": [
             {
                 "expand": false,
+                "uuid": "701749d471ee453f8c07a82cf5c1209a",
+                "name": "Fedora Laptop"
+            },
+            {
+                "expand": false,
                 "uuid": "9abc97bb34e04d529eec7d0ad7bb0a66",
                 "name": "Pixel 6a @government"
             },

@@ -1,3 +1,6 @@
 [user]
     name = ivfrost 
     email = 120138606+ivfrost@users.noreply.github.com
+
+[url "git@github.com-ivfrost:"]
+    insteadOf = git@github.com:

@@ -5,9 +5,9 @@ that makes it easy to maintain modular, version‑controlled configuration files
 Each directory inside the repo represents a self‑contained “package” of dotfiles
 that can be selectively deployed to your home directory.
 
-The `artix-pacman/` folder is a special case:  
+The `artix-sys/` folder is a special case:  
 it contains **hooks** and other **system configurations/fixes** for Artix.  
-It is **not stowable** and is meant to be copied into `/etc/pacman.d/` on an Artix system.
+It is **not stowable** and is meant to be copied into `/etc/` on an Artix OpenRC system.
 
 
 ## Example usage
@@ -21,5 +21,5 @@ stow common -t ~
 stow gnome -t ~
 
 # Deploy artix system files
-sudo cp -r artix-pacman/etc/pacman.d/hooks/* /etc/pacman.d/hooks/
+sudo cp -r ./artix-sys/etc/* /etc/
 ```
