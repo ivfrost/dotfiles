@@ -27,6 +27,12 @@ Code/
 # copyq
 cinnamon/.config/copyq/copyq.pub
 
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
 # system & logs
 .DS_Store
 *.log
