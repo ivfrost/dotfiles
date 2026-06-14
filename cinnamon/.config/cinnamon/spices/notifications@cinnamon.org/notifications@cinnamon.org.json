@@ -25,13 +25,13 @@
         "type": "switch",
         "default": true,
         "description": "Show the number of notifications",
-        "value": true
+        "value": false
     },
     "showNewestFirst": {
         "type": "switch",
         "default": false,
         "description": "Show newest notifications first",
-        "value": false
+        "value": true
     },
     "section3": {
         "type": "section",
