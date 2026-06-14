@@ -20,6 +20,6 @@ cd ~/.config/dotfiles
 stow common -t ~
 stow gnome -t ~
 
-# Deploy artix system files
-sudo cp -r ./artix-sys/etc/* /etc/
+# Deploy artix system files (preventing accidental overwrites)
+sudo rsync -avh --progress ./artix-sys/etc/ /etc*
 ```
