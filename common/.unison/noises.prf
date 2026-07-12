@@ -1,5 +1,5 @@
 root = /home/ivfrost/Videos/Noises
-root = ssh://ivfrost@desktop//home/ivfrost/Videos/Noises
+root = ssh://ivfrost@artix//home/ivfrost/Videos/Noises
 
 auto = true
 batch = true

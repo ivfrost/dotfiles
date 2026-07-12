@@ -1,5 +1,5 @@
 root = /home/ivfrost/Pictures
-root = ssh://ivfrost@desktop//home/ivfrost/Pictures
+root = ssh://ivfrost@artix//home/ivfrost/Pictures
 
 auto = true
 batch = true

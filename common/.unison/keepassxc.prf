@@ -1,5 +1,5 @@
 root = /home/ivfrost/.local/share/keepassxc
-root = ssh://ivfrost@mirror//home/ivfrost/.local/share/keepassxc
+root = ssh://ivfrost@artix//home/ivfrost/.local/share/keepassxc
 
 auto = true
 batch = true

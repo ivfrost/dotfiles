@@ -36,3 +36,11 @@ __pycache__/
 # system & logs
 .DS_Store
 *.log
+cinnamon/.config/cinnamon/spices/qredshift@quintao/qredshift@quintao.json
+cinnamon/.config/cinnamon/spices/qredshift@quintao/qredshift@quintao.json
+common/.unison/ar*
+common/.unison/fp*
+cinnamon/.config/cinnamon/spices/qredshift@quintao/qredshift@quintao.json
+__pycache__/
+*.pyc
+common/.config/vicinae/settings.json
