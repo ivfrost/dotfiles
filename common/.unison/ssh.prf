@@ -1,0 +1,9 @@
+root = /home/ivfrost/.ssh
+root = ssh://ivfrost@artix//home/ivfrost/.ssh
+
+auto = true
+batch = true
+fastcheck = true
+prefer = newer
+times = true
+confirmbigdel = true

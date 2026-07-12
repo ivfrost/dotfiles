@@ -57,6 +57,7 @@ alias dcpu="docker-compose up"
 alias dcpufr="docker-compose up --force-recreate"
 alias dcpd="docker-compose down"
 alias dcpdro="docker-compose down --remove-orphans"
+alias dch="docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
 
 # Flutter
 alias fr="flutter run"
@@ -77,6 +78,14 @@ alias dnfr='sudo dnf remove -y '
 alias dnfu='sudo dnf upgrade -y '
 alias dnfs='sudo dnf search '
 alias dnfl='sudo dnf list '
+
+# Arch
+alias paci='sudo pacman -S --noconfirm '
+alias pacu='sudo pacman -Syu --noconfirm '
+alias pacr='sudo pacman -R --noconfirm '
+alias pacs='sudo pacman -Ss '
+alias pacl='sudo pacman -Qn --noconfirm '
+alias pacc='sudo pacman -R $(sudo pacman -Qtdq) --noconfirm '
 
 # NixOS
 alias nrs="sudo nixos-rebuild switch"
@@ -182,7 +191,11 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin"
 
-export ANDROID_HOME=/opt/android-sdk
+# Android 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 export CHROME_EXECUTABLE="/var/lib/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
