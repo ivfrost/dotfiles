@@ -18,8 +18,74 @@ setopt APPEND_HISTORY SHARE_HISTORY EXTENDED_HISTORY AUTO_CD
 
 
 # =============================
+# Exports & Path
+# =============================
+export EDITOR=nvim
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+export GDK_DPI_SCALE=0.9
+export QT_QPA_PLATFORMTHEME=qt5ct
+export CHROME_EXECUTABLE="/var/lib/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium"
+export ANDROID_HOME=$HOME/Android/Sdk
+export BUN_INSTALL="$HOME/.bun"
+export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
+export PYENV_ROOT="$HOME/.pyenv"
+
+# Path assembly
+export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
+export PATH="/opt/android-sdk/platform-tools:$PATH"
+export PATH="/opt/flutter/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PATH:$HOME/.local/scr"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$JAVA_HOME/bin"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+# PNPM Path check
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+
+# =============================
+# Functions & Smart Helpers
+# =============================
+
+# Smart Pacman/Paru wrapper (replaces deprecated pac* aliases)
+pac() {
+    if [[ -z "$1" ]]; then
+        paru
+    elif [[ "$1" =~ ^-[RU] ]] || [[ "$1" =~ ^-S && ! "$1" =~ [sg] ]]; then
+        # Needs root: sync, upgrade, remove, install
+        sudo paru "$@"
+    else
+        # No root needed: search, info, query
+        paru "$@"
+    fi
+}
+
+# Force sudo to recognize user-defined shell functions
+function sudo {
+    if [[ "$1" == "pac" ]]; then
+        # Bypass the binary lookup and evaluate the function locally
+        shift
+        pac "$@"
+    else
+        # Fall back to standard system sudo
+        command sudo "$@"
+    fi
+}
+
+# =============================
 # Aliases
 # =============================
+
+# Navigation
 alias ..="cd .."
 alias ~="cd ~"
 alias dsk="cd ~/Desktop"
@@ -34,6 +100,7 @@ alias opt="cd /opt"
 alias dot="cd $XDG_CONFIG_HOME/dotfiles/"
 alias srv="cd /srv"
 
+# System & Editor Utilities
 alias sudo="sudo "
 alias doas="sudo "
 alias v="nvim "
@@ -41,7 +108,6 @@ alias vv="sudo -E nvim"
 alias szs="source $ZDOTDIR/.zshrc"
 alias vzs="nvim $XDG_CONFIG_HOME/dotfiles/common/.config/zsh/.zshrc"
 alias files="nautilus ."
-alias lsa="ls -a"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
@@ -50,6 +116,15 @@ alias pbpaste='xsel --clipboard --output'
 alias gitsummary='$HOME/.local/bin/gitsummary'
 alias yt-dlp='noglob yt-dlp '
 alias idea="$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea "
+
+# Modern Coreutils (eza)
+alias ls="eza --icons=always --group-directories-first"
+alias lsa="eza -a --icons=always --group-directories-first"
+alias ll="eza -lh --icons=always --git --group-directories-first"
+
+# Terminal UIs (TUIs)
+alias lg="lazygit"
+alias ld="lazydocker"
 
 # Docker
 alias dcpud="docker-compose up -d"
@@ -79,21 +154,14 @@ alias dnfu='sudo dnf upgrade -y '
 alias dnfs='sudo dnf search '
 alias dnfl='sudo dnf list '
 
-# Arch
-alias paci='sudo pacman -S --noconfirm '
-alias pacu='sudo pacman -Syu --noconfirm '
-alias pacr='sudo pacman -R --noconfirm '
-alias pacs='sudo pacman -Ss '
-alias pacl='sudo pacman -Qn --noconfirm '
-alias pacc='sudo pacman -R $(sudo pacman -Qtdq) --noconfirm '
-
 # NixOS
 alias nrs="sudo nixos-rebuild switch"
 alias nvc="sudo -E nvim /etc/nixos/configuration.nix"
 alias nvhm="sudo -E nvim /etc/nixos/home.nix"
 
+
 # =============================
-# Plugin auto‑clone
+# Plugin auto-clone
 # =============================
 ZSH_PLUGIN_DIR="$ZDOTDIR/plugins"
 mkdir -p "$ZSH_PLUGIN_DIR"
@@ -117,6 +185,10 @@ clone_if_missing "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting" \
 clone_if_missing "$ZSH_PLUGIN_DIR/zsh-autosuggestions" \
   https://github.com/zsh-users/zsh-autosuggestions
 
+clone_if_missing "$ZSH_PLUGIN_DIR/fzf-tab" \
+  https://github.com/Aloxaf/fzf-tab
+
+
 # =============================
 # Plugins
 # =============================
@@ -127,6 +199,9 @@ source "$ZSH_PLUGIN_DIR/zsh-defer/zsh-defer.plugin.zsh"
 # compinit
 autoload -Uz compinit
 zsh-defer compinit
+
+# fzf-tab (must be sourced after compinit but before syntax-highlighting)
+zsh-defer source "$ZSH_PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
 # syntax highlighting
 zsh-defer source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -144,6 +219,7 @@ if [ -f ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh ]; then
     zsh-defer source ~/.config/zsh/plugins/zsh-ollama-command/zsh-ollama-command.zsh
 fi
 
+
 # =============================
 # Language/toolchain managers
 # =============================
@@ -158,8 +234,9 @@ fi
 # bun
 [[ -s "$BUN_INSTALL/_bun" ]] && zsh-defer source "$BUN_INSTALL/_bun"
 
+
 # =============================
-# Prompt + shell enhancements
+# Shell environments & Inits
 # =============================
 
 # Starship
@@ -173,57 +250,18 @@ bindkey '^f' atuin-search
 # zoxide
 eval "$(zoxide init zsh)"
 
+# Pyenv
+[[ -d $PYENV_ROOT/bin ]] && eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
-# =============================
-# Exports
-# =============================
-export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
-export GDK_DPI_SCALE=0.9
-export QT_QPA_PLATFORMTHEME=qt5ct
+# Envman
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# PATH additions
-export PATH="/opt/android-sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="/opt/android-sdk/platform-tools:$PATH"
-export PATH="/opt/flutter/bin:$PATH"
-export PATH="$PATH:$HOME/.local/scr"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$JAVA_HOME/bin"
-export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin"
-
-# Android 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-export CHROME_EXECUTABLE="/var/lib/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium"
-export PATH="$PATH:$HOME/.pub-cache/bin"
-
-# bun PATH
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-
-# =============================
-# pnpm
-# =============================
-export PNPM_HOME="/home/ivfrost/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+# TheFuck (as please)
+eval $(thefuck --alias please)
 
 
 # =============================
 # User-specific configs
 # =============================
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
-
-# Qt
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-# Golang
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-export EDITOR=nvim
