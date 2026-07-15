@@ -147,4 +147,7 @@
 		"utils/apiFetch.ts",
 	],
 	"redhat.telemetry.enabled": false,
+	"terminal.integrated.commandsToSkipShell": [
+		"-workbench.action.terminal.focusFind",
+	],
 }

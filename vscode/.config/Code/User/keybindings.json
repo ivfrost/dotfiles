@@ -252,4 +252,9 @@
 		"command": "workbench.action.nextEditor",
 		"when": "!terminalFocus",
 	},
+	{
+		"key": "ctrl+f",
+		"command": "-workbench.action.terminal.focusFind",
+		"when": "terminalProcessSupported && terminalFocus",
+	},
 ]
