@@ -1,4 +1,4 @@
-tage {
+stage {
   color: white; }
 
 #menu-search-entry, #appmenu-search-entry, .expo-workspaces-name-entry, .prompt-dialog-password-entry, .run-dialog-entry {
@@ -240,8 +240,6 @@ tage {
   border-radius: 8px;
   spacing: 6px;
   text-align: center; }
-  .applet-box.vertical {
-    padding: 6px 0; }
   .applet-box:hover {
     background-color: #454545; }
   .applet-box:highlight {
@@ -314,7 +312,7 @@ tage {
     width: 16px;
     height: 16px; }
     .sound-player StButton:small StIcon {
-      icon-size: 1.2 em; }
+      icon-size: 1.2em; }
 
 .sound-player-generic-coverart {
   background-color: rgba(0, 0, 0, 0.2); }
@@ -352,18 +350,15 @@ tage {
   padding: 0; }
 
 .panel-top {
-  padding: 0 6px;
-}
+  padding: 0 6px; }
 
 .panel-top .workspace-switcher,
 .panel-bottom .workspace-switcher {
-  padding: 0 4px;
-}
+  padding: 0 4px; }
 
 .workspace-switcher {
   spacing: 6.5px;
-  margin-bottom: 2px;
-}
+  margin-bottom: 2px; }
 
 .workspace-button {
   border-radius: 2.5px !important;
@@ -375,24 +370,20 @@ tage {
   background-color: rgba(255, 255, 255, 0.55);
   border: none;
   color: transparent;
-  transition-duration: 150ms;
-}
+  transition-duration: 150ms; }
 
 .workspace-button:outlined,
 .workspace-button:outlined:shaded {
   height: 8px;
-  margin: 0px 2px 0px 0px;
   margin: 0;
   border-radius: 2.5px;
   background-color: rgba(255, 255, 255, 0.95) !important;
   width: 22px;
-  min-height: 0 !important;
-}
+  min-height: 0 !important; }
 
 .workspace-button.vertical {
   width: 2em;
-  height: 8px;
-}
+  height: 8px; }
 
 .workspace-graph {
   padding: 4px;
@@ -413,8 +404,22 @@ tage {
       -inactive-window-background: rgba(255, 255, 255, 0.1);
       -inactive-window-border: rgba(255, 255, 255, 0.15); }
 
+/*
+  Tray icon size overrides.
+  Colored icons (systray/xapp-status, e.g. the app-logo and keyboard-layout
+  indicators) carry more visual weight than thin symbolic glyphs at the same
+  pixel size, so the colored target below is set a touch smaller than the
+  symbolic one to compensate and have both families read as the same size
+  in the panel. Values are visual targets, not required to match exactly —
+  nudge by 1px in either direction if your icon theme sits heavier/lighter
+  than average.
+*/
+.systray StIcon,
+.systray StBin > StIcon {
+  icon-size: 15px; }
+
 .system-status-icon {
-  icon-size: 1.091em; }
+  icon-size: 16px; }
 
 .flashspot {
   background-color: white; }
@@ -470,7 +475,7 @@ StScrollView StScrollBar {
 
 StScrollBar StBin#trough {
   background-color: rgba(48, 48, 48, 0.1);
-  border_radius: 8px; }
+  border-radius: 8px; }
 
 StScrollBar StButton#vhandle,
 StScrollBar StButton#hhandle {
@@ -710,7 +715,7 @@ StScrollBar StButton#hhandle {
     spacing: 0; }
     .end-session-dialog .dialog-list .dialog-list-title {
       color: #f8e45c;
-      background-color: tranparentize(#f8e45c, 0.9);
+      background-color: transparentize(#f8e45c, 0.9);
       padding: 9px;
       border-radius: 8px;
       margin: 4px 0; }
@@ -896,7 +901,6 @@ StScrollBar StButton#hhandle {
 
 .vkeyboard-key {
   color: white;
-  background-color: #393939;
   font-size: 1.364em;
   border-width: 1px;
   border-style: solid;
@@ -949,7 +953,7 @@ StScrollBar StButton#hhandle {
   -boxpointer-gap: 6px; }
 
 .word-suggestions {
-  font-size: 1.227em;
+  font-size: 1.182em;
   spacing: 20px;
   min-height: 20pt; }
 
@@ -1097,9 +1101,9 @@ StScrollBar StButton#hhandle {
     background-color: white; }
 
 .info-osd {
-  font-size: 1.2em;
+  font-size: 1.182em;
   font-weight: 700;
-  margin: 6em ;
+  margin: 6em;
   text-align: center; }
 
 .workspace-switch-osd {
@@ -1109,7 +1113,7 @@ StScrollBar StButton#hhandle {
   border-color: #2e2e33;
   font-size: 0;
   margin: 0 0 60px 0;
-  padding: 12px 24px 12px 24px; }
+  padding: 12px 24px; }
   .workspace-switch-osd-indicator-box {
     spacing: 12px; }
   .workspace-switch-osd-indicator {
@@ -1118,7 +1122,7 @@ StScrollBar StButton#hhandle {
     margin: 13.3333333333px;
     border-radius: 32px; }
     .workspace-switch-osd-indicator:active {
-    background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 0.95);
       padding: 5.3333333333px;
       margin: 10.6666666667px; }
 
@@ -1194,7 +1198,7 @@ StScrollBar StButton#hhandle {
 
 .appmenu-right-box {
   spacing: 5px;
-  padding: 10px 10px; }
+  padding: 10px; }
 
 .appmenu-categories-applications-box {
   spacing: 15px; }
@@ -1228,8 +1232,8 @@ StScrollBar StButton#hhandle {
   spacing: 10px; }
 
 .appmenu-sidebar-button {
-  padding: 3px 6px 3px 6px;
-  margin: 0 10px 0 10px; }
+  padding: 3px 6px;
+  margin: 0 10px; }
   .appmenu-sidebar-button:hover {
     background-color: #454545;
     border-color: #333333; }
