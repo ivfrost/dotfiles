@@ -125,6 +125,8 @@ alias ll="eza -lh --icons=always --git --group-directories-first"
 # Terminal UIs (TUIs)
 alias lg="lazygit"
 alias ld="lazydocker"
+alias hlp="cht.sh --shell"
+alias cc='glow ~/.local/share/cheats/conventional-commits.md'
 
 # Docker
 alias dcpud="docker-compose up -d"
