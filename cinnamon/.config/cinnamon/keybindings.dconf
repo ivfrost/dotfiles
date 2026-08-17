@@ -1,41 +1,46 @@
 [/]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15', 'custom0', 'custom16', '__dummy__']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5']
 
 [custom-keybindings/custom0]
-binding=['<Shift><Alt>m']
-command='firefox -P wa'
-name='Whatsapp'
+binding=@as []
+command='vicinae toggle'
+name='Vicinae'
 
 [custom-keybindings/custom1]
 binding=['<Shift><Alt>x']
-command='firefox -P default'
-name='Firefox'
-
-[custom-keybindings/custom10]
-binding='<Shift><Alt>bracketright'
-command='flatpak run com.usebruno.Bruno'
-name='Bruno'
+command='zen-browser -P default'
+name='Zen Browser'
 
 [custom-keybindings/custom11]
 binding=['<Shift><Alt>d']
 command='nemo'
 name='Files'
 
-[custom-keybindings/custom12]
-binding='<Shift><Alt>Return'
-command='ghostty'
-name='Ghostty'
-
 [custom-keybindings/custom13]
-binding='<Shift><Alt>i'
+binding=['<Shift><Alt>i']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea'
 name='IDEA'
+
+[custom-keybindings/custom15]
+binding=['<Shift><Alt>b']
+command='torbrowser-launcher'
+name='Tor Browser'
 
 [custom-keybindings/custom16]
 binding=['<Shift><Alt>Delete']
 command='cinnamon-settings'
 name='Cinnamon Settings'
+
+[custom-keybindings/custom17]
+binding=['<Shift><Alt>m']
+command='zen-browser -P wa'
+name='Messaging'
+
+[custom-keybindings/custom2]
+binding=['<Primary><Shift>F12']
+command='/home/ivfrost/.local/bin/sound_sink_switcher.sh'
+name='Sound Sink Switch'
 
 [custom-keybindings/custom3]
 binding=['<Shift><Alt>v']
@@ -43,19 +48,19 @@ command='code'
 name='VSCode'
 
 [custom-keybindings/custom4]
-binding='<Shift><Alt>a'
+binding=['<Shift><Alt>a']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
 name='Android Studio'
 
 [custom-keybindings/custom5]
-binding='<Shift><Alt>q'
-command='onlyoffice --force-scale=1'
-name='Onlyoffice'
+binding=['<Primary><Shift>d']
+command='vicinae toggle'
+name='Vicinae'
 
 [custom-keybindings/custom6]
 binding=['<Shift><Alt>w']
-command='webcord'
-name='Webcord'
+command='legcord'
+name='Legcord'
 
 [custom-keybindings/custom7]
 binding=['<Shift><Alt>o']
@@ -63,8 +68,11 @@ command='obsidian'
 name='Obsidian'
 
 [media-keys]
+area-screenshot=@as []
 area-screenshot-clip=@as []
+next=['AudioNext']
 play=['<Shift><Control>k']
+previous=['AudioPrev']
 screenshot=@as []
 screenshot-clip=@as []
 terminal=['<Shift><Alt>Return']
@@ -95,6 +103,8 @@ switch-to-workspace-6=['<Alt>6']
 switch-to-workspace-7=['<Alt>7']
 switch-to-workspace-8=['<Alt>8']
 switch-to-workspace-9=['<Alt>9']
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
 switch-windows=['<Alt>Tab']
 switch-windows-backward=['<Shift><Alt>Tab']
 toggle-fullscreen=['<Shift><Alt>f']

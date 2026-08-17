@@ -70,3 +70,21 @@ exported from `~/.config/zsh/.zshrc.local` and sourced by `.zshrc`. If the
 variable is not in the environment, `pkg-install` falls back to reading that
 file directly. You can also override it with `pkg-install --key PATH` or paste
 the key when prompted.
+
+## Keeping the install up to date
+
+Before committing, refresh the snapshots so a fresh install reproduces your
+current machine:
+
+```bash
+# Age-encrypted package list
+pkg-dump
+
+# Cinnamon settings and keybindings
+dconf dump /org/cinnamon/ \
+  > ~/.config/dotfiles/cinnamon/.config/cinnamon/cinnamon.dconf
+dconf dump /org/cinnamon/desktop/keybindings/ \
+  > ~/.config/dotfiles/cinnamon/.config/cinnamon/keybindings.dconf
+```
+
+`bootstrap.sh` restores both files with `dconf load`.

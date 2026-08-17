@@ -77,16 +77,16 @@ toolkit-accessibility=false
 
 [desktop/keybindings]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom11', 'custom12', 'custom13', 'custom15', 'custom0', 'custom16', 'custom17', 'custom2', '__dummy__']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5']
 
 [desktop/keybindings/custom-keybindings/custom0]
-binding=['<Shift><Alt>m']
-command='zen-browser -P wa'
-name='Whatsapp'
+binding=@as []
+command='vicinae toggle'
+name='Vicinae'
 
 [desktop/keybindings/custom-keybindings/custom1]
 binding=['<Shift><Alt>x']
-command='zen-browser'
+command='zen-browser -P default'
 name='Zen Browser'
 
 [desktop/keybindings/custom-keybindings/custom11]
@@ -94,14 +94,9 @@ binding=['<Shift><Alt>d']
 command='nemo'
 name='Files'
 
-[desktop/keybindings/custom-keybindings/custom12]
-binding='<Shift><Alt>Return'
-command='ghostty'
-name='Ghostty'
-
 [desktop/keybindings/custom-keybindings/custom13]
 binding=['<Shift><Alt>i']
-command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea'
 name='IDEA'
 
 [desktop/keybindings/custom-keybindings/custom15]
@@ -115,9 +110,9 @@ command='cinnamon-settings'
 name='Cinnamon Settings'
 
 [desktop/keybindings/custom-keybindings/custom17]
-binding=['<Primary><Shift>d']
-command='vicinae open'
-name='Vicinae'
+binding=['<Shift><Alt>m']
+command='zen-browser -P wa'
+name='Messaging'
 
 [desktop/keybindings/custom-keybindings/custom2]
 binding=['<Primary><Shift>F12']
@@ -130,14 +125,14 @@ command='code'
 name='VSCode'
 
 [desktop/keybindings/custom-keybindings/custom4]
-binding='<Shift><Alt>a'
+binding=['<Shift><Alt>a']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
 name='Android Studio'
 
 [desktop/keybindings/custom-keybindings/custom5]
-binding='<Shift><Alt>q'
-command='onlyoffice --force-scale=1'
-name='Onlyoffice'
+binding=['<Primary><Shift>d']
+command='vicinae toggle'
+name='Vicinae'
 
 [desktop/keybindings/custom-keybindings/custom6]
 binding=['<Shift><Alt>w']
@@ -153,14 +148,14 @@ name='Obsidian'
 area-screenshot=@as []
 area-screenshot-clip=@as []
 next=['AudioNext']
-play=['AudioPlay']
+play=['<Shift><Control>k']
 previous=['AudioPrev']
 screenshot=@as []
 screenshot-clip=@as []
 terminal=['<Shift><Alt>Return']
-volume-down=['AudioLowerVolume']
-volume-mute=['AudioMute']
-volume-up=['AudioRaiseVolume']
+volume-down=['<Shift><Control>comma']
+volume-mute=['<Shift><Control>m']
+volume-up=['<Shift><Control>i']
 
 [desktop/keybindings/wm]
 activate-window-menu=@as []

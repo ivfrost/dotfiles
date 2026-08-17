@@ -163,7 +163,43 @@ else
     fi
 fi
 
-# 8. Restore Cinnamon dconf settings (panels, applets, keybindings, ...).
+# Greeter background: make the bing wallpaper directory user-writable so
+# bing-wallpaper.py can populate the slick-greeter background.
+if [[ -f /etc/lightdm/slick-greeter.conf ]]; then
+    run sudo mkdir -p /usr/share/backgrounds/bing
+    run sudo chown "$USER" /usr/share/backgrounds/bing
+fi
+
+# 8. Configure the Plymouth boot splash (hook, kernel cmdline, regenerate).
+if command -v plymouth >/dev/null; then
+    info "Configuring Plymouth boot splash"
+
+    if grep -qE '^HOOKS=' /etc/mkinitcpio.conf; then
+        if ! grep -qE '^HOOKS=.*\bplymouth\b' /etc/mkinitcpio.conf; then
+            run sudo sed -i '/^HOOKS=/ s/ filesystems/ plymouth filesystems/' /etc/mkinitcpio.conf
+        fi
+        # The graphical spinner theme needs KMS available early in the initramfs.
+        if ! grep -qE '^HOOKS=.*\bkms\b' /etc/mkinitcpio.conf; then
+            run sudo sed -i '/^HOOKS=/ s/ udev/ udev kms/' /etc/mkinitcpio.conf
+        fi
+    fi
+
+    if grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT=' /etc/default/grub; then
+        run sudo sed -i -E '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\bnosplash\b[[:space:]]*//g' /etc/default/grub
+        if ! grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT="[^"]*\bsplash\b' /etc/default/grub; then
+            run sudo sed -i -E '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/^GRUB_CMDLINE_LINUX_DEFAULT="/GRUB_CMDLINE_LINUX_DEFAULT="splash /' /etc/default/grub
+        fi
+    fi
+
+    run sudo mkinitcpio -P
+    if command -v grub-mkconfig >/dev/null; then
+        run sudo grub-mkconfig -o /boot/grub/grub.cfg
+    fi
+else
+    warn "plymouth not installed; skipping splash configuration"
+fi
+
+# 9. Restore Cinnamon dconf settings (panels, applets, keybindings, ...).
 if (( NO_CINNAMON )); then
     warn "Skipping Cinnamon settings restore (--no-cinnamon)."
 elif command -v dconf >/dev/null; then
@@ -181,7 +217,7 @@ else
     warn "dconf not found; skipping Cinnamon settings restore."
 fi
 
-# 9. Laptop-specific: enable Cinnamon fractional scaling at 125%.
+# 10. Laptop-specific: enable Cinnamon fractional scaling at 125%.
 if (( LAPTOP )); then
     info "Configuring laptop fractional scaling (125%)"
     # Enable Cinnamon's experimental fractional scaling flag.
