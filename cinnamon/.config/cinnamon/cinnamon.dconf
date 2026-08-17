@@ -1,0 +1,267 @@
+[/]
+alttab-minimized-aware=true
+alttab-switcher-delay=100
+alttab-switcher-enforce-primary-monitor=false
+alttab-switcher-show-all-workspaces=false
+alttab-switcher-show-current-monitor=false
+alttab-switcher-style='icons+thumbnails'
+alttab-switcher-warp-mouse-pointer=false
+command-history=['2r', 'xr', 't', 'r', 'ld', 'lg']
+desklet-snap-interval=25
+desktop-effects=true
+desktop-effects-change-size=false
+desktop-effects-minimize='traditional'
+desktop-effects-on-dialogs=true
+desktop-effects-on-menus=true
+desktop-effects-workspace=false
+enable-vfade=true
+enabled-applets=['panel1:right:8:systray@cinnamon.org:3', 'panel1:right:9:keyboard@cinnamon.org:8', 'panel1:right:13:network@cinnamon.org:10', 'panel1:right:14:sound@cinnamon.org:56', 'panel1:right:7:color-picker@fmete:57', 'panel1:right:10:kdecapplet@joejoetv:66', 'panel1:left:0:workspace-switcher@cinnamon.org:70', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:4:hideable-applets@cardsurf:93', 'panel1:right:6:betterlock:108', 'panel1:right:15:user@cinnamon.org:115', 'panel1:right:3:weather@mockturtl:129', 'panel1:right:11:nightlight@cinnamon.org:140', 'panel1:right:12:notifications-enhanced@hilyxx:142']
+enabled-desklets=@as []
+enabled-extensions=['mouse-shake-zoom@rcalixte', 'cinnamon-screenshot@hilyxx', 'ArrangementOfButtonsOnWindowTitleBar@claudiux', 'gTile@shuairan', 'auto-move-windows@JeffHanna']
+hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
+next-applet-id=145
+next-desklet-id=6
+panel-edit-mode=false
+panel-launchers=['DEPRECATED']
+panel-zone-icon-sizes='[{"panelId": 1, "left": 22, "center": 16, "right": 16}]'
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 22, "center": 16, "right": 15}]'
+panel-zone-text-sizes='[{"panelId": 1, "left": 10.0, "center": 10.0, "right": 10.0}]'
+panels-enabled=['1:0:top']
+panels-height=['1:24']
+window-effect-speed=2
+
+[cinnamon-session]
+quit-time-delay=60
+
+[desktop/a11y/keyboard]
+bouncekeys-delay=300
+mousekeys-accel-time=300
+mousekeys-init-delay=300
+mousekeys-max-speed=10
+slowkeys-delay=300
+
+[desktop/a11y/mouse]
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-time=1.2
+
+[desktop/applications/terminal]
+exec='ghostty --working-directory=%s'
+exec-arg=''
+
+[desktop/background]
+color-shading-type='vertical'
+picture-options='zoom'
+picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-08-03_Colourful_boats_in_Marsaxlokk.jpg'
+primary-color='#6173df'
+secondary-color='#e2a08a'
+
+[desktop/background/slideshow]
+delay=180
+image-source='directory:///home/ivfrost/Pictures/Wallpapers/Bing'
+random-order=true
+slideshow-enabled=false
+
+[desktop/input-sources]
+sources=[('xkb', 'us'), ('xkb', 'es')]
+
+[desktop/interface]
+clock-show-date=false
+cursor-blink=true
+cursor-blink-time=1200
+cursor-size=24
+gtk-theme='Adwaita-dark'
+icon-theme='Adwaita'
+text-scaling-factor=1.0
+toolkit-accessibility=false
+
+[desktop/keybindings]
+custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
+custom-list=['custom1', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom11', 'custom12', 'custom13', 'custom15', 'custom0', 'custom16', 'custom17', 'custom2', '__dummy__']
+
+[desktop/keybindings/custom-keybindings/custom0]
+binding=['<Shift><Alt>m']
+command='zen-browser -P wa'
+name='Whatsapp'
+
+[desktop/keybindings/custom-keybindings/custom1]
+binding=['<Shift><Alt>x']
+command='zen-browser'
+name='Zen Browser'
+
+[desktop/keybindings/custom-keybindings/custom11]
+binding=['<Shift><Alt>d']
+command='nemo'
+name='Files'
+
+[desktop/keybindings/custom-keybindings/custom12]
+binding='<Shift><Alt>Return'
+command='ghostty'
+name='Ghostty'
+
+[desktop/keybindings/custom-keybindings/custom13]
+binding=['<Shift><Alt>i']
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
+name='IDEA'
+
+[desktop/keybindings/custom-keybindings/custom16]
+binding=['<Shift><Alt>Delete']
+command='cinnamon-settings'
+name='Cinnamon Settings'
+
+[desktop/keybindings/custom-keybindings/custom17]
+binding=['<Primary><Shift>d']
+command='vicinae open'
+name='Vicinae'
+
+[desktop/keybindings/custom-keybindings/custom2]
+binding=['<Primary><Shift>F12']
+command='/home/ivfrost/.local/bin/sound_sink_switcher.sh'
+name='Sound Sink Switch'
+
+[desktop/keybindings/custom-keybindings/custom3]
+binding=['<Shift><Alt>v']
+command='code'
+name='VSCode'
+
+[desktop/keybindings/custom-keybindings/custom4]
+binding='<Shift><Alt>a'
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
+name='Android Studio'
+
+[desktop/keybindings/custom-keybindings/custom5]
+binding='<Shift><Alt>q'
+command='onlyoffice --force-scale=1'
+name='Onlyoffice'
+
+[desktop/keybindings/custom-keybindings/custom6]
+binding=['<Shift><Alt>w']
+command='legcord'
+name='Legcord'
+
+[desktop/keybindings/custom-keybindings/custom7]
+binding=['<Shift><Alt>o']
+command='obsidian'
+name='Obsidian'
+
+[desktop/keybindings/media-keys]
+area-screenshot=@as []
+area-screenshot-clip=@as []
+next=['AudioNext']
+play=['AudioPlay']
+previous=['AudioPrev']
+screenshot=@as []
+screenshot-clip=@as []
+terminal=['<Shift><Alt>Return']
+volume-down=['AudioLowerVolume']
+volume-mute=['AudioMute']
+volume-up=['AudioRaiseVolume']
+
+[desktop/keybindings/wm]
+activate-window-menu=@as []
+close=['<Shift><Alt>c']
+move-to-workspace-1=['<Alt><Shift>1']
+move-to-workspace-2=['<Alt><Shift>2']
+move-to-workspace-3=['<Alt><Shift>3']
+move-to-workspace-4=['<Alt><Shift>4']
+move-to-workspace-5=['<Alt><Shift>5']
+move-to-workspace-6=['<Alt><Shift>6']
+move-to-workspace-7=['<Alt><Shift>7']
+move-to-workspace-8=['<Alt><Shift>8']
+move-to-workspace-9=['<Alt><Shift>9']
+show-desktop=['<Shift><Alt>0']
+switch-input-source=['<Super>space', 'XF86Keyboard']
+switch-to-workspace-1=['<Alt>1']
+switch-to-workspace-2=['<Alt>2']
+switch-to-workspace-3=['<Alt>3']
+switch-to-workspace-4=['<Alt>4']
+switch-to-workspace-5=['<Alt>5']
+switch-to-workspace-6=['<Alt>6']
+switch-to-workspace-7=['<Alt>7']
+switch-to-workspace-8=['<Alt>8']
+switch-to-workspace-9=['<Alt>9']
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+toggle-fullscreen=['<Shift><Alt>f']
+toggle-maximized=['<Alt>space']
+
+[desktop/media-handling]
+automount-open=false
+
+[desktop/notifications]
+bottom-notifications=false
+display-notifications=true
+fullscreen-notifications=false
+notification-duration=4
+remove-old=true
+
+[desktop/peripherals/keyboard]
+delay=uint32 304
+numlock-state=false
+repeat=true
+repeat-interval=uint32 61
+
+[desktop/screensaver]
+layout-group=0
+
+[desktop/sound]
+allow-amplified-volume=true
+event-sounds=false
+
+[desktop/wm/preferences]
+button-layout=':close'
+min-window-opacity=30
+mouse-button-modifier=''
+num-workspaces=6
+titlebar-font='Adwaita Sans 11'
+workspace-names=['Browser', 'Terminal', 'Files', 'Messaging', 'Media', 'Extra']
+
+[gestures]
+pinch-percent-threshold=uint32 40
+swipe-down-2='PUSH_TILE_DOWN::end'
+swipe-down-3='TOGGLE_OVERVIEW::end'
+swipe-down-4='VOLUME_DOWN::end'
+swipe-left-2='PUSH_TILE_LEFT::end'
+swipe-left-3='WORKSPACE_NEXT::end'
+swipe-left-4='WINDOW_WORKSPACE_PREVIOUS::end'
+swipe-percent-threshold=uint32 60
+swipe-right-2='PUSH_TILE_RIGHT::end'
+swipe-right-3='WORKSPACE_PREVIOUS::end'
+swipe-right-4='WINDOW_WORKSPACE_NEXT::end'
+swipe-up-2='PUSH_TILE_UP::end'
+swipe-up-3='TOGGLE_EXPO::end'
+swipe-up-4='VOLUME_UP::end'
+tap-3='MEDIA_PLAY_PAUSE::end'
+
+[launcher]
+check-frequency=300
+memory-limit=2048
+
+[muffin]
+draggable-border-width=10
+experimental-features=@as []
+tile-maximize=true
+
+[muffin/x11]
+fractional-scale-mode='scale-ui-down'
+
+[settings-daemon/peripherals/touchscreen]
+orientation-lock=true
+
+[settings-daemon/plugins/color]
+night-light-enabled=true
+night-light-last-coordinates=(40.399999999999999, -3.6833330000000002)
+night-light-schedule-mode='auto'
+night-light-temperature=uint32 3500
+
+[settings-daemon/plugins/housekeeping]
+ignore-paths=['/home']
+
+[settings-daemon/plugins/power]
+sleep-display-ac=900
+sleep-inactive-ac-timeout=3600
+
+[theme]
+name='MyCinnamonOverride'

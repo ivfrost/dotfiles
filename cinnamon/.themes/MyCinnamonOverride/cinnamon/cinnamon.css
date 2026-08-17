@@ -356,35 +356,6 @@ stage {
 .panel-bottom .workspace-switcher {
   padding: 0 4px; }
 
-.workspace-switcher {
-  spacing: 6.5px;
-  margin-bottom: 2px; }
-
-.workspace-button {
-  border-radius: 2.5px !important;
-  width: 5.75px;
-  height: 9px;
-  min-height: 0 !important;
-  margin: 0 0.25px 0 0;
-  padding: 0;
-  background-color: rgba(255, 255, 255, 0.55);
-  border: none;
-  color: transparent;
-  transition-duration: 150ms; }
-
-.workspace-button:outlined,
-.workspace-button:outlined:shaded {
-  height: 8px;
-  margin: 0;
-  border-radius: 2.5px;
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  width: 22px;
-  min-height: 0 !important; }
-
-.workspace-button.vertical {
-  width: 2em;
-  height: 8px; }
-
 .workspace-graph {
   padding: 4px;
   spacing: 4px; }
