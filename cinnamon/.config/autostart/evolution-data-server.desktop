@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Evolution Data Server
+Exec=dbus-send --session --type=method_call --dest=org.gnome.evolution.dataserver.Sources5 /org/gnome/evolution/dataserver/SourceManager org.gnome.evolution.dataserver.SourceManager.ListSources
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

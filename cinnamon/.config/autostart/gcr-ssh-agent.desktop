@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=GCR SSH Agent
+Exec=bash -c 'mkdir -p $XDG_RUNTIME_DIR/gcr && nohup /usr/lib/gcr-ssh-agent --base-dir $XDG_RUNTIME_DIR/gcr &'
+OnlyShowIn=X-Cinnamon;
+NoDisplay=true
+

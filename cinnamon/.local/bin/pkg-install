@@ -1,30 +1,138 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-IN="$HOME/.config/dotfiles/cinnamon/.config/pkglist.age"
-TMP="$(mktemp)"
+DOTFILES="${DOTFILES:-$HOME/.config/dotfiles}"
+IN="${PKG_IN:-$DOTFILES/cinnamon/.config/pkglist.age}"
+KEY_FILE=""
 
-if [[ ! -f "$IN" ]]; then
-    echo "Encrypted package list not found: $IN"
-    exit 1
+DRY=0
+YES=0
+NATIVE_ONLY=0
+
+usage() {
+    cat <<'EOF'
+Usage: pkg-install [--dry] [--yes] [--native-only] [--key PATH]
+
+Restore the packages recorded in the age-encrypted package list.
+
+The age identity is read from the AGE_KEY environment variable (exported
+from ~/.config/zsh/.zshrc.local). Pass --key PATH to use an identity file
+instead, or paste the key when prompted.
+
+  --dry          Decrypt and print the package list without installing.
+  -y, --yes      Non-interactive (passes --noconfirm to pacman/paru).
+  --native-only  Install only repository packages, skip the AUR.
+  --key PATH     Use PATH as the age identity file.
+EOF
+    exit 0
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --dry) DRY=1 ;;
+        -y|--yes) YES=1 ;;
+        --native-only) NATIVE_ONLY=1 ;;
+        --key) KEY_FILE="${2:?--key requires a path}"; shift ;;
+        -h|--help) usage ;;
+        *) echo "Unknown argument: $1" >&2; exit 1 ;;
+    esac
+    shift
+done
+
+(( EUID == 0 )) && { echo "Run as your normal user, not root." >&2; exit 1; }
+command -v age >/dev/null || { echo "age is required: sudo pacman -S age" >&2; exit 1; }
+[[ -f "$IN" ]] || { echo "Encrypted package list not found: $IN" >&2; exit 1; }
+
+# Plaintext only in RAM. The temp dir is removed on exit.
+WORK="$(mktemp -d)"
+trap 'rm -rf "$WORK"' EXIT
+
+PLAIN="$WORK/pkglist"
+NATIVE="$WORK/native"
+FOREIGN="$WORK/foreign"
+
+# AGE_KEY normally comes from the environment (exported in .zshrc.local and
+# sourced by .zshrc). If it isn't set yet, fall back to reading that file so
+# ./bootstrap.sh works right after a fresh clone.
+if [[ -z "${AGE_KEY:-}" && -f "$HOME/.config/zsh/.zshrc.local" ]]; then
+    AGE_KEY="$( . "$HOME/.config/zsh/.zshrc.local" 2>/dev/null && printf '%s' "${AGE_KEY:-}" )" || true
 fi
 
-echo -n "Enter your age private key: "
-read -r AGEKEY
+if [[ -n "${AGE_KEY:-}" ]]; then
+    printf '%s\n' "$AGE_KEY" | age -d -i /dev/stdin -o "$PLAIN" "$IN"
+elif [[ -n "$KEY_FILE" && -f "$KEY_FILE" ]]; then
+    age -d -i "$KEY_FILE" -o "$PLAIN" "$IN"
+else
+    read -rsp "Enter your age private key: " AGEKEY; echo
+    printf '%s\n' "$AGEKEY" | age -d -i /dev/stdin -o "$PLAIN" "$IN"
+fi
 
-echo "Decrypting package list (plaintext only in RAM)"
-echo "$AGEKEY" | age -d -i /dev/stdin -o "$TMP" "$IN"
+# Split the two-section dump into native vs. foreign (AUR) lists.
+section=""
+: > "$NATIVE"
+: > "$FOREIGN"
+while IFS= read -r line; do
+    case "$line" in
+        '# native')  section=native ;;
+        '# foreign') section=foreign ;;
+        '#'*) ;;
+        '') ;;
+        *)
+            if [[ "$section" == foreign ]]; then
+                printf '%s\n' "$line" >> "$FOREIGN"
+            else
+                printf '%s\n' "$line" >> "$NATIVE"
+            fi
+            ;;
+    esac
+done < "$PLAIN"
 
-if [[ "$1" == "--dry" ]]; then
-    echo "Dry run: showing packages that WOULD be installed"
-    cat "$TMP"
-    shred -u "$TMP"
+NATIVE_COUNT=$(grep -c . "$NATIVE" || true)
+FOREIGN_COUNT=$(grep -c . "$FOREIGN" || true)
+
+if (( DRY )); then
+    echo "Dry run: packages that WOULD be installed:"
+    echo "native ($NATIVE_COUNT):"
+    [[ -s "$NATIVE" ]] && cat "$NATIVE"
+    echo "foreign/AUR ($FOREIGN_COUNT):"
+    [[ -s "$FOREIGN" ]] && cat "$FOREIGN"
     exit 0
 fi
 
-echo "Installing packages"
-sudo pacman -S --needed - < "$TMP"
+if [[ -s "$NATIVE" ]]; then
+    echo "Refreshing package databases"
+    sudo pacman -Sy --noconfirm
+    mapfile -t NATIVE_PKGS < "$NATIVE"
+    echo "Installing native packages ($NATIVE_COUNT)"
+    if (( YES )); then
+        sudo pacman -S --needed --noconfirm "${NATIVE_PKGS[@]}"
+    else
+        sudo pacman -S --needed "${NATIVE_PKGS[@]}"
+    fi
+else
+    echo "No native packages to install."
+fi
 
-shred -u "$TMP"
+if [[ -s "$FOREIGN" ]]; then
+    if (( NATIVE_ONLY )); then
+        echo "Skipping $FOREIGN_COUNT AUR package(s) (--native-only)."
+    else
+        if ! command -v paru >/dev/null; then
+            echo "paru not found; building it from the AUR"
+            BUILDDIR="$WORK/paru"
+            git clone --depth 1 https://aur.archlinux.org/paru.git "$BUILDDIR"
+            (cd "$BUILDDIR" && makepkg -si --noconfirm)
+        fi
+        mapfile -t FOREIGN_PKGS < "$FOREIGN"
+        echo "Installing AUR/foreign packages ($FOREIGN_COUNT)"
+        if (( YES )); then
+            paru -S --needed --noconfirm --aur "${FOREIGN_PKGS[@]}"
+        else
+            paru -S --needed --aur "${FOREIGN_PKGS[@]}"
+        fi
+    fi
+else
+    echo "No AUR/foreign packages to install."
+fi
 
 echo "Done."

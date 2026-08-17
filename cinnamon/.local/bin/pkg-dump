@@ -1,26 +1,48 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-OUT="$HOME/.config/dotfiles/cinnamon/.config/pkglist.age"
-TMP="$(mktemp)"
-TMP2="$(mktemp)"
-PUBKEY="age1qq26sl9lraw893wfjkg3g2cumudjyzy3trlejd9wdqyzcdzzzv6sg3c7ks"
-SKIPFILE="$HOME/.config/pkg-skip"
+DOTFILES="${DOTFILES:-$HOME/.config/dotfiles}"
+OUT="${PKG_OUT:-$DOTFILES/cinnamon/.config/pkglist.age}"
+AGE_RECIPIENT="${AGE_RECIPIENT:-age1qq26sl9lraw893wfjkg3g2cumudjyzy3trlejd9wdqyzcdzzzv6sg3c7ks}"
+# Local, sensitive file. Kept outside the repo so it is never committed.
+SKIPFILE="${PKG_SKIP_FILE:-$HOME/.config/pkg-skip}"
+
+# Keep plaintext strictly in RAM. Never write a plaintext package dump to disk.
+WORK="$(mktemp -d)"
+trap 'rm -rf "$WORK"' EXIT
+
+NATIVE="$WORK/native"
+FOREIGN="$WORK/foreign"
+PLAIN="$WORK/pkglist"
 
 mkdir -p "$(dirname "$OUT")"
 
 echo "Dumping explicitly installed packages (plaintext only in RAM)"
-pacman -Qqe > "$TMP"
+pacman -Qqen > "$NATIVE"
+pacman -Qqem > "$FOREIGN"
 
 if [[ -f "$SKIPFILE" ]]; then
     echo "Applying skip list from $SKIPFILE"
-    grep -v -F -f "$SKIPFILE" "$TMP" > "$TMP2"
-    mv "$TMP2" "$TMP"
+    grep -vE '^\s*(#|$)' "$SKIPFILE" > "$WORK/skip" || true
+    if [[ -s "$WORK/skip" ]]; then
+        grep -v -F -f "$WORK/skip" "$NATIVE"  > "$WORK/native.f"  || true
+        grep -v -F -f "$WORK/skip" "$FOREIGN" > "$WORK/foreign.f" || true
+        mv "$WORK/native.f"  "$NATIVE"
+        mv "$WORK/foreign.f" "$FOREIGN"
+    fi
 fi
 
-echo "Encrypting → $OUT"
-age -r "$PUBKEY" -o "$OUT" "$TMP"
+# Two-section format so pkg-install knows which packages come from repos
+# vs. the AUR (needed because pacman and paru handle them differently).
+{
+    echo "# native"
+    cat "$NATIVE"
+    echo
+    echo "# foreign"
+    cat "$FOREIGN"
+} > "$PLAIN"
 
-shred -u "$TMP"
+echo "Encrypting to $OUT"
+age -r "$AGE_RECIPIENT" -o "$OUT" "$PLAIN"
 
-echo "Done."
+echo "Done. native=$(wc -l < "$NATIVE"), foreign/AUR=$(wc -l < "$FOREIGN")"

@@ -250,11 +250,6 @@
         "value": [
             {
                 "expand": false,
-                "uuid": "701749d471ee453f8c07a82cf5c1209a",
-                "name": "Fedora Laptop"
-            },
-            {
-                "expand": false,
                 "uuid": "9abc97bb34e04d529eec7d0ad7bb0a66",
                 "name": "Pixel 6a @government"
             },
@@ -272,6 +267,11 @@
                 "expand": false,
                 "uuid": "648b22bf350b4740ab42bf8a2be128bb",
                 "name": "Pixel 6a @owner"
+            },
+            {
+                "expand": false,
+                "uuid": "835844ddc2fa45b9816d6b566a59fec9",
+                "name": "Artix Laptop"
             }
         ]
     },

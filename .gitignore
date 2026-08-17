@@ -4,6 +4,15 @@
 .zsh_sessions/
 .zcompdump*
 
+# package dumps must stay age-encrypted (never commit plaintext)
+pkglist
+pkglist.txt
+*.pkglist
+
+# sensitive local package skip list (never commit)
+pkg-skip
+pkg-skip.txt
+
 # unison
 .unison/*
 !.unison/*.prf
