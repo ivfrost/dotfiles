@@ -46,6 +46,7 @@ cd ~/.config/dotfiles
 ./bootstrap.sh            # interactive
 # ./bootstrap.sh --yes    # fully unattended
 # ./bootstrap.sh --adopt  # adopt pre-existing conflicting files during stow
+# ./bootstrap.sh --laptop # enable fractional scaling at 125% (laptop)
 ```
 
 ## Package dump / restore

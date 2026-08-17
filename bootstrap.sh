@@ -17,6 +17,7 @@ NO_PACKAGES=0
 NO_SYSTEM=0
 NO_CINNAMON=0
 ADOPT=0
+LAPTOP=0
 
 STOW_PACKAGES=(common cinnamon)
 
@@ -45,6 +46,7 @@ Options:
   --no-system      Skip copying artix-sys/ into /etc.
   --no-cinnamon    Skip restoring Cinnamon dconf settings.
   --adopt          Adopt conflicting files when stowing (passes --adopt to stow).
+  --laptop         Enable fractional scaling at 125% (laptop).
   --with <pkgs>    Extra stow packages to deploy (comma separated, e.g. sway,mpv).
   -h, --help       Show this help.
 EOF
@@ -59,6 +61,7 @@ while [[ $# -gt 0 ]]; do
         --no-system) NO_SYSTEM=1 ;;
         --no-cinnamon) NO_CINNAMON=1 ;;
         --adopt) ADOPT=1 ;;
+        --laptop) LAPTOP=1 ;;
         --with)
             IFS=',' read -ra extra <<< "${2:?--with requires a comma-separated list}"
             shift
@@ -176,6 +179,76 @@ elif command -v dconf >/dev/null; then
     fi
 else
     warn "dconf not found; skipping Cinnamon settings restore."
+fi
+
+# 9. Laptop-specific: enable Cinnamon fractional scaling at 125%.
+if (( LAPTOP )); then
+    info "Configuring laptop fractional scaling (125%)"
+    # Enable Cinnamon's experimental fractional scaling flag.
+    run dconf write /org/cinnamon/muffin/experimental-features "['scale-monitor-framebuffer', 'x11-randr-fractional-scaling']"
+    run dconf write /org/cinnamon/muffin/x11/fractional-scale-mode "'scale-ui-down'"
+
+    # Best-effort: point the monitor config at the internal panel at 125%.
+    connector=""
+    mode=""
+    for drm in /sys/class/drm/card*-*/; do
+        [[ "$(cat "$drm/status" 2>/dev/null)" == "connected" ]] || continue
+        c="$(basename "$drm")"
+        c="${c#*-}"
+        m="$(head -n1 "$drm/modes" 2>/dev/null)"
+        if [[ -z "$connector" ]]; then
+            connector="$c"
+            mode="$m"
+        fi
+        if [[ "$c" == *eDP* || "$c" == *LVDS* ]]; then
+            connector="$c"
+            mode="$m"
+            break
+        fi
+    done
+    [[ -n "$connector" ]] || connector="eDP-1"
+    [[ -n "$mode" ]] || mode="1920x1080"
+
+    width="${mode%%x*}"
+    height="${mode##*x}"
+    if [[ ! "$width" =~ ^[0-9]+$ || ! "$height" =~ ^[0-9]+$ ]]; then
+        width=1920
+        height=1080
+    fi
+
+    monitors_conf="$HOME/.config/cinnamon-monitors.xml"
+    if (( DRY )); then
+        echo "    [dry] write $monitors_conf ($connector ${width}x${height}, scale=1.25)"
+    elif [[ -f "$monitors_conf" ]]; then
+        warn "$monitors_conf already exists; leaving it unchanged"
+    else
+        mkdir -p "$(dirname "$monitors_conf")"
+        cat > "$monitors_conf" <<EOF
+<monitors version="2">
+  <configuration>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1.25</scale>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>$connector</connector>
+          <vendor>unknown</vendor>
+          <product>unknown</product>
+          <serial>unknown</serial>
+        </monitorspec>
+        <mode>
+          <width>$width</width>
+          <height>$height</height>
+          <rate>60</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+EOF
+    fi
 fi
 
 info "Done. Reboot (or start services manually) when ready."

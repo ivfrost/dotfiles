@@ -6,7 +6,7 @@ alttab-switcher-show-all-workspaces=false
 alttab-switcher-show-current-monitor=false
 alttab-switcher-style='icons+thumbnails'
 alttab-switcher-warp-mouse-pointer=false
-command-history=['2r', 'xr', 't', 'r', 'ld', 'lg']
+command-history=['2r', 'xr', 'ld', 'r\\', 't', '4', 'lg', 'r']
 desklet-snap-interval=25
 desktop-effects=true
 desktop-effects-change-size=false
@@ -15,11 +15,11 @@ desktop-effects-on-dialogs=true
 desktop-effects-on-menus=true
 desktop-effects-workspace=false
 enable-vfade=true
-enabled-applets=['panel1:right:8:systray@cinnamon.org:3', 'panel1:right:9:keyboard@cinnamon.org:8', 'panel1:right:13:network@cinnamon.org:10', 'panel1:right:14:sound@cinnamon.org:56', 'panel1:right:7:color-picker@fmete:57', 'panel1:right:10:kdecapplet@joejoetv:66', 'panel1:left:0:workspace-switcher@cinnamon.org:70', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:4:hideable-applets@cardsurf:93', 'panel1:right:6:betterlock:108', 'panel1:right:15:user@cinnamon.org:115', 'panel1:right:3:weather@mockturtl:129', 'panel1:right:11:nightlight@cinnamon.org:140', 'panel1:right:12:notifications-enhanced@hilyxx:142']
+enabled-applets=['panel1:right:5:systray@cinnamon.org:3', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:11:network@cinnamon.org:10', 'panel1:right:12:sound@cinnamon.org:56', 'panel1:right:4:color-picker@fmete:57', 'panel1:right:7:kdecapplet@joejoetv:66', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:2:hideable-applets@cardsurf:93', 'panel1:right:3:betterlock:108', 'panel1:right:13:user@cinnamon.org:115', 'panel1:right:1:weather@mockturtl:129', 'panel1:right:8:nightlight@cinnamon.org:140', 'panel1:right:9:notifications-enhanced@hilyxx:142', 'panel1:left:0:workspace-name@willurd:145', 'panel1:right:10:power@cinnamon.org:147']
 enabled-desklets=@as []
 enabled-extensions=['mouse-shake-zoom@rcalixte', 'cinnamon-screenshot@hilyxx', 'ArrangementOfButtonsOnWindowTitleBar@claudiux', 'gTile@shuairan', 'auto-move-windows@JeffHanna']
 hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
-next-applet-id=145
+next-applet-id=148
 next-desklet-id=6
 panel-edit-mode=false
 panel-launchers=['DEPRECATED']
@@ -52,7 +52,7 @@ exec-arg=''
 [desktop/background]
 color-shading-type='vertical'
 picture-options='zoom'
-picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-08-03_Colourful_boats_in_Marsaxlokk.jpg'
+picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-08-16_Pedra_Furada__Jericoacoara__Br.jpg'
 primary-color='#6173df'
 secondary-color='#e2a08a'
 
@@ -103,6 +103,11 @@ name='Ghostty'
 binding=['<Shift><Alt>i']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
 name='IDEA'
+
+[desktop/keybindings/custom-keybindings/custom15]
+binding=['<Shift><Alt>b']
+command='torbrowser-launcher'
+name='Tor Browser'
 
 [desktop/keybindings/custom-keybindings/custom16]
 binding=['<Shift><Alt>Delete']
@@ -216,7 +221,7 @@ min-window-opacity=30
 mouse-button-modifier=''
 num-workspaces=6
 titlebar-font='Adwaita Sans 11'
-workspace-names=['Browser', 'Terminal', 'Files', 'Messaging', 'Media', 'Extra']
+workspace-names=['Browser', 'Editor', 'Files', 'Messaging', 'Media', 'Extra']
 
 [gestures]
 pinch-percent-threshold=uint32 40
@@ -241,7 +246,7 @@ memory-limit=2048
 
 [muffin]
 draggable-border-width=10
-experimental-features=@as []
+experimental-features=['scale-monitor-framebuffer', 'x11-randr-fractional-scaling']
 tile-maximize=true
 
 [muffin/x11]
