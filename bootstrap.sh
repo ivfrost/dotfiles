@@ -8,6 +8,8 @@ set -euo pipefail
 #   ./bootstrap.sh            # interactive
 #   ./bootstrap.sh --yes      # non-interactive
 #   ./bootstrap.sh --dry      # preview only
+#
+# Idempotent: safe to re-run. Each step is guarded to converge on the same state.
 
 DOTFILES="${DOTFILES:-$HOME/.config/dotfiles}"
 
@@ -157,9 +159,9 @@ if (( NO_SYSTEM )); then
 else
     info "Installing system files (artix-sys/) into /etc"
     if command -v rsync >/dev/null; then
-        run sudo rsync -avh "$DOTFILES/artix-sys/etc/" /etc/
+        run sudo rsync -a --no-owner --no-group "$DOTFILES/artix-sys/etc/" /etc/
     else
-        run sudo cp -a "$DOTFILES/artix-sys/etc/." /etc/
+        run sudo cp -a --no-preserve=ownership "$DOTFILES/artix-sys/etc/." /etc/
     fi
 fi
 
@@ -173,27 +175,38 @@ fi
 # 8. Configure the Plymouth boot splash (hook, kernel cmdline, regenerate).
 if command -v plymouth >/dev/null; then
     info "Configuring Plymouth boot splash"
+    changed=0
 
     if grep -qE '^HOOKS=' /etc/mkinitcpio.conf; then
         if ! grep -qE '^HOOKS=.*\bplymouth\b' /etc/mkinitcpio.conf; then
             run sudo sed -i '/^HOOKS=/ s/ filesystems/ plymouth filesystems/' /etc/mkinitcpio.conf
+            changed=1
         fi
         # The graphical spinner theme needs KMS available early in the initramfs.
         if ! grep -qE '^HOOKS=.*\bkms\b' /etc/mkinitcpio.conf; then
             run sudo sed -i '/^HOOKS=/ s/ udev/ udev kms/' /etc/mkinitcpio.conf
+            changed=1
         fi
     fi
 
     if grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT=' /etc/default/grub; then
-        run sudo sed -i -E '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\bnosplash\b[[:space:]]*//g' /etc/default/grub
+        if grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT=.*\bnosplash\b' /etc/default/grub; then
+            run sudo sed -i -E '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/\bnosplash\b[[:space:]]*//g' /etc/default/grub
+            changed=1
+        fi
         if ! grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT="[^"]*\bsplash\b' /etc/default/grub; then
             run sudo sed -i -E '/^GRUB_CMDLINE_LINUX_DEFAULT=/ s/^GRUB_CMDLINE_LINUX_DEFAULT="/GRUB_CMDLINE_LINUX_DEFAULT="splash /' /etc/default/grub
+            changed=1
         fi
     fi
 
-    run sudo mkinitcpio -P
-    if command -v grub-mkconfig >/dev/null; then
-        run sudo grub-mkconfig -o /boot/grub/grub.cfg
+    if (( changed )); then
+        run sudo mkinitcpio -P
+        if command -v grub-mkconfig >/dev/null; then
+            run sudo grub-mkconfig -o /boot/grub/grub.cfg
+        fi
+    else
+        info "Plymouth boot splash is already configured"
     fi
 else
     warn "plymouth not installed; skipping splash configuration"
