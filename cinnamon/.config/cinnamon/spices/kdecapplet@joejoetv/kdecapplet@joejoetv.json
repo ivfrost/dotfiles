@@ -255,11 +255,6 @@
             },
             {
                 "expand": false,
-                "uuid": "fa05158d3a61409c8c5f57a4aa7ddef5",
-                "name": "Pixel 6a @social"
-            },
-            {
-                "expand": false,
                 "uuid": "5ea12af8b42b4d8eafbe4ae90fb52564",
                 "name": "Pixel 6a @finances"
             },
@@ -272,6 +267,11 @@
                 "expand": false,
                 "uuid": "835844ddc2fa45b9816d6b566a59fec9",
                 "name": "Artix Laptop"
+            },
+            {
+                "expand": false,
+                "uuid": "fa05158d3a61409c8c5f57a4aa7ddef5",
+                "name": "Pixel 6a @social"
             }
         ]
     },

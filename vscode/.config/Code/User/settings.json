@@ -87,6 +87,7 @@
 	"workbench.preferredDarkColorTheme": "Dark+",
 	"workbench.colorCustomizations": {
 		"tab.activeBorder": "#d4d4d4",
+		"tab.activeBorderTop": "#3a3a3a",
 		"editorIndentGuide.background1": "#3a3a3a",
 		"editorIndentGuide.activeBackground1": "#555555",
 	},

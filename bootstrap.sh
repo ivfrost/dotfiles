@@ -63,7 +63,7 @@ while [[ $# -gt 0 ]]; do
         --no-system) NO_SYSTEM=1 ;;
         --no-cinnamon) NO_CINNAMON=1 ;;
         --adopt) ADOPT=1 ;;
-        --laptop) LAPTOP=1 ;;
+        --laptop) LAPTOP=1; STOW_PACKAGES+=(cinnamon-laptop) ;;
         --with)
             IFS=',' read -ra extra <<< "${2:?--with requires a comma-separated list}"
             shift
@@ -236,6 +236,17 @@ if (( LAPTOP )); then
     # Enable Cinnamon's experimental fractional scaling flag.
     run dconf write /org/cinnamon/muffin/experimental-features "['scale-monitor-framebuffer', 'x11-randr-fractional-scaling']"
     run dconf write /org/cinnamon/muffin/x11/fractional-scale-mode "'scale-ui-down'"
+
+    # Add the power/battery applet to the panel (laptop only).
+    current_applets="$(dconf read /org/cinnamon/enabled-applets 2>/dev/null || echo '@as []')"
+    if [[ "$current_applets" != *'power@cinnamon.org'* ]]; then
+        if [[ "$current_applets" == '@as []' ]]; then
+            new_applets="['panel1:right:10:power@cinnamon.org:147']"
+        else
+            new_applets="${current_applets%\]}, 'panel1:right:10:power@cinnamon.org:147']"
+        fi
+        run dconf write /org/cinnamon/enabled-applets "$new_applets"
+    fi
 
     # Best-effort: point the monitor config at the internal panel at 125%.
     connector=""

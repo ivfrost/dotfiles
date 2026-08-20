@@ -1,12 +1,16 @@
 root = /home/ivfrost/.zen/
 root = ssh://ivfrost@artix//home/ivfrost/.config/zen
 
-ignore = Name mc1ksbiu.wa
+ignore = Path */places.sqlite*
+ignore = Path */favicons.sqlite*
+
 links = false
 
 auto = true
 batch = true
+
 prefer = newer
+
 log = true
 logfile = /home/ivfrost/.var/log/unison.log
 confirmbigdel = false
