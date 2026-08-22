@@ -53,3 +53,4 @@ cinnamon/.config/cinnamon/spices/qredshift@quintao/qredshift@quintao.json
 __pycache__/
 *.pyc
 common/.config/vicinae/settings.json
+cinnamon/**/nemo-kdeconnect/

@@ -104,6 +104,9 @@ if ! grep -qE '^\[extra\]' /etc/pacman.conf; then
 fi
 run sudo pacman -Sy --noconfirm
 
+info "Fully upgrading the system to avoid partial-upgrade breakage"
+run sudo pacman -Syu --noconfirm
+
 # 3. Ensure the AUR helper (paru) is available.
 info "Ensuring paru (AUR helper) is installed"
 if command -v paru >/dev/null; then
@@ -119,17 +122,35 @@ else
     fi
 fi
 
-# 4. Restore packages from the age-encrypted list.
+# 4. Install nemo-kdeconnect (Nemo context-menu KDE Connect file sending).
+if command -v nemo >/dev/null && [[ ! -f "$HOME/.local/share/nemo-python/extensions/kdeconnect.py" ]]; then
+    info "Installing nemo-kdeconnect"
+    NK_DIR="$(mktemp -d)"
+    if (( DRY )); then
+        echo "    [dry] clone forabi/nautilus-kdeconnect + make install TARGET=Nemo"
+    else
+        git clone --depth 1 https://github.com/forabi/nautilus-kdeconnect "$NK_DIR"
+        make -C "$NK_DIR" install TARGET=Nemo
+    fi
+    rm -rf "$NK_DIR"
+else
+    info "nemo-kdeconnect already installed or nemo not present, skipping"
+fi
+
+# 5. Restore packages from the age-encrypted list.
 if (( NO_PACKAGES )); then
     warn "Skipping package installation (--no-packages)."
 else
     info "Installing packages from the age-encrypted package list"
     PKG_INSTALL="$DOTFILES/cinnamon/.local/bin/pkg-install"
     [[ -x "$PKG_INSTALL" ]] || err "pkg-install not found at $PKG_INSTALL"
-    "$PKG_INSTALL" ${YES:+--yes} ${DRY:+--dry}
+    pkg_install_args=()
+    (( YES )) && pkg_install_args+=(--yes)
+    (( DRY )) && pkg_install_args+=(--dry)
+    "$PKG_INSTALL" "${pkg_install_args[@]}"
 fi
 
-# 5. Deploy dotfiles with GNU Stow.
+# 6. Deploy dotfiles with GNU Stow.
 info "Deploying dotfiles with GNU Stow"
 cd "$DOTFILES"
 for pkg in "${STOW_PACKAGES[@]}"; do
@@ -140,7 +161,7 @@ for pkg in "${STOW_PACKAGES[@]}"; do
     fi
 done
 
-# 6. Make zsh the login shell so ~/.config/zsh/.zshrc is sourced automatically.
+# 7. Make zsh the login shell so ~/.config/zsh/.zshrc is sourced automatically.
 info "Setting zsh as the default shell"
 if command -v zsh >/dev/null; then
     ZSHPATH="$(command -v zsh)"
@@ -153,7 +174,7 @@ else
     warn "zsh not found; skipping default-shell change (is it installed?)."
 fi
 
-# 7. System files (pacman hooks, dispatchers, ...) into /etc.
+# 8. System files (pacman hooks, dispatchers, ...) into /etc.
 if (( NO_SYSTEM )); then
     warn "Skipping system file installation (--no-system)."
 else
@@ -172,7 +193,7 @@ if [[ -f /etc/lightdm/slick-greeter.conf ]]; then
     run sudo chown "$USER" /usr/share/backgrounds/bing
 fi
 
-# 8. Configure the Plymouth boot splash (hook, kernel cmdline, regenerate).
+# 9. Configure the Plymouth boot splash (hook, kernel cmdline, regenerate).
 if command -v plymouth >/dev/null; then
     info "Configuring Plymouth boot splash"
     changed=0
@@ -212,7 +233,7 @@ else
     warn "plymouth not installed; skipping splash configuration"
 fi
 
-# 9. Restore Cinnamon dconf settings (panels, applets, keybindings, ...).
+# 10. Restore Cinnamon dconf settings (panels, applets, keybindings, ...).
 if (( NO_CINNAMON )); then
     warn "Skipping Cinnamon settings restore (--no-cinnamon)."
 elif command -v dconf >/dev/null; then
@@ -230,7 +251,7 @@ else
     warn "dconf not found; skipping Cinnamon settings restore."
 fi
 
-# 10. Laptop-specific: enable Cinnamon fractional scaling at 125%.
+# 11. Laptop-specific: enable Cinnamon fractional scaling at 125%.
 if (( LAPTOP )); then
     info "Configuring laptop fractional scaling (125%)"
     # Enable Cinnamon's experimental fractional scaling flag.

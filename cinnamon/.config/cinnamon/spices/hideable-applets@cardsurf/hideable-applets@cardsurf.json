@@ -44,7 +44,7 @@
         "default": "network@cinnamon.org, sound@cinnamon.org, removable-drives@cinnamon.org, keyboard@cinnamon.org",
         "description": "Restore as hidden",
         "tooltip": "A comma-separated list of applet UUIDs.\nAn applet from this list will be hidden if the applet is configured as hidden and the applet shows up.",
-        "value": "weather@mockturtl, color-picker@fmete, network@cinnamon.org, sound@cinnamon.org, removable-drives@cinnamon.org, keyboard@cinnamon.org"
+        "value": "network@cinnamon.org, sound@cinnamon.org, removable-drives@cinnamon.org, keyboard@cinnamon.org"
     },
     "save_every": {
         "type": "spinbutton",
