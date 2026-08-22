@@ -68,7 +68,7 @@ var MetUk = (function () {
         this.dailyUrl = "?res=daily";
         this.currentPrefix = "wxobs/all/json/";
         this.sitesUrl = "sitelist";
-        this.key = "key=REDACTED";
+        this.key = "key=05de1ee8-de70-46aa-9b41-299d4cc60219";
         this.forecastSite = null;
         this.observationSites = null;
         this.currentLoc = null;

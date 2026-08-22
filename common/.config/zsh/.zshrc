@@ -7,8 +7,11 @@ bindkey '^?' backward-delete-char
 bindkey '^H' backward-kill-word
 bindkey -M viins '^[[1;5D' backward-word
 bindkey -M viins '^[[1;5C' forward-word
+bindkey -M viins '^[[3~' delete-char
+bindkey -M viins '^[[3;5~' kill-word
+bindkey -M viins '^[[2~' undefined-key
 
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_[]~=&;!#$%^(){}<>'
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=10000
 SAVEHIST=20000
@@ -135,6 +138,22 @@ alias dcpufr="docker-compose up --force-recreate"
 alias dcpd="docker-compose down"
 alias dcpdro="docker-compose down --remove-orphans"
 alias dch="docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
+
+# Kubernets
+alias k="kubectl "
+alias kga="kubectl get all "
+alias kl="kubectl logs "
+alias kcd="kubectl create deployment "
+alias kcs="kubectl create service "
+alias ka="kubectl apply "
+alias kaf="kubectl apply -f "
+alias kd="kubectl delete "
+alias kdd="kubectl delete deployment "
+alias kds="kubectl delete service "
+alias kdp="kubectl delete pod "
+alias kpf="kubectl port-forward "
+alias minikube-build='eval $(minikube docker-env) && ./mvnw clean package spring-boot:build-image'
+alias minikube-build-notests='eval $(minikube docker-env) && ./mvnw clean package spring-boot:build-image -DskipTests'
 
 # Flutter
 alias fr="flutter run"
