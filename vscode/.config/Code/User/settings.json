@@ -147,6 +147,10 @@
 	"redhat.telemetry.enabled": false,
 	"terminal.integrated.commandsToSkipShell": [
 		"-workbench.action.terminal.focusFind",
+		"kilo-code.new.agentManagerOpen",
+		"kilo-code.new.agentManager.showTerminal",
+		"kilo-code.new.agentManager.previousTerminal",
+		"kilo-code.new.agentManager.nextTerminal",
 	],
 	"C_Cpp.codeAnalysis.clangTidy.enabled": true,
 	"C_Cpp.codeAnalysis.clangTidy.path": "/usr/bin/clang-tidy",
@@ -156,4 +160,7 @@
 	"editor.formatOnSave": true,
 	"workbench.colorTheme": "Dark+",
 	"chat.titleBar.openInAgentsWindow.enabled": false,
+	"workbench.experimental.modernUI": false,
+	"kilo-code.new.agentWorkStyle": "human-in-the-loop",
+	"kilo-code.new.showTaskTimeline": true,
 }

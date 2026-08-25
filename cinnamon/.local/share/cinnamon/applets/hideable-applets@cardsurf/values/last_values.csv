@@ -1,11 +1,10 @@
 Applet UUID,Is visible
-xapp-status@cinnamon.org,true
 weather@mockturtl,false
 betterlock,true
 color-picker@fmete,true
 systray@cinnamon.org,true
+xapp-status@cinnamon.org,true
 keyboard@cinnamon.org,true
-removable-drives@cinnamon.org,true
 kdecapplet@joejoetv,true
 nightlight@cinnamon.org,true
 notifications-enhanced@hilyxx,true

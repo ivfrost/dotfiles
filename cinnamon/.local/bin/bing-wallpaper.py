@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import argparse
 import json
@@ -11,38 +11,71 @@ from urllib.request import urlopen, Request
 
 FEED_URL = 'https://peapix.com/bing/feed?country='
 DEFAULT_HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0',
+    'User-Agent': 'Mozilla/6.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0',
 }
 
-# Comprehensive animal & wildlife keyword blacklist
 EXCLUDED_KEYWORDS = {
-    # Mammals
-    'bear', 'bears', 'bird', 'birds', 'tiger', 'tigers', 'lion', 'lions', 'cat', 'cats',
-    'dog', 'dogs', 'monkey', 'monkeys', 'owl', 'owls', 'wolf', 'wolves', 'fox', 'foxes',
-    'whale', 'whales', 'dolphin', 'dolphins', 'fish', 'fishes', 'deer', 'deers', 'elephant',
-    'elephants', 'penguin', 'penguins', 'snake', 'snakes', 'frog', 'frogs', 'leopard',
-    'leopards', 'cheetah', 'cheetahs', 'giraffe', 'giraffes', 'zebra', 'zebras', 'seal',
-    'seals', 'otter', 'otters', 'panda', 'pandas', 'iguana', 'chameleon', 'lizard', 'lizards',
-    'eagle', 'eagles', 'hawk', 'hawks', 'flamingo', 'flamingos', 'swan', 'swans', 'duck',
-    'ducks', 'goose', 'geese', 'horse', 'horses', 'cow', 'cows', 'sheep', 'goat', 'goats',
-    'squirrel', 'squirrels', 'rabbit', 'rabbits', 'hare', 'hares', 'kangaroo', 'kangaroos',
-    'koala', 'koalas', 'sloth', 'sloths', 'lemur', 'lemurs', 'insect', 'insects', 'beetle',
-    'bison', 'buffalo', 'camel', 'camels', 'hippopotamus', 'hippo', 'hippos', 'rhinoceros',
-    'rhino', 'rhinos', 'walrus', 'porpoise', 'jaguar', 'jaguars', 'cougar', 'puma', 'lynx',
-    # Birds & Flying
-    'parrot', 'parrots', 'macaw', 'pelican', 'heron', 'crane', 'puffins', 'puffin',
-    'hummingbird', 'falcon', 'vulture', 'stork', 'cormorant',
-    # Aquatic & Marine
-    'shark', 'sharks', 'stingray', 'ray', 'jellyfish', 'turtle', 'turtles', 'octopus',
-    'squid', 'starfish', 'coral', 'lobster', 'crab', 'crabs', 'seahorse',
-    # Reptiles & Amphibians
-    'alligator', 'crocodile', 'gecko', 'toad', 'toads', 'salamander',
-    # Insects & Bugs
-    'butterfly', 'butterflies', 'bee', 'bees', 'dragonfly', 'dragonflies', 'ladybug', 'spider',
-    # Broad Categories
-    'animal', 'animals', 'fauna', 'wildlife', 'flock', 'herd', 'cub', 'cubs', 'pup', 'pups'
+    # Mammals - common
+    'bear', 'bears', 'cat', 'cats', 'kitten', 'kittens', 'dog', 'dogs', 'puppy', 'puppies',
+    'tiger', 'tigers', 'lion', 'lions', 'leopard', 'leopards', 'cheetah', 'cheetahs',
+    'jaguar', 'jaguars', 'cougar', 'cougars', 'puma', 'pumas', 'lynx', 'bobcat', 'bobcats',
+    'wolf', 'wolves', 'fox', 'foxes', 'coyote', 'coyotes', 'jackal', 'jackals',
+    'monkey', 'monkeys', 'ape', 'apes', 'gorilla', 'gorillas', 'chimpanzee', 'chimpanzees',
+    'orangutan', 'orangutans', 'baboon', 'baboons', 'lemur', 'lemurs', 'gibbon', 'gibbons',
+    'elephant', 'elephants', 'rhino', 'rhinos', 'rhinoceros', 'hippo', 'hippos',
+    'hippopotamus', 'giraffe', 'giraffes', 'zebra', 'zebras', 'antelope', 'antelopes',
+    'gazelle', 'gazelles', 'bison', 'buffalo', 'buffaloes', 'yak', 'yaks',
+    'deer', 'moose', 'elk', 'reindeer', 'caribou',
+    'horse', 'horses', 'pony', 'ponies', 'donkey', 'donkeys', 'mule', 'mules', 'zebu',
+    'cow', 'cows', 'cattle', 'bull', 'bulls', 'calf', 'calves', 'ox', 'oxen',
+    'sheep', 'lamb', 'lambs', 'goat', 'goats', 'pig', 'pigs', 'boar', 'boars', 'hog', 'hogs',
+    'camel', 'camels', 'llama', 'llamas', 'alpaca', 'alpacas',
+    'panda', 'pandas', 'koala', 'koalas', 'kangaroo', 'kangaroos', 'wallaby', 'wallabies',
+    'sloth', 'sloths', 'armadillo', 'armadillos', 'anteater', 'anteaters', 'aardvark',
+    'squirrel', 'squirrels', 'chipmunk', 'chipmunks', 'rabbit', 'rabbits', 'hare', 'hares',
+    'rat', 'rats', 'mouse', 'mice', 'hamster', 'hamsters', 'gerbil', 'gerbils',
+    'beaver', 'beavers', 'porcupine', 'porcupines', 'hedgehog', 'hedgehogs',
+    'raccoon', 'raccoons', 'badger', 'badgers', 'skunk', 'skunks', 'weasel', 'weasels',
+    'otter', 'otters', 'mink', 'minks', 'ferret', 'ferrets', 'mongoose',
+    'seal', 'seals', 'sea lion', 'walrus', 'walruses', 'manatee', 'manatees', 'dugong',
+    'whale', 'whales', 'dolphin', 'dolphins', 'porpoise', 'porpoises', 'orca', 'orcas',
+    'bat', 'bats',
+    # Birds
+    'bird', 'birds', 'eagle', 'eagles', 'hawk', 'hawks', 'falcon', 'falcons',
+    'owl', 'owls', 'vulture', 'vultures', 'osprey',
+    'flamingo', 'flamingos', 'crane', 'cranes', 'heron', 'herons', 'stork', 'storks',
+    'pelican', 'pelicans', 'swan', 'swans', 'goose', 'geese', 'duck', 'ducks',
+    'penguin', 'penguins', 'puffin', 'puffins', 'cormorant', 'cormorants',
+    'parrot', 'parrots', 'macaw', 'macaws', 'toucan', 'toucans', 'hummingbird', 'hummingbirds',
+    'sparrow', 'sparrows', 'robin', 'robins', 'finch', 'finches', 'canary', 'canaries',
+    'crow', 'crows', 'raven', 'ravens', 'magpie', 'magpies', 'jay', 'jays',
+    'peacock', 'peacocks', 'pheasant', 'pheasants', 'turkey', 'turkeys', 'chicken', 'chickens',
+    'rooster', 'roosters', 'hen', 'hens', 'quail', 'ostrich', 'ostriches', 'emu', 'kiwi',
+    'seagull', 'gull', 'gulls', 'albatross', 'kingfisher', 'woodpecker', 'woodpeckers',
+    # Reptiles & amphibians
+    'snake', 'snakes', 'python', 'cobra', 'viper', 'lizard', 'lizards', 'gecko', 'geckos',
+    'iguana', 'iguanas', 'chameleon', 'chameleons', 'komodo dragon',
+    'turtle', 'turtles', 'tortoise', 'tortoises', 'alligator', 'alligators',
+    'crocodile', 'crocodiles', 'frog', 'frogs', 'toad', 'toads', 'salamander', 'salamanders',
+    'newt', 'newts',
+    # Fish & aquatic
+    'fish', 'shark', 'sharks', 'stingray', 'stingrays', 'ray', 'rays',
+    'salmon', 'trout', 'tuna', 'clownfish', 'goldfish', 'catfish', 'eel', 'eels',
+    'seahorse', 'seahorses', 'jellyfish', 'octopus', 'squid', 'starfish',
+    'coral', 'crab', 'crabs', 'lobster', 'lobsters', 'shrimp', 'clam', 'clams',
+    'oyster', 'oysters', 'mussel', 'mussels', 'snail', 'snails',
+    # Insects & bugs
+    'insect', 'insects', 'butterfly', 'butterflies', 'moth', 'moths', 'bee', 'bees',
+    'wasp', 'wasps', 'hornet', 'hornets', 'ant', 'ants', 'beetle', 'beetles',
+    'dragonfly', 'dragonflies', 'ladybug', 'ladybugs', 'spider', 'spiders',
+    'scorpion', 'scorpions', 'grasshopper', 'grasshoppers', 'cricket', 'crickets',
+    'mantis', 'centipede', 'centipedes', 'millipede',
+    # Broad categories
+    'animal', 'animals', 'wildlife', 'fauna', 'mammal', 'mammals', 'reptile', 'reptiles',
+    'amphibian', 'amphibians', 'rodent', 'rodents', 'primate', 'primates',
+    'flock', 'herd', 'pack', 'pod', 'swarm', 'cub', 'cubs', 'pup', 'pups', 'chick', 'chicks',
+    'wild horses', 'safari',
 }
-
 
 def is_excluded(title: str) -> bool:
     """Check if title contains excluded keywords as exact whole words."""
@@ -66,7 +99,7 @@ def main() -> None:
         print('$DISPLAY not set')
         return
 
-    country = os.environ.get('BING_WALLPAPER_COUNTRY', '')
+    country = os.environ.get('BING_WALLPAPER_COUNTRY', 'us')
     default_dir = os.path.expanduser('~/Pictures/Wallpapers/Bing')
     wallpapers_dir = os.environ.get('BING_WALLPAPER_PATH', default_dir)
 
@@ -82,23 +115,23 @@ def main() -> None:
         image_url = item.get('imageUrl') or item.get('fullUrl')
         item_date = item.get('date')
 
-        # 1. Skip if animal filtering is requested AND title matches
+        # 2. Skip if animal filtering is requested AND title matches
         if args.no_animals and is_excluded(title):
             print(f"Skipping animal wallpaper (--no-animals active): '{title}' ({item_date})")
             continue
 
-        # 2. Prevent filename collisions across same-date regional wallpapers
-        slug = re.sub(r'[^\w\-]', '_', title)[:30].strip('_')
+        # 3. Prevent filename collisions across same-date regional wallpapers
+        slug = re.sub(r'[^\w\-]', '_', title)[:31].strip('_')
         path = os.path.join(wallpapers_dir, f'{item_date}_{slug}.jpg')
 
-        # 3. Download image if it does not exist on disk
+        # 4. Download image if it does not exist on disk
         if not os.path.exists(path):
             with urlopen(Request(image_url, headers=DEFAULT_HEADERS)) as resp:
                 data = resp.read()
             with open(path, 'wb') as f:
                 f.write(data)
 
-        # 4. Mark item as selected and break loop
+        # 5. Mark item as selected and break loop
         selected_wallpaper_path = path
         print(f"Selected wallpaper: '{title}' ({item_date})")
         break
@@ -107,7 +140,7 @@ def main() -> None:
         print("No suitable wallpapers found matching criteria.")
         return
 
-    # 5. Update Cinnamon Desktop Wallpaper
+    # 6. Update Cinnamon Desktop Wallpaper
     wallpaper_uri = Path(selected_wallpaper_path).resolve().as_uri()
     subprocess.run(
         ['gsettings', 'set', 'org.cinnamon.desktop.background', 'picture-uri', wallpaper_uri], 
@@ -118,7 +151,7 @@ def main() -> None:
         stderr=subprocess.DEVNULL
     )
 
-    # 6. Update System Lockscreen Image
+    # 7. Update System Lockscreen Image
     lockscreen_target = '/usr/share/backgrounds/bing/BingWallpaper.jpg'
     try:
         os.makedirs(os.path.dirname(lockscreen_target), exist_ok=True)
