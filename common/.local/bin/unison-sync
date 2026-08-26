@@ -1,0 +1,14 @@
+#!/bin/bash
+HOST=$(hostname)
+if [ "$HOST" = "artix" ]; then
+    LOCAL="/home/ivfrost/.zen/"
+    REMOTE="ssh://ivfrost@artix//home/ivfrost/.config/zen"
+elif [ "$HOST" = "artix-laptop" ]; then
+    LOCAL="/home/ivfrost/.config/zen"
+    REMOTE="ssh://ivfrost@artix-desktop//home/ivfrost/.zen/"
+else
+    echo "Unknown host: $HOST"
+    exit 1
+fi
+
+unison "$LOCAL" "$REMOTE" 

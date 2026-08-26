@@ -162,5 +162,5 @@
 	"chat.titleBar.openInAgentsWindow.enabled": false,
 	"workbench.experimental.modernUI": false,
 	"kilo-code.new.agentWorkStyle": "human-in-the-loop",
-	"kilo-code.new.showTaskTimeline": true,
+	"kilo-code.new.showTaskTimeline": false,
 }

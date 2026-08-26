@@ -1,0 +1,12 @@
+ignore = Path */cache2/*
+ignore = Path */storage/temporary/*
+ignore = Path *cache/morgue/*
+ignore = Path */minidumps/*
+ignore = Path */OfflineCache/*
+ignore = Path */startupCache/*
+links = false
+auto = true
+batch = true
+log = true
+logfile = /home/ivfrost/.var/log/unison.log
+confirmbigdel = false

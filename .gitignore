@@ -54,3 +54,4 @@ __pycache__/
 *.pyc
 common/.config/vicinae/settings.json
 cinnamon/**/nemo-kdeconnect/
+cinnamon/.local/share/cinnamon/applets/color-picker@fmete/color-circle.svg
