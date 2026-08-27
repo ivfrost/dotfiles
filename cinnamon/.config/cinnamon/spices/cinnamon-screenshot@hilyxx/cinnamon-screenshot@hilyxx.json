@@ -19,7 +19,7 @@
         "type": "keybinding",
         "default": "<Control><Shift>2",
         "description": "Take active window screenshot",
-        "value": "<Shift>Print"
+        "value": "<Primary><Shift>Print"
     },
     "selectionHotkey": {
         "type": "keybinding",

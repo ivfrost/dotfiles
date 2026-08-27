@@ -1,0 +1,8 @@
+root = /home/ivfrost/Documents/Obsidian
+root = ssh://ivfrost@artix-laptop//home/ivfrost/Documents/Obsidian
+
+links = false
+
+auto = true
+batch = true
+prefer = newer

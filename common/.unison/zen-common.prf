@@ -4,6 +4,7 @@ ignore = Path *cache/morgue/*
 ignore = Path */minidumps/*
 ignore = Path */OfflineCache/*
 ignore = Path */startupCache/*
+ignore = Name ulw5nfmd.msg
 links = false
 auto = true
 batch = true

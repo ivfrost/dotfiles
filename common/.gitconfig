@@ -10,3 +10,7 @@
 [user]
     name = ivfrost 
     email = 120138606+ivfrost@users.noreply.github.com
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE

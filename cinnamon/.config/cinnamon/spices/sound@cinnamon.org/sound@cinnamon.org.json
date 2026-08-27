@@ -46,7 +46,8 @@
             "org.kde.kdeconnect.app",
             "io.github.diegopvlk.Cine",
             "zen",
-            "io.bassi.Amberol"
+            "io.bassi.Amberol",
+            "org.telegram.desktop"
         ]
     },
     "section2": {
