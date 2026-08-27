@@ -13,19 +13,19 @@
         "type": "keybinding",
         "default": "<Control><Shift>1",
         "description": "Take fullscreen screenshot",
-        "value": "Print"
+        "value": "::"
     },
     "activeWindowHotkey": {
         "type": "keybinding",
         "default": "<Control><Shift>2",
         "description": "Take active window screenshot",
-        "value": "<Shift>Print"
+        "value": "::"
     },
     "selectionHotkey": {
         "type": "keybinding",
         "default": "<Control><Shift>3",
         "description": "Take selection screenshot",
-        "value": "<Primary>Print"
+        "value": "::"
     },
     "section2": {
         "type": "section",

@@ -106,6 +106,7 @@ alias srv="cd /srv"
 # System & Editor Utilities
 alias sudo="sudo "
 alias doas="sudo "
+alias yay="paru "
 alias v="nvim "
 alias vv="sudo -E nvim"
 alias szs="source $ZDOTDIR/.zshrc"

@@ -15,11 +15,11 @@ desktop-effects-on-dialogs=true
 desktop-effects-on-menus=true
 desktop-effects-workspace=false
 enable-vfade=true
-enabled-applets=['panel1:right:5:systray@cinnamon.org:3', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:11:network@cinnamon.org:10', 'panel1:right:12:sound@cinnamon.org:56', 'panel1:right:4:color-picker@fmete:57', 'panel1:right:7:kdecapplet@joejoetv:66', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:2:hideable-applets@cardsurf:93', 'panel1:right:3:betterlock:108', 'panel1:right:13:user@cinnamon.org:115', 'panel1:right:1:weather@mockturtl:129', 'panel1:right:8:nightlight@cinnamon.org:140', 'panel1:right:9:notifications-enhanced@hilyxx:142', 'panel1:left:0:workspace-name@willurd:145']
+enabled-applets=['panel1:right:8:systray@cinnamon.org:3', 'panel1:right:10:keyboard@cinnamon.org:8', 'panel1:right:15:network@cinnamon.org:10', 'panel1:right:16:sound@cinnamon.org:56', 'panel1:right:7:color-picker@fmete:57', 'panel1:right:12:kdecapplet@joejoetv:66', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:5:hideable-applets@cardsurf:93', 'panel1:right:6:betterlock:108', 'panel1:right:17:user@cinnamon.org:115', 'panel1:right:4:weather@mockturtl:129', 'panel1:right:13:nightlight@cinnamon.org:140', 'panel1:right:14:notifications-enhanced@hilyxx:142', 'panel1:left:0:workspace-name@willurd:149', 'panel1:right:9:xapp-status@cinnamon.org:152', 'panel1:right:11:printers@cinnamon.org:160']
 enabled-desklets=@as []
 enabled-extensions=['mouse-shake-zoom@rcalixte', 'cinnamon-screenshot@hilyxx', 'ArrangementOfButtonsOnWindowTitleBar@claudiux', 'gTile@shuairan', 'auto-move-windows@JeffHanna']
 hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
-next-applet-id=148
+next-applet-id=164
 next-desklet-id=6
 panel-edit-mode=false
 panel-launchers=['DEPRECATED']
@@ -52,7 +52,7 @@ exec-arg=''
 [desktop/background]
 color-shading-type='vertical'
 picture-options='zoom'
-picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-08-16_Pedra_Furada__Jericoacoara__Br.jpg'
+picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-08-26_Auroras_over_Kirkjufell__Icelan.jpg'
 primary-color='#6173df'
 secondary-color='#e2a08a'
 
@@ -77,7 +77,7 @@ toolkit-accessibility=false
 
 [desktop/keybindings]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5', 'custom8', 'custom9', 'custom10', '__dummy__']
 
 [desktop/keybindings/custom-keybindings/custom0]
 binding=@as []
@@ -89,6 +89,11 @@ binding=['<Shift><Alt>x']
 command='zen-browser -P default'
 name='Zen Browser'
 
+[desktop/keybindings/custom-keybindings/custom10]
+binding=['<Shift>Print']
+command='gnome-screenshot --window'
+name='Window Screenshot'
+
 [desktop/keybindings/custom-keybindings/custom11]
 binding=['<Shift><Alt>d']
 command='nemo'
@@ -96,7 +101,7 @@ name='Files'
 
 [desktop/keybindings/custom-keybindings/custom13]
 binding=['<Shift><Alt>i']
-command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea'
+command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
 name='IDEA'
 
 [desktop/keybindings/custom-keybindings/custom15]
@@ -144,18 +149,29 @@ binding=['<Shift><Alt>o']
 command='obsidian'
 name='Obsidian'
 
+[desktop/keybindings/custom-keybindings/custom8]
+binding=['Print']
+command='gnome-screenshot -i'
+name='Screenshot Menu'
+
+[desktop/keybindings/custom-keybindings/custom9]
+binding=['<Primary>Print']
+command='gnome-screenshot --area'
+name='Selection Screenshot'
+
 [desktop/keybindings/media-keys]
 area-screenshot=@as []
 area-screenshot-clip=@as []
+mic-mute=@as []
 next=['AudioNext']
 play=['<Shift><Control>k']
 previous=['AudioPrev']
 screenshot=@as []
 screenshot-clip=@as []
 terminal=['<Shift><Alt>Return']
-volume-down=['<Shift><Control>comma']
-volume-mute=['<Shift><Control>m']
-volume-up=['<Shift><Control>i']
+volume-down=['AudioLowerVolume']
+volume-mute=['AudioMute']
+volume-up=['AudioRaiseVolume']
 
 [desktop/keybindings/wm]
 activate-window-menu=@as []
