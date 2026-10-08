@@ -5,4 +5,5 @@ font-size = 11
 font-family = BlexMono Nerd Font
 title="Terminal"
 term=xterm-256color
+link-previews = false
 scrollback-limit = 50000000
