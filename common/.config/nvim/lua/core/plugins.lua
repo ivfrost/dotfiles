@@ -15,12 +15,11 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-commentary'
   use 'tribela/vim-transparent'
+	use {
+	  'nvim-lualine/lualine.nvim',
+	  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
   use 'preservim/nerdtree'
-  
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
   use 'nvim-tree/nvim-web-devicons'
   use 'Mofiqul/vscode.nvim'
   if packer_bootstrap then
