@@ -1,6 +1,7 @@
 [/]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5', 'custom8', 'custom9', 'custom10']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5', 'custom8', 'custom9', 'custom10', 'custom14', 'custom12']
+switch-input-source=@as []
 
 [custom-keybindings/custom0]
 binding=@as []
@@ -22,10 +23,20 @@ binding=['<Shift><Alt>d']
 command='nemo'
 name='Files'
 
+[custom-keybindings/custom12]
+binding=['<Shift><Alt>l']
+command="ghostty --title='OpenCode' -e zsh -ic 'cd ~/Projects && claude; exec zsh'"
+name='Claude Code'
+
 [custom-keybindings/custom13]
 binding=['<Shift><Alt>i']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
 name='IDEA'
+
+[custom-keybindings/custom14]
+binding=['<Shift><Alt>e']
+command="ghostty --title='OpenCode' -e zsh -ic 'cd ~/Projects && opencode -m opencode/longcat-2.5-preview-free; exec zsh'"
+name='OpenCode'
 
 [custom-keybindings/custom15]
 binding=['<Shift><Alt>b']
@@ -53,7 +64,7 @@ command='code'
 name='VSCode'
 
 [custom-keybindings/custom4]
-binding=['<Shift><Alt>a']
+binding=@as []
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
 name='Android Studio'
 
@@ -89,6 +100,7 @@ mic-mute=@as []
 next=['AudioNext']
 play=['<Shift><Control>k']
 previous=['AudioPrev']
+screensaver=['XF86ScreenSaver']
 screenshot=@as []
 screenshot-clip=@as []
 terminal=['<Shift><Alt>Return']
@@ -109,7 +121,7 @@ move-to-workspace-7=['<Alt><Shift>7']
 move-to-workspace-8=['<Alt><Shift>8']
 move-to-workspace-9=['<Alt><Shift>9']
 show-desktop=['<Shift><Alt>0']
-switch-input-source=['<Super>space', 'XF86Keyboard']
+switch-input-source=['<Super>space']
 switch-to-workspace-1=['<Alt>1']
 switch-to-workspace-2=['<Alt>2']
 switch-to-workspace-3=['<Alt>3']

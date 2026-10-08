@@ -118,6 +118,7 @@ MyApplet.prototype = {
         this.capslock_state = this._getCapslockState();
 
         this._keyboardStateChangedId = Keymap.connect('state-changed', Lang.bind(this, this._onAnyLockStateChanged));
+        this._actorShowId = this.actor.connect('show', Lang.bind(this, this._onActorShown));
         this._updateIconsSize();
         this._updateAllIndicators();
     },
@@ -128,6 +129,7 @@ MyApplet.prototype = {
 
     on_applet_removed_from_panel: function() {
         Keymap.disconnect(this._keyboardStateChangedId);
+        this.actor.disconnect(this._actorShowId);
     },
 
     _ensureSource: function() {
@@ -195,6 +197,7 @@ MyApplet.prototype = {
         } else {
             this.binNum.hide();
         }
+        this._updateActorVisibility();
     },
 
     _updateCapsLockIndicatorVisibility: function() {
@@ -204,6 +207,7 @@ MyApplet.prototype = {
         } else {
             this.binCaps.hide();
         }
+        this._updateActorVisibility();
     },
 
     _updateScrLockIndicatorVisibility: function() {
@@ -212,6 +216,28 @@ MyApplet.prototype = {
             this.binScr.show();
         } else {
             this.binScr.hide();
+        }
+        this._updateActorVisibility();
+    },
+
+    _hasVisibleIndicator: function() {
+        return this.binNum.visible || this.binCaps.visible || this.binScr.visible;
+    },
+
+    _updateActorVisibility: function() {
+        if (this._hasVisibleIndicator()) {
+            this.actor.show();
+        } else {
+            this.actor.hide();
+        }
+    },
+
+    // Other applets (eg. hideable-applets) call show() on our actor without regard for
+    // whether we have anything to display. If we let that stick we end up mapped as an
+    // empty applet-box, taking up panel space (its padding) while showing nothing.
+    _onActorShown: function() {
+        if (!this._hasVisibleIndicator()) {
+            this.actor.hide();
         }
     },
 

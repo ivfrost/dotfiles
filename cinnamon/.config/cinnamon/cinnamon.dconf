@@ -15,11 +15,11 @@ desktop-effects-on-dialogs=true
 desktop-effects-on-menus=true
 desktop-effects-workspace=false
 enable-vfade=true
-enabled-applets=['panel1:right:4:systray@cinnamon.org:3', 'panel1:right:7:keyboard@cinnamon.org:8', 'panel1:right:12:network@cinnamon.org:10', 'panel1:right:13:sound@cinnamon.org:56', 'panel1:right:2:color-picker@fmete:57', 'panel1:right:9:kdecapplet@joejoetv:66', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:1:hideable-applets@cardsurf:93', 'panel1:right:3:betterlock:108', 'panel1:right:14:user@cinnamon.org:115', 'panel1:right:0:weather@mockturtl:129', 'panel1:right:10:nightlight@cinnamon.org:140', 'panel1:right:11:notifications-enhanced@hilyxx:142', 'panel1:right:6:xapp-status@cinnamon.org:152', 'panel1:right:8:printers@cinnamon.org:160', 'panel1:left:0:workspace-name@willurd:164']
+enabled-applets=['panel1:right:3:systray@cinnamon.org:3', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:11:network@cinnamon.org:10', 'panel1:right:12:sound@cinnamon.org:56', 'panel1:right:2:color-picker@fmete:57', 'panel1:right:8:kdecapplet@joejoetv:66', 'panel1:center:1:calendar@cinnamon.org:77', 'panel1:right:1:hideable-applets@cardsurf:93', 'panel1:right:5:betterlock:108', 'panel1:right:13:user@cinnamon.org:115', 'panel1:right:0:weather@mockturtl:129', 'panel1:right:9:nightlight@cinnamon.org:140', 'panel1:right:10:notifications-enhanced@hilyxx:142', 'panel1:right:4:xapp-status@cinnamon.org:152', 'panel1:right:7:printers@cinnamon.org:160', 'panel1:left:0:workspace-name@willurd:164']
 enabled-desklets=@as []
 enabled-extensions=['mouse-shake-zoom@rcalixte', 'cinnamon-screenshot@hilyxx', 'gTile@shuairan']
 hotcorner-layout=['expo:false:0', 'scale:false:0', 'scale:false:0', 'desktop:false:0']
-next-applet-id=165
+next-applet-id=167
 next-desklet-id=6
 panel-edit-mode=false
 panel-launchers=['DEPRECATED']
@@ -32,6 +32,9 @@ window-effect-speed=2
 
 [cinnamon-session]
 quit-time-delay=60
+
+[desktop/a11y/applications]
+screen-reader-enabled=true
 
 [desktop/a11y/keyboard]
 bouncekeys-delay=300
@@ -52,7 +55,7 @@ exec-arg=''
 [desktop/background]
 color-shading-type='vertical'
 picture-options='zoom'
-picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-09-22_Fall_aspen_trees_near_Guardsman.jpg'
+picture-uri='file:///home/ivfrost/Pictures/Wallpapers/Bing/2026-10-07_Moss-covered_rocks_in_Puzzlewoo.jpg'
 primary-color='#6173df'
 secondary-color='#e2a08a'
 
@@ -64,7 +67,7 @@ slideshow-enabled=false
 
 [desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'es')]
-xkb-options=['caps:swapescape']
+xkb-options=@as []
 
 [desktop/interface]
 clock-show-date=false
@@ -77,11 +80,12 @@ first-day-of-week=1
 gtk-theme='Adwaita-dark'
 icon-theme='Adwaita'
 text-scaling-factor=1.0
-toolkit-accessibility=false
+toolkit-accessibility=true
 
 [desktop/keybindings]
 custom-keybindings=['custom1', 'custom2', 'custom3', 'custom4', 'custom5', 'custom6', 'custom7', 'custom8', 'custom9', 'custom10', 'custom11', 'custom12', 'custom13', 'custom14', 'custom15']
-custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5', 'custom8', 'custom9', 'custom10']
+custom-list=['custom1', 'custom2', 'custom3', 'custom4', 'custom6', 'custom7', 'custom11', 'custom13', 'custom15', 'custom16', 'custom17', 'custom0', 'custom5', 'custom8', 'custom9', 'custom10', 'custom14', 'custom12']
+switch-input-source=@as []
 
 [desktop/keybindings/custom-keybindings/custom0]
 binding=@as []
@@ -103,10 +107,20 @@ binding=['<Shift><Alt>d']
 command='nemo'
 name='Files'
 
+[desktop/keybindings/custom-keybindings/custom12]
+binding=['<Shift><Alt>l']
+command="ghostty --title='OpenCode' -e zsh -ic 'cd ~/Projects && claude; exec zsh'"
+name='Claude Code'
+
 [desktop/keybindings/custom-keybindings/custom13]
 binding=['<Shift><Alt>i']
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/intellij-idea-2/bin/idea'
 name='IDEA'
+
+[desktop/keybindings/custom-keybindings/custom14]
+binding=['<Shift><Alt>e']
+command="ghostty --title='OpenCode' -e zsh -ic 'cd ~/Projects && opencode -m opencode/longcat-2.5-preview-free; exec zsh'"
+name='OpenCode'
 
 [desktop/keybindings/custom-keybindings/custom15]
 binding=['<Shift><Alt>b']
@@ -134,7 +148,7 @@ command='code'
 name='VSCode'
 
 [desktop/keybindings/custom-keybindings/custom4]
-binding=['<Shift><Alt>a']
+binding=@as []
 command='/home/ivfrost/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
 name='Android Studio'
 
@@ -170,6 +184,7 @@ mic-mute=@as []
 next=['AudioNext']
 play=['<Shift><Control>k']
 previous=['AudioPrev']
+screensaver=['XF86ScreenSaver']
 screenshot=@as []
 screenshot-clip=@as []
 terminal=['<Shift><Alt>Return']
@@ -190,7 +205,7 @@ move-to-workspace-7=['<Alt><Shift>7']
 move-to-workspace-8=['<Alt><Shift>8']
 move-to-workspace-9=['<Alt><Shift>9']
 show-desktop=['<Shift><Alt>0']
-switch-input-source=['<Super>space', 'XF86Keyboard']
+switch-input-source=['<Super>space']
 switch-to-workspace-1=['<Alt>1']
 switch-to-workspace-2=['<Alt>2']
 switch-to-workspace-3=['<Alt>3']
@@ -212,7 +227,7 @@ automount-open=false
 
 [desktop/notifications]
 bottom-notifications=false
-display-notifications=false
+display-notifications=true
 fullscreen-notifications=false
 notification-duration=4
 remove-old=true
@@ -227,7 +242,7 @@ repeat-interval=uint32 61
 layout-group=0
 
 [desktop/sound]
-allow-amplified-volume=true
+allow-amplified-volume=false
 event-sounds=false
 
 [desktop/wm/preferences]
@@ -268,13 +283,13 @@ tile-maximize=true
 fractional-scale-mode='scale-ui-down'
 
 [settings-daemon/peripherals/touchscreen]
-orientation-lock=true
+orientation-lock=false
 
 [settings-daemon/plugins/color]
-night-light-enabled=false
+night-light-enabled=true
 night-light-last-coordinates=(40.399999999999999, -3.6833330000000002)
 night-light-schedule-mode='auto'
-night-light-temperature=uint32 4000
+night-light-temperature=uint32 3900
 
 [settings-daemon/plugins/housekeeping]
 ignore-paths=['/home']

@@ -349,6 +349,28 @@ stage {
 .systray {
   padding: 0; }
 
+/*
+  Tray boxes fill the panel.
+  Regular applets put .applet-box on the applet actor itself, which the panel
+  stretches to its full height. The tray applets (systray, xapp-status) put it
+  on an inner box sized to its content instead, so the icon's hover highlight
+  floats in the middle of the panel with dead space above and below, unlike
+  every other applet. Giving the box the panel's height removes that; the icon
+  stays centred and keeps its own size.
+
+  The height below is rewritten to match org.cinnamon panels-height whenever
+  that changes, by ~/.local/bin/cinnamon-tray-height (started at login from
+  ~/.config/autostart/). Don't hand-edit the number - edit the panel instead.
+  St cannot express "fill the parent" here: height: 100% is ignored, and a
+  too-large value overflows the panel instead of being clamped.
+
+  xapp-status is the applet's uuid, not a hand-written class - if the applet is
+  ever swapped out, re-check the generated class with cinnamon-looking-glass.
+*/
+.systray .applet-box,
+.xapp-status-cinnamon-org-applet .applet-box {
+  height: 24px; }
+
 .panel-top {
   padding: 0 6px; }
 
