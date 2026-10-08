@@ -45,7 +45,7 @@ Options:
   --dry            Print what would be done without changing anything.
   -y, --yes        Non-interactive mode (passes --noconfirm to pacman/paru).
   --no-packages    Skip package installation from the encrypted list.
-  --no-system      Skip copying artix-sys/ into /etc.
+  --no-system      Skip copying artix-sys/ into /etc and /usr.
   --no-cinnamon    Skip restoring Cinnamon dconf settings.
   --adopt          Adopt conflicting files when stowing (passes --adopt to stow).
   --laptop         Enable fractional scaling at 125% (laptop).
@@ -174,15 +174,20 @@ else
     warn "zsh not found; skipping default-shell change (is it installed?)."
 fi
 
-# 8. System files (pacman hooks, dispatchers, ...) into /etc.
+# 8. System files (pacman hooks, dispatchers, ...) into /etc, and the root-owned
+# helpers that those hooks invoke by absolute path from artix-sys/usr into /usr.
+# Both trees are needed: a hook under /etc/pacman.d/hooks names a script that
+# only exists once artix-sys/usr has been copied.
 if (( NO_SYSTEM )); then
     warn "Skipping system file installation (--no-system)."
 else
-    info "Installing system files (artix-sys/) into /etc"
+    info "Installing system files (artix-sys/) into /etc and /usr"
     if command -v rsync >/dev/null; then
         run sudo rsync -a --no-owner --no-group "$DOTFILES/artix-sys/etc/" /etc/
+        run sudo rsync -a --no-owner --no-group "$DOTFILES/artix-sys/usr/" /usr/
     else
         run sudo cp -a --no-preserve=ownership "$DOTFILES/artix-sys/etc/." /etc/
+        run sudo cp -a --no-preserve=ownership "$DOTFILES/artix-sys/usr/." /usr/
     fi
 fi
 

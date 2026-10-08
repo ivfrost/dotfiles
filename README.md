@@ -7,7 +7,9 @@ that can be selectively deployed to your home directory.
 
 The `artix-sys/` folder is a special case:  
 it contains **hooks** and other **system configurations/fixes** for Artix.  
-It is **not stowable** and is meant to be copied into `/etc/` on an Artix OpenRC system.
+It is **not stowable**. `artix-sys/etc/` is copied into `/etc/` and
+`artix-sys/usr/` into `/usr/` on an Artix OpenRC system — the latter holds the
+root‑owned helpers that the hooks under `artix-sys/etc/` invoke by absolute path.
 
 
 ## Example usage
@@ -20,8 +22,11 @@ cd ~/.config/dotfiles
 stow common -t ~
 stow cinnamon -t ~
 
-# Deploy artix system files (preventing accidental overwrites)
-sudo rsync -avh --progress ./artix-sys/etc/ /etc/
+# Deploy artix system files (preventing accidental overwrites).
+# --no-owner --no-group because the copy runs as root: without them the
+# files keep your user's ownership and land in /etc and /usr owned by you.
+sudo rsync -avh --progress --no-owner --no-group ./artix-sys/etc/ /etc/
+sudo rsync -avh --progress --no-owner --no-group ./artix-sys/usr/ /usr/
 ```
 
 ## Fresh Artix OpenRC + Cinnamon install
@@ -40,8 +45,8 @@ mkdir -p ~/.config/zsh
 echo 'export AGE_KEY="AGE-SECRET-KEY-1..."' >> ~/.config/zsh/.zshrc.local
 # or copy the file over from your existing machine
 
-# 4. Run the bootstrap (installs packages, stows dotfiles, copies system files,
-#    sets zsh as the default shell and restores Cinnamon)
+# 4. Run the bootstrap (installs packages, stows dotfiles, copies system files
+#    into /etc and /usr, sets zsh as the default shell and restores Cinnamon)
 cd ~/.config/dotfiles
 ./bootstrap.sh            # interactive
 # ./bootstrap.sh --yes    # fully unattended
