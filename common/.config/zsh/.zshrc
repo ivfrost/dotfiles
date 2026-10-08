@@ -96,6 +96,7 @@ alias dwn="cd ~/Downloads"
 alias doc="cd ~/Documents"
 alias pjt="cd ~/Projects/"
 alias vid="cd ~/Videos"
+alias cnf="cd ~/.config"
 alias noi="cd ~/Videos/Noises"
 alias mus="cd ~/Music"
 alias hdd="cd /mnt/hdd"
@@ -287,3 +288,6 @@ eval $(thefuck --alias please)
 # User-specific configs
 # =============================
 [ -f "$ZDOTDIR/.zshrc.local" ] && source "$ZDOTDIR/.zshrc.local"
+
+# opencode
+export PATH=/home/ivfrost/.opencode/bin:$PATH
