@@ -32,6 +32,9 @@ TAGS
 Code/
 !Code/User/keybindings.json
 !Code/User/settings.json
+# The two negations above do not actually work - git cannot re-include a file
+# whose parent directory is excluded - so those two are force-added (`git add -f`)
+# and stay tracked from then on, which ignore rules never affect.
 
 # copyq
 cinnamon/.config/copyq/copyq.pub
@@ -53,5 +56,7 @@ cinnamon/.config/cinnamon/spices/qredshift@quintao/qredshift@quintao.json
 __pycache__/
 *.pyc
 common/.config/vicinae/settings.json
+
 cinnamon/**/nemo-kdeconnect/
 cinnamon/.local/share/cinnamon/applets/color-picker@fmete/color-circle.svg
+cinnamon/.local/share/cinnamon/applets/hideable-applets@cardsurf/values/last_values.csv
